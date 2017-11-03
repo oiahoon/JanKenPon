@@ -107,7 +107,7 @@ class AooWu
      */
     NewPage(className) {
         if (!classMap.hasOwnProperty(className)) {
-            console.log(className + " undefined"); return {};
+            throw "awu.js: class " + className + " undefined";
         }
 
         if (!instances.hasOwnProperty(className)) {
