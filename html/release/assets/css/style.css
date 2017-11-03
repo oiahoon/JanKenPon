@@ -1,11 +1,11 @@
-html, body{margin:0; padding:0; width:100%; height:100%;background: #000000}
+html, body{margin:0; padding:0; width:100%; height:100%;background: #FFF}
 
-.loading{width:100%;height:20px;line-height:20px;color:#FFF;text-align: center;letter-spacing:16px;}
-.loading{position: relative;top:50%;transform: translateY(-50%);animation: loading 2s infinite}
+.loading{width:100%;color:#000;text-align: center;letter-spacing:16px;}
+.loading{position: relative;top:45%;animation: loading 2s infinite}
 .loading:before{content: "LOADING"}
 
 @keyframes loading {
-    0%{opacity: 0.2}
+    0%{opacity: 0.1}
     50%{opacity: 1}
-    100%{opacity: 0.2}
+    100%{opacity: 0.1}
 }
