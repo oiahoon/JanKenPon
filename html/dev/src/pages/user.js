@@ -15,7 +15,7 @@ export class user
 
     // 登录
     login() {
-       // common.render(`{login.html}`);
+        common.render(`{login.html}`);
     }
 
     // 注册
