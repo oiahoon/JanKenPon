@@ -1,5 +1,3 @@
-# Jan Ken Pon
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fl8ei9v9kuj30gn0jiaaq.jpg)
 
 ## Api
 > 1. [post] register
