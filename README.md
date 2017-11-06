@@ -3,27 +3,10 @@
 『剪刀』、『石頭』、『布』
 
 
-# README
+#development
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+> 1. git clone `https://github.com/oiahoon/JanKenPon.git`
+> 2. cd JanKenPon/
+> 3. docker-compose build
+> 4. cocker-compose up
+> 5. [http://localhost/login](http://localhost/login)
