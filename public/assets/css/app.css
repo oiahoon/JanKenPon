@@ -2,6 +2,102 @@
     margin-bottom: 20px;
 }
 
+.page-header[filter-color="eggyellow"] {
+    background: rgb(254, 253, 217));
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgb(254, 253, 217));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgb(254, 253, 217));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgb(254, 253, 217));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgb(254, 253, 217));
+    /* Standard syntax */
+}
+
+.link-black {
+    color: #2d2d2d;
+}
+/* btn green */
+.btn-green {
+    background-color: #76a541;
+}
+
+.btn-green:hover,
+.btn-green:focus,
+.btn-green:active,
+.btn-green.active,
+.btn-green:active:focus,
+.btn-green:active:hover,
+.btn-green.active:focus,
+.btn-green.active:hover,
+.show>.btn-green.dropdown-toggle,
+.show>.btn-green.dropdown-toggle:focus,
+.show>.btn-green.dropdown-toggle:hover {
+    background-color: #76a541;
+    color: #FFFFFF;
+    box-shadow: none;
+}
+
+.btn-green:not([data-action]):hover {
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
+}
+
+.btn-green.disabled,
+.btn-green.disabled:hover,
+.btn-green.disabled:focus,
+.btn-green.disabled.focus,
+.btn-green.disabled:active,
+.btn-green.disabled.active,
+.btn-green:disabled,
+.btn-green:disabled:hover,
+.btn-green:disabled:focus,
+.btn-green:disabled.focus,
+.btn-green:disabled:active,
+.btn-green:disabled.active,
+.btn-green[disabled],
+.btn-green[disabled]:hover,
+.btn-green[disabled]:focus,
+.btn-green[disabled].focus,
+.btn-green[disabled]:active,
+.btn-green[disabled].active,
+fieldset[disabled] .btn-green,
+fieldset[disabled] .btn-green:hover,
+fieldset[disabled] .btn-green:focus,
+fieldset[disabled] .btn-green.focus,
+fieldset[disabled] .btn-green:active,
+fieldset[disabled] .btn-green.active {
+    background-color: #6fa533;
+    border-color: #6fa533;
+}
+
+.btn-green.btn-simple {
+    color: #6fa533;
+    border-color: #6fa533;
+}
+
+.btn-green.btn-simple:hover,
+.btn-green.btn-simple:focus,
+.btn-green.btn-simple:active {
+    background-color: transparent;
+    color: #76a541;
+    border-color: #76a541;
+    box-shadow: none;
+}
+
+.btn-green.btn-link {
+    color: #f96332;
+}
+
+.btn-green.btn-link:hover,
+.btn-green.btn-link:focus,
+.btn-green.btn-link:active {
+    background-color: transparent;
+    color: #76a541;
+    text-decoration: none;
+    box-shadow: none;
+}
+
 
 /*      transitions */
 

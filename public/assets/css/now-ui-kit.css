@@ -1,12 +1,12 @@
 /*!
 
  =========================================================
- * Now-ui-kit - v1.1.0
+ * Now-ui-kit-pro - v1.1.0
  =========================================================
 
- * Product Page: http://www.creative-tim.com/product/now-ui-kit
+ * Product Page: http://www.creative-tim.com/product/now-ui-kit-pro
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md)
+ * View License on http://www.creative-tim.com/license
 
  * Designed by www.invisionapp.com Coded by www.creative-tim.com
 
@@ -1487,7 +1487,7 @@ select.selectpicker {
 }
 
 .bootstrap-select {
-    min-width: 220px;
+    min-width: 100%;
 }
 
 .bootstrap-select>.dropdown-toggle {
@@ -1620,11 +1620,7 @@ select.selectpicker {
 }
 
 .bootstrap-select.btn-group .dropdown-toggle .caret {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    margin-top: -2px;
-    vertical-align: middle;
+    display: none;
 }
 
 .bootstrap-select.btn-group[class*="col-"] .dropdown-toggle {
@@ -1636,6 +1632,7 @@ select.selectpicker {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    max-height: 265px !important;
 }
 
 .bootstrap-select.btn-group .dropdown-menu.inner {
@@ -1646,6 +1643,9 @@ select.selectpicker {
     margin: 0;
     border-radius: 0;
     display: block;
+    max-height: 245px !important;
+    overflow-y: scroll;
+    -ms-overflow-style: auto;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
@@ -2134,13 +2134,6 @@ select.selectpicker {
     padding: 0;
 }
 
-
-/*!
- * Datetimepicker for Bootstrap 3
- * ! version : 4.7.14
- * https://github.com/Eonasdan/bootstrap-datetimepicker/
- */
-
 .sr-only,
 .bootstrap-datetimepicker-widget .btn[data-action="incrementHours"]::after,
 .bootstrap-datetimepicker-widget .btn[data-action="incrementMinutes"]::after,
@@ -2180,6 +2173,7 @@ select.selectpicker {
 
 .bootstrap-datetimepicker-widget.dropdown-menu .now-ui-icons {
     opacity: 1;
+    top: 2px;
 }
 
 @media (min-width: 768px) {
@@ -2240,11 +2234,6 @@ select.selectpicker {
 .bootstrap-datetimepicker-widget.dropdown-menu.top {
     margin-top: auto;
     margin-bottom: -20px;
-}
-
-.bootstrap-datetimepicker-widget.dropdown-menu.top.open {
-    margin-top: auto;
-    margin-bottom: 3px;
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right:before {
@@ -4533,27 +4522,30 @@ textarea.form-control:active {
     z-index: 100;
 }
 
-.checkbox,
-.radio {
-    margin-bottom: 12px;
+.form-check {
+    margin-top: .65rem;
 }
 
-.checkbox label,
-.radio label {
+.form-check .form-check-label {
     display: inline-block;
     position: relative;
     cursor: pointer;
     padding-left: 35px;
     line-height: 26px;
     margin-bottom: 0;
+    -webkit-transition: color 0.3s linear;
+    -moz-transition: color 0.3s linear;
+    -o-transition: color 0.3s linear;
+    -ms-transition: color 0.3s linear;
+    transition: color 0.3s linear;
 }
 
-.radio label {
+.radio .form-check-sign {
     padding-left: 28px;
 }
 
-.checkbox label::before,
-.checkbox label::after {
+.form-check .form-check-sign::before,
+.form-check .form-check-sign::after {
     content: " ";
     display: inline-block;
     position: absolute;
@@ -4572,7 +4564,7 @@ textarea.form-control:active {
     transition: opacity 0.3s linear;
 }
 
-.checkbox label::after {
+.form-check .form-check-sign::after {
     font-family: 'Nucleo Outline';
     content: "\ea22";
     top: 0px;
@@ -4584,88 +4576,36 @@ textarea.form-control:active {
     background-color: inherit;
 }
 
-.checkbox input[type="checkbox"],
+.form-check.disabled .form-check-label,
+.form-check.disabled .form-check-label {
+    color: #9A9A9A;
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.form-check input[type="checkbox"],
 .radio input[type="radio"] {
     opacity: 0;
     position: absolute;
     visibility: hidden;
 }
 
-.checkbox input[type="checkbox"]:checked+label::after {
+.form-check input[type="checkbox"]:checked+.form-check-sign::after {
     opacity: 1;
 }
 
-.checkbox input[type="checkbox"]:disabled+label,
-.radio input[type="radio"]:disabled+label {
-    color: #9A9A9A;
-    opacity: .5;
-}
-
-.checkbox input[type="checkbox"]:disabled+label::before,
-.checkbox input[type="checkbox"]:disabled+label::after {
+.form-control input[type="checkbox"]:disabled+.form-check-sign::before,
+.checkbox input[type="checkbox"]:disabled+.form-check-sign::after {
     cursor: not-allowed;
 }
 
-.checkbox input[type="checkbox"]:disabled+label,
-.radio input[type="radio"]:disabled+label {
-    cursor: not-allowed;
+.form-check input[type="checkbox"]:disabled+.form-check-sign,
+.form-check input[type="radio"]:disabled+.form-check-sign {
+    pointer-events: none;
 }
 
-.checkbox.checkbox-circle label::before {
-    border-radius: 50%;
-}
-
-.checkbox.checkbox-inline {
-    margin-top: 0;
-}
-
-.checkbox-primary input[type="checkbox"]:checked+label::before {
-    background-color: #428bca;
-    border-color: #428bca;
-}
-
-.checkbox-primary input[type="checkbox"]:checked+label::after {
-    color: #fff;
-}
-
-.checkbox-danger input[type="checkbox"]:checked+label::before {
-    background-color: #d9534f;
-    border-color: #d9534f;
-}
-
-.checkbox-danger input[type="checkbox"]:checked+label::after {
-    color: #fff;
-}
-
-.checkbox-info input[type="checkbox"]:checked+label::before {
-    background-color: #5bc0de;
-    border-color: #5bc0de;
-}
-
-.checkbox-info input[type="checkbox"]:checked+label::after {
-    color: #fff;
-}
-
-.checkbox-warning input[type="checkbox"]:checked+label::before {
-    background-color: #f0ad4e;
-    border-color: #f0ad4e;
-}
-
-.checkbox-warning input[type="checkbox"]:checked+label::after {
-    color: #fff;
-}
-
-.checkbox-success input[type="checkbox"]:checked+label::before {
-    background-color: #5cb85c;
-    border-color: #5cb85c;
-}
-
-.checkbox-success input[type="checkbox"]:checked+label::after {
-    color: #fff;
-}
-
-.radio label::before,
-.radio label::after {
+.form-check-radio .form-check-sign::before,
+.form-check-radio .form-check-sign::after {
     content: " ";
     width: 20px;
     height: 20px;
@@ -4683,12 +4623,12 @@ textarea.form-control:active {
     transition: opacity 0.3s linear;
 }
 
-.radio input[type="radio"]+label:after,
-.radio input[type="radio"] {
+.form-check-radio input[type="radio"]+.form-check-sign:after,
+.form-check-radio input[type="radio"] {
     opacity: 0;
 }
 
-.radio input[type="radio"]:checked+label::after {
+.form-check-radio input[type="radio"]:checked+.form-check-sign::after {
     width: 4px;
     height: 4px;
     background-color: #555555;
@@ -4698,21 +4638,17 @@ textarea.form-control:active {
     opacity: 1;
 }
 
-.radio input[type="radio"]:checked+label::after {
+.form-check-radio input[type="radio"]:checked+.form-check-sign::after {
     opacity: 1;
 }
 
-.radio input[type="radio"]:disabled+label {
+.form-check-radio input[type="radio"]:disabled+.form-check-sign {
     color: #9A9A9A;
 }
 
-.radio input[type="radio"]:disabled+label::before,
-.radio input[type="radio"]:disabled+label::after {
+.form-check-radio input[type="radio"]:disabled+.form-check-sign::before,
+.form-check-radio input[type="radio"]:disabled+.form-check-sign::after {
     color: #9A9A9A;
-}
-
-.radio.radio-inline {
-    margin-top: 0;
 }
 
 .progress-container {
@@ -4841,6 +4777,7 @@ textarea.form-control:active {
     background-color: transparent;
     border: 1px solid;
     margin-bottom: 5px;
+    color: #FFFFFF;
     border-radius: 0.875rem;
 }
 
@@ -5101,6 +5038,7 @@ p {
 
 .title {
     font-weight: 700;
+    padding-top: 30px;
 }
 
 .title.title-up {
@@ -5296,7 +5234,7 @@ body {
     font-size: 24px;
 }
 
-.nav-pills .nav-item:not(:last-child) .nav-link {
+.nav-pills:not(.flex-column) .nav-item:not(:last-child) .nav-link {
     margin-right: 19px;
 }
 
@@ -5920,28 +5858,19 @@ body {
 
 .dropdown .dropdown-menu,
 .dropup:not(.bootstrap-select) .dropdown-menu,
-.dropdown-menu.bootstrap-datetimepicker-widget.top,
 .bootstrap-select .dropdown-menu:not(.inner),
+.dropdown-menu.bootstrap-datetimepicker-widget.top,
 .dropdown-menu.bootstrap-datetimepicker-widget.bottom {
-    -webkit-transform: translate3d(0, -25px, 0);
-    -moz-transform: translate3d(0, -25px, 0);
-    -o-transform: translate3d(0, -25px, 0);
-    -ms-transform: translate3d(0, -25px, 0);
-    transform: translate3d(0, -25px, 0);
+    -webkit-transform: translate3d(0, 20px, 0) !important;
+    -moz-transform: translate3d(0, 20px, 0) !important;
+    -o-transform: translate3d(0, 20px, 0) !important;
+    -ms-transform: translate3d(0, 20px, 0) !important;
+    transform: translate3d(0, 20px, 0) !important;
     visibility: hidden;
     display: block;
     opacity: 0;
     filter: alpha(opacity=0);
-}
-
-.dropup:not(.bootstrap-select) .dropdown-menu,
-.bootstrap-select.dropup .dropdown-menu:not(.inner),
-.dropdown-menu.bootstrap-datetimepicker-widget.top {
-    -webkit-transform: translate3d(0, 25px, 0);
-    -moz-transform: translate3d(0, 25px, 0);
-    -o-transform: translate3d(0, 25px, 0);
-    -ms-transform: translate3d(0, 25px, 0);
-    transform: translate3d(0, 25px, 0);
+    top: 0;
 }
 
 .dropdown.show .dropdown-menu,
@@ -5952,19 +5881,68 @@ body {
     opacity: 1;
     filter: alpha(opacity=100);
     visibility: visible;
-    -webkit-transform: translate3d(0, 0px, 0);
-    -moz-transform: translate3d(0, 0px, 0);
-    -o-transform: translate3d(0, 0px, 0);
-    -ms-transform: translate3d(0, 0px, 0);
-    transform: translate3d(0, 0px, 0);
+    -webkit-transform: translate3d(0, 48px, 0) !important;
+    -moz-transform: translate3d(0, 48px, 0) !important;
+    -o-transform: translate3d(0, 48px, 0) !important;
+    -ms-transform: translate3d(0, 48px, 0) !important;
+    transform: translate3d(0, 48px, 0) !important;
+}
+
+.dropdown-menu.bootstrap-datetimepicker-widget.top,
+.dropdown-menu.bootstrap-datetimepicker-widget.bottom.open {
+    -webkit-transform: translate3d(0, 0px, 0) !important;
+    -moz-transform: translate3d(0, 0px, 0) !important;
+    -o-transform: translate3d(0, 0px, 0) !important;
+    -ms-transform: translate3d(0, 0px, 0) !important;
+    transform: translate3d(0, 0px, 0) !important;
+}
+
+.dropdown-menu.bootstrap-datetimepicker-widget.top.open {
+    -webkit-transform: translate3d(0, -22px, 0) !important;
+    -moz-transform: translate3d(0, -22px, 0) !important;
+    -o-transform: translate3d(0, -22px, 0) !important;
+    -ms-transform: translate3d(0, -22px, 0) !important;
+    transform: translate3d(0, -22px, 0) !important;
+}
+
+.dropdown-menu.bootstrap-datetimepicker-widget.bottom {
+    -webkit-transform: translate3d(0, -20px, 0) !important;
+    -moz-transform: translate3d(0, -20px, 0) !important;
+    -o-transform: translate3d(0, -20px, 0) !important;
+    -ms-transform: translate3d(0, -20px, 0) !important;
+    transform: translate3d(0, -20px, 0) !important;
+}
+
+.bootstrap-select.dropup .dropdown-menu:not(.inner) {
+    -webkit-transform: translate3d(0, 25px, 0) !important;
+    -moz-transform: translate3d(0, 25px, 0) !important;
+    -o-transform: translate3d(0, 25px, 0) !important;
+    -ms-transform: translate3d(0, 25px, 0) !important;
+    transform: translate3d(0, 25px, 0) !important;
+}
+
+.dropup:not(.bootstrap-select) .dropdown-menu {
+    -webkit-transform: translate3d(0, -112px, 0) !important;
+    -moz-transform: translate3d(0, -112px, 0) !important;
+    -o-transform: translate3d(0, -112px, 0) !important;
+    -ms-transform: translate3d(0, -112px, 0) !important;
+    transform: translate3d(0, -112px, 0) !important;
+}
+
+.dropup.show:not(.bootstrap-select) .dropdown-menu {
+    -webkit-transform: translate3d(0, -131px, 0) !important;
+    -moz-transform: translate3d(0, -131px, 0) !important;
+    -o-transform: translate3d(0, -131px, 0) !important;
+    -ms-transform: translate3d(0, -131px, 0) !important;
+    transform: translate3d(0, -131px, 0) !important;
 }
 
 .navbar .dropdown.show .dropdown-menu {
-    -webkit-transform: translate3d(0, 7px, 0);
-    -moz-transform: translate3d(0, 7px, 0);
-    -o-transform: translate3d(0, 7px, 0);
-    -ms-transform: translate3d(0, 7px, 0);
-    transform: translate3d(0, 7px, 0);
+    -webkit-transform: translate3d(0, 43px, 0) !important;
+    -moz-transform: translate3d(0, 43px, 0) !important;
+    -o-transform: translate3d(0, 43px, 0) !important;
+    -ms-transform: translate3d(0, 43px, 0) !important;
+    transform: translate3d(0, 43px, 0) !important;
 }
 
 .button-dropdown {
@@ -6034,6 +6012,7 @@ body {
     line-height: 0;
     outline: 0;
     display: inline-block;
+    cursor: pointer;
 }
 
 img {
@@ -6053,10 +6032,20 @@ img {
     max-width: 240px;
 }
 
-.popover .popover-title {
+.popover.bs-popover-top .arrow:before,
+.popover.bs-popover-left .arrow:before,
+.popover.bs-popover-right .arrow:before,
+.popover.bs-popover-bottom .arrow:before {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.popover .popover-header {
     color: rgba(182, 182, 182, 0.6);
     font-size: 14px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-weight: 600;
     margin: 0;
     margin-top: 5px;
@@ -6075,143 +6064,163 @@ img {
 
 .popover.popover-primary {
     background-color: #f96332;
+}
+
+.popover.popover-primary .popover-body {
     color: #FFFFFF;
 }
 
-.popover.popover-primary.bs-tether-element-attached-right:after {
-    border-left-color: #f96332;
-}
-
-.popover.popover-primary.bs-tether-element-attached-top:after {
-    border-bottom-color: #f96332;
-}
-
-.popover.popover-primary.bs-tether-element-attached-bottom:after {
-    border-top-color: #f96332;
-}
-
-.popover.popover-primary.bs-tether-element-attached-left:after {
+.popover.popover-primary.bs-popover-right .arrow:after {
     border-right-color: #f96332;
 }
 
-.popover.popover-primary .popover-title {
+.popover.popover-primary.bs-popover-top .arrow:after {
+    border-top-color: #f96332;
+}
+
+.popover.popover-primary.bs-popover-bottom .arrow:after {
+    border-bottom-color: #f96332;
+}
+
+.popover.popover-primary.bs-popover-left .arrow:after {
+    border-left-color: #f96332;
+}
+
+.popover.popover-primary .popover-header {
     color: #FFFFFF;
+    opacity: .6;
 }
 
 .popover.popover-info {
     background-color: #2CA8FF;
+}
+
+.popover.popover-info .popover-body {
     color: #FFFFFF;
 }
 
-.popover.popover-info.bs-tether-element-attached-right:after {
-    border-left-color: #2CA8FF;
-}
-
-.popover.popover-info.bs-tether-element-attached-top:after {
-    border-bottom-color: #2CA8FF;
-}
-
-.popover.popover-info.bs-tether-element-attached-bottom:after {
-    border-top-color: #2CA8FF;
-}
-
-.popover.popover-info.bs-tether-element-attached-left:after {
+.popover.popover-info.bs-popover-right .arrow:after {
     border-right-color: #2CA8FF;
 }
 
-.popover.popover-info .popover-title {
+.popover.popover-info.bs-popover-top .arrow:after {
+    border-top-color: #2CA8FF;
+}
+
+.popover.popover-info.bs-popover-bottom .arrow:after {
+    border-bottom-color: #2CA8FF;
+}
+
+.popover.popover-info.bs-popover-left .arrow:after {
+    border-left-color: #2CA8FF;
+}
+
+.popover.popover-info .popover-header {
     color: #FFFFFF;
+    opacity: .6;
 }
 
 .popover.popover-warning {
     background-color: #FFB236;
+}
+
+.popover.popover-warning .popover-body {
     color: #FFFFFF;
 }
 
-.popover.popover-warning.bs-tether-element-attached-right:after {
-    border-left-color: #FFB236;
-}
-
-.popover.popover-warning.bs-tether-element-attached-top:after {
-    border-bottom-color: #FFB236;
-}
-
-.popover.popover-warning.bs-tether-element-attached-bottom:after {
-    border-top-color: #FFB236;
-}
-
-.popover.popover-warning.bs-tether-element-attached-left:after {
+.popover.popover-warning.bs-popover-right .arrow:after {
     border-right-color: #FFB236;
 }
 
-.popover.popover-warning .popover-title {
+.popover.popover-warning.bs-popover-top .arrow:after {
+    border-top-color: #FFB236;
+}
+
+.popover.popover-warning.bs-popover-bottom .arrow:after {
+    border-bottom-color: #FFB236;
+}
+
+.popover.popover-warning.bs-popover-left .arrow:after {
+    border-left-color: #FFB236;
+}
+
+.popover.popover-warning .popover-header {
     color: #FFFFFF;
+    opacity: .6;
 }
 
 .popover.popover-danger {
     background-color: #FF3636;
+}
+
+.popover.popover-danger .popover-body {
     color: #FFFFFF;
 }
 
-.popover.popover-danger.bs-tether-element-attached-right:after {
-    border-left-color: #FF3636;
-}
-
-.popover.popover-danger.bs-tether-element-attached-top:after {
-    border-bottom-color: #FF3636;
-}
-
-.popover.popover-danger.bs-tether-element-attached-bottom:after {
-    border-top-color: #FF3636;
-}
-
-.popover.popover-danger.bs-tether-element-attached-left:after {
+.popover.popover-danger.bs-popover-right .arrow:after {
     border-right-color: #FF3636;
 }
 
-.popover.popover-danger .popover-title {
+.popover.popover-danger.bs-popover-top .arrow:after {
+    border-top-color: #FF3636;
+}
+
+.popover.popover-danger.bs-popover-bottom .arrow:after {
+    border-bottom-color: #FF3636;
+}
+
+.popover.popover-danger.bs-popover-left .arrow:after {
+    border-left-color: #FF3636;
+}
+
+.popover.popover-danger .popover-header {
     color: #FFFFFF;
+    opacity: .6;
 }
 
 .popover.popover-success {
     background-color: #18ce0f;
+}
+
+.popover.popover-success .popover-body {
     color: #FFFFFF;
 }
 
-.popover.popover-success.bs-tether-element-attached-right:after {
-    border-left-color: #18ce0f;
-}
-
-.popover.popover-success.bs-tether-element-attached-top:after {
-    border-bottom-color: #18ce0f;
-}
-
-.popover.popover-success.bs-tether-element-attached-bottom:after {
-    border-top-color: #18ce0f;
-}
-
-.popover.popover-success.bs-tether-element-attached-left:after {
+.popover.popover-success.bs-popover-right .arrow:after {
     border-right-color: #18ce0f;
 }
 
-.popover.popover-success .popover-title {
+.popover.popover-success.bs-popover-top .arrow:after {
+    border-top-color: #18ce0f;
+}
+
+.popover.popover-success.bs-popover-bottom .arrow:after {
+    border-bottom-color: #18ce0f;
+}
+
+.popover.popover-success.bs-popover-left .arrow:after {
+    border-left-color: #18ce0f;
+}
+
+.popover.popover-success .popover-header {
     color: #FFFFFF;
+    opacity: .6;
 }
 
-.tooltip.bs-tether-element-attached-right .tooltip-inner:before {
-    border-left-color: #FFFFFF;
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: #FFFFFF;
 }
 
-.tooltip.bs-tether-element-attached-top .tooltip-inner:before {
-    border-bottom-color: #FFFFFF;
-}
-
-.tooltip.bs-tether-element-attached-bottom .tooltip-inner:before {
+.tooltip.bs-tooltip-top .arrow:before {
     border-top-color: #FFFFFF;
 }
 
-.tooltip.bs-tether-element-attached-left .tooltip-inner:before {
-    border-right-color: #FFFFFF;
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: #FFFFFF;
+}
+
+.tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: #FFFFFF;
 }
 
 .tooltip-inner {
@@ -6242,7 +6251,7 @@ Created using IcoMoon - icomoon.io
 
 
 /*------------------------
-  base class definition
+    base class definition
 -------------------------*/
 
 .now-ui-icons {
@@ -6356,7 +6365,7 @@ Created using IcoMoon - icomoon.io
 
 
 /*------------------------
-  font icons
+    font icons
 -------------------------*/
 
 .now-ui-icons.ui-1_check:before {
@@ -6766,23 +6775,26 @@ Created using IcoMoon - icomoon.io
     border: 0;
 }
 
-.table .radio,
-.table .checkbox {
-    margin-top: 0;
-    margin-bottom: 0;
+.table .btn {
+    margin: 0;
+}
+
+.table .form-check,
+.table .form-check.form-check-radio {
+    margin: 0;
     padding: 0;
     width: 15px;
 }
 
-.table .radio .icons,
-.table .checkbox .icons {
+.table .form-check .icons,
+.table .form-check.form-check-radio .icons {
     position: relative;
 }
 
-.table .radio label:after,
-.table .radio label:before,
-.table .checkbox label:after,
-.table .checkbox label:before {
+.table .form-check label.form-check-label .form-check-sign:after,
+.table .form-check label.form-check-label .form-check-sign:before,
+.table .form-check.form-check-radio label.form-check-label .form-check-sign:after,
+.table .form-check.form-check-radio label.form-check-label .form-check-sign:before {
     top: -17px;
     left: -3px;
 }
@@ -7967,7 +7979,7 @@ Created using IcoMoon - icomoon.io
     color: rgba(255, 255, 255, 0.8);
 }
 
-.modal.show .modal-dialog {
+.modal.show.modal-mini .modal-dialog {
     -webkit-transform: translate(0, 30%);
     -o-transform: translate(0, 30%);
     transform: translate(0, 30%);
@@ -7991,6 +8003,7 @@ Created using IcoMoon - icomoon.io
 
 .carousel .carousel-inner {
     box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 0.1875rem;
 }
 
 .carousel .card {
@@ -8001,7 +8014,7 @@ Created using IcoMoon - icomoon.io
 
 .card {
     border: 0;
-    border-radius: 0.1875rem;
+    border-radius: 0.25rem;
     display: inline-block;
     position: relative;
     width: 100%;
@@ -8028,42 +8041,27 @@ Created using IcoMoon - icomoon.io
     z-index: 2;
 }
 
-.card .card-header {
-    border-bottom: 0;
-    position: relative;
-}
-
-.card .card-header:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 20px;
-    width: calc(100% - 40px);
-    height: 1px;
-    background-color: #E3E3E3;
-}
-
 .card .rounded {
     border-radius: 0.1875rem;
 }
 
 .card:not(.card-plain) .rounded {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
 
 .card a[data-toggle='collapse'] {
     text-decoration: none;
 }
 
-.card a:not(.btn):not(.nav-link):not([data-toggle='collapse']) {
+.card a:not(.btn):not(.nav-link):not([data-toggle='collapse']):not(.footer-link) {
     text-decoration: none;
     border-bottom: 2px solid transparent;
     color: #444;
 }
 
-.card a:not(.btn):not(.nav-link):not([data-toggle='collapse']):hover,
-.card a:not(.btn):not(.nav-link):not([data-toggle='collapse']):focus {
+.card a:not(.btn):not(.nav-link):not([data-toggle='collapse']):not(.footer-link):hover,
+.card a:not(.btn):not(.nav-link):not([data-toggle='collapse']):not(.footer-link):focus {
     border-color: #444;
 }
 
@@ -8074,27 +8072,40 @@ Created using IcoMoon - icomoon.io
 
 .card .card-header {
     background-color: transparent;
+    border-bottom: 0;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
 }
 
 .card-collapse .card .card-header {
-    padding-left: 0;
-    padding-right: 0;
+    padding: .75rem 0;
+    position: relative;
 }
 
-.card .card-header a[data-toggle="collapse"] {
+.card-collapse .card .card-header:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #E3E3E3;
+}
+
+.card-collapse .card .card-header a[data-toggle="collapse"] {
     display: block;
     color: #444;
 }
 
-.card .card-header a[data-toggle="collapse"][aria-expanded="true"] i,
-.card .card-header a[data-toggle="collapse"].expanded i {
+.card-collapse .card .card-header a[data-toggle="collapse"][aria-expanded="true"] i,
+.card-collapse .card .card-header a[data-toggle="collapse"].expanded i {
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
 }
 
-.card .card-header a[data-toggle="collapse"] i {
+.card-collapse .card .card-header a[data-toggle="collapse"] i {
     float: right;
     position: relative;
     color: #f96332;
@@ -8256,8 +8267,8 @@ Created using IcoMoon - icomoon.io
     text-align: center;
 }
 
-.card-profile .card-block .card-title,
-.card-testimonial .card-block .card-title {
+.card-profile .card-body .card-title,
+.card-testimonial .card-body .card-title {
     margin-top: 0;
 }
 
@@ -8280,11 +8291,11 @@ Created using IcoMoon - icomoon.io
 
 .card-profile .card-avatar img,
 .card-testimonial .card-avatar img {
-    border-radius: 50%;
+    border-radius: 50% !important;
 }
 
-.card-profile .card-avatar+.card-block,
-.card-testimonial .card-avatar+.card-block {
+.card-profile .card-avatar+.card-body,
+.card-testimonial .card-avatar+.card-body {
     margin-top: 15px;
 }
 
@@ -8293,12 +8304,12 @@ Created using IcoMoon - icomoon.io
     margin-top: 0;
 }
 
-.card-profile .card-block .card-avatar,
-.card-testimonial .card-block .card-avatar {
+.card-profile .card-body .card-avatar,
+.card-testimonial .card-body .card-avatar {
     margin: 0 auto 30px;
 }
 
-.card-testimonial .card-block {
+.card-testimonial .card-body {
     padding-top: 25px;
 }
 
@@ -8347,7 +8358,7 @@ Created using IcoMoon - icomoon.io
     text-align: center;
 }
 
-.card-background .card-block {
+.card-background .card-body {
     position: relative;
     z-index: 2;
     min-height: 370px;
@@ -8357,11 +8368,11 @@ Created using IcoMoon - icomoon.io
     padding-bottom: 60px;
 }
 
-.card-background.card-background-product .card-block {
+.card-background.card-background-product .card-body {
     max-width: 400px;
 }
 
-.card-background.card-background-product .card-block .card-title {
+.card-background.card-background-product .card-body .card-title {
     margin-top: 30px;
 }
 
@@ -8505,7 +8516,7 @@ Created using IcoMoon - icomoon.io
     color: #FFFFFF !important;
 }
 
-.card-pricing.card-background .card-block {
+.card-pricing.card-background .card-body {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
 }
@@ -8514,7 +8525,7 @@ Created using IcoMoon - icomoon.io
     background-color: rgba(0, 0, 0, 0.65);
 }
 
-.card-form-horizontal .card-block {
+.card-form-horizontal .card-body {
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -8554,22 +8565,21 @@ Created using IcoMoon - icomoon.io
     text-align: center;
 }
 
-.card-signup .card-block {
+.card-signup .card-body {
     padding-top: 0px;
     padding-bottom: 0px;
     min-height: auto;
 }
 
-.card-signup .checkbox {
+.card-signup .form-check,
+.card-signup .form-check.form-check-radio {
     margin-top: 20px;
 }
 
-.card-signup .checkbox label {
+.card-signup .form-check label,
+.card-signup .form-check.form-check-radio label {
     margin-left: 17px;
-}
-
-.card-signup .checkbox .checkbox-material {
-    padding-right: 12px;
+    color: initial;
 }
 
 .card-signup .card-title {
@@ -8660,7 +8670,7 @@ Created using IcoMoon - icomoon.io
     color: initial;
 }
 
-.card-fashion .card-block {
+.card-fashion .card-body {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -8698,7 +8708,7 @@ Created using IcoMoon - icomoon.io
     box-shadow: none;
 }
 
-.card-plain .card-block,
+.card-plain .card-body,
 .card-plain .card-header {
     padding-left: 5px;
     padding-right: 5px;
@@ -8907,12 +8917,12 @@ Created using IcoMoon - icomoon.io
     margin-bottom: 30px;
 }
 
-.ecommerce-page .card-refine .card-block {
+.ecommerce-page .card-refine .card-body {
     padding-left: 25px;
     padding-right: 25px;
 }
 
-.ecommerce-page .card-refine .card-block.panel-refine {
+.ecommerce-page .card-refine .card-body.panel-refine {
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -9567,6 +9577,10 @@ Created using IcoMoon - icomoon.io
     width: 100%;
     height: 100%;
     z-index: -1;
+}
+
+.signup-page .page-header .content-center {
+    top: 57%;
 }
 
 .page-header .content-center {
@@ -10444,7 +10458,7 @@ Created using IcoMoon - icomoon.io
     margin-bottom: 0;
 }
 
-.projects-5 .card-background .card-block {
+.projects-5 .card-background .card-body {
     padding-top: 140px;
     padding-bottom: 140px;
 }
@@ -10898,6 +10912,7 @@ Created using IcoMoon - icomoon.io
         transition: none;
         -webkit-box-shadow: none;
         box-shadow: none;
+        transform: none !important;
         width: auto;
         margin: 0 1rem;
         margin-bottom: 15px;
@@ -10926,6 +10941,11 @@ Created using IcoMoon - icomoon.io
     .navbar .navbar-translate {
         width: 100%;
         position: relative;
+        display: flex;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+        -ms-flex-align: center;
+        align-items: center;
         -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
         -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
         -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -11465,6 +11485,7 @@ Created using IcoMoon - icomoon.io
         transition: none;
         -webkit-box-shadow: none;
         box-shadow: none;
+        transform: none !important;
         width: auto;
         margin: 0 1rem;
         margin-bottom: 15px;
@@ -11493,6 +11514,11 @@ Created using IcoMoon - icomoon.io
     .burger-menu .navbar .navbar-translate {
         width: 100%;
         position: relative;
+        display: flex;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+        -ms-flex-align: center;
+        align-items: center;
         -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
         -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
         -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
