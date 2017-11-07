@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root :to => "application#pon"
-  
-  get "login" => "application#login"
+
+  scope '/api' do
+    resources :user_scores
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    resources :punches
+    get 'rank/today'
+  end
 end

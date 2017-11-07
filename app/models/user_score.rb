@@ -1,0 +1,2 @@
+class UserScore < ApplicationRecord
+end
