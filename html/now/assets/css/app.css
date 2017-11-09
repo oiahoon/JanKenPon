@@ -34,7 +34,7 @@ body {
 .punch-box:before {
     width: 100%;
     height: 100%;
-    display: block; 
+    display: block;
     left: 0;
     top: 0;
     content: "";
@@ -1747,4 +1747,12 @@ fieldset[disabled] .btn-green.active {
 
 .card-footer .stats.stats-right {
     margin-top: 10px;
+}
+
+.bottom-up {
+    transform:rotateX(-180deg);
+    -ms-transform:rotateX(-180deg);     /* IE 9 */
+    -moz-transform:rotateX(-180deg);    /* Firefox */
+    -webkit-transform:rotateX(-180deg); /* Safari 和 Chrome */
+    -o-transform:rotateX(-180deg);  /* Opera */
 }
