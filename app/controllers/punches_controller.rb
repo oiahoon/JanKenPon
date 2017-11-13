@@ -1,9 +1,10 @@
 class PunchesController < ApplicationController
-  before_action :set_punch, only: [:show, :update, :destroy]
+  before_action :set_punch, only: [:show]
 
   # GET /punches
   def index
-    @punches = Punch.all
+    page_number = params[:page]
+    @punches = Punch.of_today
 
     render json: @punches
   end
@@ -15,7 +16,8 @@ class PunchesController < ApplicationController
 
   # POST /punches
   def create
-    @punch = Punch.new(punch_params)
+    puts punch_params
+    @punch = Punch.new(punch_params.merge({user_id: 1}))
 
     if @punch.save
       render json: @punch, status: :created, location: @punch
@@ -24,19 +26,6 @@ class PunchesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /punches/1
-  def update
-    if @punch.update(punch_params)
-      render json: @punch
-    else
-      render json: @punch.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /punches/1
-  def destroy
-    @punch.destroy
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -46,6 +35,6 @@ class PunchesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def punch_params
-      params.require(:punch).permit(:pattern, :user_id)
+      params.require(:punch).permit(:pattern)
     end
 end

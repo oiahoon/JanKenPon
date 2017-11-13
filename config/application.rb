@@ -30,6 +30,8 @@ module Jkp
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    config.time_zone = 'UTC'
+
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies

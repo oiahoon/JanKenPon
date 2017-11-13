@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20171107165407) do
     t.integer "wager", default: 1, null: false
     t.integer "user_id", null: false
     t.integer "rival_id", default: 0, null: false
+    t.integer "rival_record_id", default: 0, null: false
     t.string "result", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20171107165407) do
   end
 
   create_table "user_scores", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "total_score", default: 100, null: false
     t.integer "freeze_score", default: 0, null: false
     t.datetime "happened_date"
