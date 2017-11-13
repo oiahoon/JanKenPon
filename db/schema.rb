@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20171107165407) do
     t.integer "pattern", null: false
     t.integer "wager", default: 1, null: false
     t.integer "user_id", null: false
+    t.integer "score_snapshoot", null: false
     t.integer "rival_id", default: 0, null: false
     t.integer "rival_record_id", default: 0, null: false
     t.string "result", default: "", null: false

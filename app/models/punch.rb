@@ -19,6 +19,7 @@ class Punch < ApplicationRecord
                                   Time.zone.now.beginning_of_day) }
 
   after_initialize :set_wager
+  after_initialize :set_score_snapshoot
   after_create :freeze_score
 
   validates :user_id, presence: true
@@ -64,5 +65,9 @@ class Punch < ApplicationRecord
 
   def set_wager
     self.wager = 1
+  end
+
+  def set_score_snapshoot
+    self.score_snapshoot = self.user.user_score.total_score
   end
 end
