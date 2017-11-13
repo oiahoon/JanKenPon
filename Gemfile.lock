@@ -43,6 +43,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    api-pagination (4.6.3)
     arel (8.0.0)
     authlogic (3.6.1)
       activerecord (>= 3.2, < 5.2)
@@ -171,6 +172,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  api-pagination
   authlogic
   byebug
   database_cleaner
