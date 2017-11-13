@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
   include ::ActionController::Cookies
+  include ActionController::HttpAuthentication::Basic::ControllerMethods
+
   before_action :load_authlogic
 
   private

@@ -1,3 +1,3 @@
 class UserScoreSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :total_score
 end

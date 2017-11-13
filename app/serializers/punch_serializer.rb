@@ -3,6 +3,10 @@ class PunchSerializer < ActiveModel::Serializer
 
   belongs_to :user
 
+  attribute :pattern do
+    Punch::PATTERN.invert[object.pattern]
+  end
+
   def result
     if object.result.empty?
       "waiting"
@@ -11,8 +15,5 @@ class PunchSerializer < ActiveModel::Serializer
     end
   end
 
-  attribute :pattern do
-    Punch::PATTERN.invert[object.pattern]
-  end
 
 end
