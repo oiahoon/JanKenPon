@@ -2,6 +2,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :users do |t|
       t.string :username, null: false
+      t.string :qq, null: false, default: 0
 
       t.string :crypted_password
       t.string :password_salt

@@ -15,12 +15,12 @@ class ApplicationController < ActionController::API
     @current_user = current_user_session && current_user_session.user
   end
 
-  def render_api_json(status, body = nil)
-    render json: { status: status, body: body }
+  def api_bad_request(body = nil)
+    render json: {error: body}, status: 400
   end
 
-  def api_settings
-    @api_settings ||= YAML::load(File.open("#{Rails.root}/config/api_settings.yml"))
+  def api_server_error(body = nil)
+    render json: {error: body}, status: 500
   end
 
   def load_authlogic
