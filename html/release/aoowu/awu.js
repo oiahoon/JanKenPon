@@ -1,11 +1,13 @@
-import {jkp} from ".././src/pages/jkp.js"
-import {list} from ".././src/pages/list.js"
+import {main} from ".././src/pages/main.js"
 import {user} from ".././src/pages/user.js"
-let classMap  = {"jkp": jkp,"list": list,"user": user};
+let classMap  = {"main": main,"user": user};
 let instances = {};
 let loadingFn = {};
 class AooWu
 {
+    constructor() {
+        this.now = "";
+    }
     View(html, label) {
         if (!label) {
             label = "tag=body"
@@ -56,9 +58,9 @@ class AooWu
         }
         if (!instances.hasOwnProperty(className)) {
             instances[className] = new classMap[className];
-        } else {
-            instances[className].constructor();
         }
+        this.now = className;
+        instances[className].__proto__.hasOwnProperty("__constructor") && instances[className].__constructor();
     }
     Ajax(args) {
         let url = args.url ? args.url : null;
