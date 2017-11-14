@@ -20,6 +20,9 @@ services:
       - db
     links:
       - db
+      - redis
+  redis:
+    image: 'redis:4'
   nginx:
     image: nginx
     volumes_from:
