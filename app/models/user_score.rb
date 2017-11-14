@@ -5,13 +5,14 @@ class UserScore < ApplicationRecord
 
   # unfreezing + decrease
   def losing score
+    self.total_score -= score
     self.freeze_score -= score
     self.save
   end
 
   # unfeezing + increase
   def earning score
-    self.total_score += score * 2
+    self.total_score += score
     self.freeze_score -= score
     self.save
   end

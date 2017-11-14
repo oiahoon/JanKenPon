@@ -54,6 +54,7 @@ GEM
     byebug (9.1.0)
     case_transform (0.2)
       activesupport
+    chronic (0.10.2)
     concurrent-ruby (1.0.5)
     crass (1.0.2)
     database_cleaner (1.6.2)
@@ -165,6 +166,8 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    whenever (0.9.7)
+      chronic (>= 0.6.3)
     will_paginate (3.1.6)
 
 PLATFORMS
@@ -187,6 +190,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  whenever
   will_paginate
 
 BUNDLED WITH
