@@ -1,3 +1,6 @@
 user_sessions:
   success_code: 1
   fail_code: 0
+users:
+  success_code: 1
+  fail_code: 0
