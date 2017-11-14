@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171107165407) do
   end
 
   create_table "user_scores", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "total_score", default: 100, null: false
     t.integer "freeze_score", default: 0, null: false
     t.datetime "happened_date"
@@ -49,7 +50,6 @@ ActiveRecord::Schema.define(version: 20171107165407) do
     t.datetime "last_login_at"
     t.string "current_login_ip"
     t.string "last_login_ip"
-    t.integer "user_score_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["perishable_token"], name: "index_users_on_perishable_token", unique: true

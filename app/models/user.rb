@@ -10,4 +10,10 @@ class User < ApplicationRecord
   has_one :user_score
 
   validates :username, uniqueness: true, presence: true, length: { in: 4..40 }
+
+  after_create :init_user_score
+
+  def init_user_score
+    self.create_user_score
+  end
 end

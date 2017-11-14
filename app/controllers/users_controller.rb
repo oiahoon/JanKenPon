@@ -3,11 +3,9 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       UserSession.create(user, true)
-      render_api_json(api_settings['users']['success_code'],
-                      { id: current_user.id, username: current_user.username })
+      render json: user
     else
-      render_api_json(api_settings['users']['fail_code'],
-                      user.errors.full_messages)
+      api_bad_request(user.errors.full_messages)
     end
   end
 

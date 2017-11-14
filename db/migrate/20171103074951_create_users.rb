@@ -22,7 +22,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string   :current_login_ip
       t.string   :last_login_ip
 
-      t.integer  :user_score_id
       t.timestamps
     end
   end
