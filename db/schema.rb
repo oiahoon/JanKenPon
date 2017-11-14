@@ -19,9 +19,7 @@ ActiveRecord::Schema.define(version: 20171107165407) do
     t.integer "pattern", null: false
     t.integer "wager", default: 1, null: false
     t.integer "user_id", null: false
-    t.integer "score_snapshoot", null: false
     t.integer "rival_id", default: 0, null: false
-    t.integer "rival_record_id", default: 0, null: false
     t.string "result", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,7 +27,6 @@ ActiveRecord::Schema.define(version: 20171107165407) do
   end
 
   create_table "user_scores", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.integer "total_score", default: 100, null: false
     t.integer "freeze_score", default: 0, null: false
     t.datetime "happened_date"
@@ -40,6 +37,7 @@ ActiveRecord::Schema.define(version: 20171107165407) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
+    t.string "qq", default: "0", null: false
     t.string "crypted_password"
     t.string "password_salt"
     t.string "persistence_token"
@@ -51,6 +49,7 @@ ActiveRecord::Schema.define(version: 20171107165407) do
     t.datetime "last_login_at"
     t.string "current_login_ip"
     t.string "last_login_ip"
+    t.integer "user_score_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["perishable_token"], name: "index_users_on_perishable_token", unique: true
