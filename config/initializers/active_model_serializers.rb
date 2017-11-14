@@ -1,4 +1,4 @@
-ActiveModelSerializers.config.adapter = :json_api
+ActiveModelSerializers.config.adapter = :json
 api_mime_types = %W(
   application/vnd.api+json
   text/x-json

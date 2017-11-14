@@ -1,6 +1,8 @@
 class UserScore < ApplicationRecord
   belongs_to :user
 
+  validates :total_score, numericality: { greater_than_or_equal_to: 0 }
+
   # unfreezing + decrease
   def losing score
     self.freeze_score -= score

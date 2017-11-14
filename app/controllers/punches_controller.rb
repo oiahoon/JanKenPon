@@ -11,7 +11,7 @@ class PunchesController < ApplicationController
       page_number = 1
     end
 
-    @punches     = Punch.of_today.paginate(page: page_number, per_page: PER_PAGE)
+    @punches     = Punch.of_today.order("id desc").paginate(page: page_number, per_page: PER_PAGE)
     total_pages  = (Punch.of_today.count / PER_PAGE).ceil
     current_page = page_number
 
@@ -26,7 +26,7 @@ class PunchesController < ApplicationController
   # POST /punches
   def create
     puts punch_params
-    @punch = Punch.new(punch_params.merge({user_id: 1}))
+    @punch = Punch.new(punch_params.merge({user_id: current_user.id}))
 
     if @punch.save
       render json: @punch, status: :created, location: @punch
