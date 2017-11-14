@@ -22,6 +22,10 @@ let loadingFn = {};
 // AooWu
 class AooWu
 {
+    constructor() {
+        this.now = "";
+    }
+
     /**
      * 在标签内填充HTML
      * @param html
@@ -112,9 +116,10 @@ class AooWu
 
         if (!instances.hasOwnProperty(className)) {
             instances[className] = new classMap[className];
-        } else {
-            instances[className].constructor();
         }
+
+        this.now = className;
+        instances[className].__proto__.hasOwnProperty("__constructor") && instances[className].__constructor();
     }
 
     /**

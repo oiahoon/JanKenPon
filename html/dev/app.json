@@ -1,12 +1,11 @@
 {
-    "Actor": "main",
+    "Actor": "app",
     "SrcDI": "./src",
     "HtmDI": "./html",
     "Pages": "./src/pages",
-    "Icons": "./assets/favicon.ico",
-    "Style": ["./assets/css/style.css"],
-    "Index": "<div class='loading'></div>",
-    "Title": "成都PHP开源群[14306350] - 猜拳大作战",
+    "Index": "${index.html}",
 
-    "Exclude": []
+    "Exclude": [
+        "./idea"
+    ]
 }
