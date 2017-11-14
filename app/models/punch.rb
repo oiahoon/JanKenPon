@@ -1,14 +1,11 @@
 class Punch < ApplicationRecord
-  RESULT_WIN  = 'win'
-  RESULT_LOSE = 'lose'
-  RESULT_EVEN = 'even'
-
   PATTERN = {
     'ROCK'     => 1,
     'PAPER'    => 2,
     'SCISSORS' => 3
   }
   belongs_to :user
+  has_one :punch_record
 
   scope :of_yesterday, ->{ where("created_at < ? AND created_at >=?",
                                   Time.zone.now.beginning_of_day,
@@ -26,38 +23,47 @@ class Punch < ApplicationRecord
   validates :pattern, inclusion: { in: PATTERN.values,
             message: "%{value} is not a valid type" }
 
-  def win
-    Punch.transaction do
-      self.user.user_score.earning(self.wager)
-      self.update_attibute(:result, RESULT_WIN)
-    end
-  end
-
   def win?
-    self.result == RESULT_WIN
-  end
-
-  def lose
-    Punch.transaction do
-      self.user.user_score.losing(self.wager)
-      self.update_attibute(:result, RESULT_LOSE)
-    end
+    (self.punch_record.win? && self.player_a?) ||
+    (self.punch_record.lose? && self.player_b?)
   end
 
   def lose?
-    self.result == RESULT_LOSE
+    (self.punch_record.lose? && self.player_a?) ||
+    (self.punch_record.win? && self.player_b?)
   end
-
-  def dogfall
-    self.user.user_score.unfreezing(self.wager)
-    self.update_attibute(:result, RESULT_EVEN)
-  end
-
+  
   def dogfall?
-    self.result == RESULT_EVEN
+    self.punch_record.dogfall?
   end
 
+  def player_a?
+    self.punch_record.punch_id == self.id
+  end
 
+  def player_b?
+    self.punch_record.rival_punch_id == self.id
+  end
+
+  # def win
+  #   PunchRecord.transaction do
+  #     self.user.user_score.earning(self.wager)
+  #     self.update_attibute(:result, RESULT_WIN)
+  #   end
+  # end
+  
+  # def lose
+  #   PunchRecord.transaction do
+  #     self.user.user_score.losing(self.wager)
+  #     self.update_attibute(:result, RESULT_LOSE)
+  #   end
+  # end
+
+  # def dogfall
+  #   self.user.user_score.unfreezing(self.wager)
+  #   self.update_attibute(:result, RESULT_EVEN)
+  # end
+  
   private
   def freeze_score
     self.user.user_score.freezing(self.wager)

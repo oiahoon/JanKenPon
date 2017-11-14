@@ -4,11 +4,11 @@ class CreateUserScores < ActiveRecord::Migration[5.1]
       t.integer :user_id, null: false
       t.integer :total_score, null: false, default: 100
       t.integer :freeze_score, null: false, default: 0
-      t.datetime :happened_date
 
       t.timestamps
     end
 
-    add_index :user_scores, :happened_date
+    add_index :user_scores, :user_id
+    add_index :user_scores, :total_score
   end
 end
