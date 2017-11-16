@@ -1,8 +1,8 @@
 class Punch < ApplicationRecord
   PATTERN = {
-    'ROCK'     => 1,
-    'PAPER'    => 2,
-    'SCISSORS' => 3
+    'JAN' => 1,   # SCISSORS
+    'KEN' => 2,   # ROCK
+    'PON' => 3    # PAPER
   }
   PUNCH_RESULT = {
     WIN: 'win',
@@ -14,12 +14,13 @@ class Punch < ApplicationRecord
   belongs_to :user
   belongs_to :punch_record, optional: true
 
-  scope :of_today, ->{ where("created_at < ? AND created_at >=?",
+  scope :of_today, -> { where("created_at < ? AND created_at >=?",
                                   Time.zone.now.tomorrow.beginning_of_day,
                                   Time.zone.now.beginning_of_day) }
+  scope :waiting, -> { where("punch_record_id IS NULL") }
 
-  after_initialize :set_wager
-  after_initialize :set_score_snapshoot
+  before_create :set_wager
+  before_create :set_score_snapshoot
   after_create :decrease_score
 
   validates :user_id, presence: true

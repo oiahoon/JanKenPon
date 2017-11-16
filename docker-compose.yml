@@ -10,6 +10,8 @@ services:
     volumes:
       - ./psql-data:/var/lib/postgresql/data
   app:
+    environment:
+      - "TZ=Asia/Beijing"
     build: ./
     command: bundle exec rails s -p 3009 -b 0.0.0.0
     volumes:
