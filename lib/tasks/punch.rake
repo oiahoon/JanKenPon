@@ -4,8 +4,5 @@ namespace :punch do
     Punch.random_matching
   end
 
-  desc "calculate the rank list"
-  task ranking: :environment do
-  end
 
 end
