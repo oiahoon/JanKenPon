@@ -16,13 +16,9 @@ ActiveRecord::Schema.define(version: 20171114152803) do
   enable_extension "plpgsql"
 
   create_table "punch_records", force: :cascade do |t|
-    t.integer "punch_id", null: false
-    t.integer "rival_punch_id", null: false
-    t.string "result", default: "", null: false
+    t.integer "winner_punch_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["punch_id"], name: "index_punch_records_on_punch_id"
-    t.index ["rival_punch_id"], name: "index_punch_records_on_rival_punch_id"
   end
 
   create_table "punches", force: :cascade do |t|
@@ -30,7 +26,7 @@ ActiveRecord::Schema.define(version: 20171114152803) do
     t.integer "wager", default: 1, null: false
     t.integer "user_id", null: false
     t.integer "score_snapshoot", null: false
-    t.integer "punch_record_id", default: 0, null: false
+    t.integer "punch_record_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["punch_record_id"], name: "index_punches_on_punch_record_id"
@@ -40,7 +36,6 @@ ActiveRecord::Schema.define(version: 20171114152803) do
   create_table "user_scores", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "total_score", default: 100, null: false
-    t.integer "freeze_score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["total_score"], name: "index_user_scores_on_total_score"

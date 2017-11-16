@@ -5,7 +5,7 @@ class CreatePunches < ActiveRecord::Migration[5.1]
       t.integer :wager, null: false, default: 1
       t.integer :user_id, null: false
       t.integer :score_snapshoot, null: false
-      t.integer :punch_record_id, null: false, default: 0
+      t.integer :punch_record_id, null: true, default: nil
 
       t.timestamps
     end

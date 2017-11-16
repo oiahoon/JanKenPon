@@ -4,12 +4,15 @@ class Punch < ApplicationRecord
     'PAPER'    => 2,
     'SCISSORS' => 3
   }
-  belongs_to :user
-  has_one :punch_record
+  PUNCH_RESULT = {
+    WIN: 'win',
+    LOSE: 'lose',
+    DOGFALL: 'dogfall',
+    WAITING: 'waiting'
+  }
 
-  scope :of_yesterday, ->{ where("created_at < ? AND created_at >=?",
-                                  Time.zone.now.beginning_of_day,
-                                  Time.zone.now.yesterday.beginning_of_day) }
+  belongs_to :user
+  belongs_to :punch_record, optional: true
 
   scope :of_today, ->{ where("created_at < ? AND created_at >=?",
                                   Time.zone.now.tomorrow.beginning_of_day,
@@ -17,56 +20,40 @@ class Punch < ApplicationRecord
 
   after_initialize :set_wager
   after_initialize :set_score_snapshoot
-  after_create :freeze_score
+  after_create :decrease_score
 
   validates :user_id, presence: true
   validates :pattern, inclusion: { in: PATTERN.values,
             message: "%{value} is not a valid type" }
 
+  def result
+    return PUNCH_RESULT[:WAITING] if !self.published?
+    return PUNCH_RESULT[:DOGFALL] if self.dogfall?
+    return PUNCH_RESULT[:WIN] if self.win?
+    return PUNCH_RESULT[:LOSE] if self.lose?
+  end
+
+  def published?
+    self.punch_record.present?
+  end
+
   def win?
-    (self.punch_record.win? && self.player_a?) ||
-    (self.punch_record.lose? && self.player_b?)
+    !self.dogfall? && self.punch_record.winner_punch_id == self.id
   end
 
   def lose?
-    (self.punch_record.lose? && self.player_a?) ||
-    (self.punch_record.win? && self.player_b?)
+    !self.dogfall? && self.punch_record.winner_punch_id != self.id
   end
-  
+
   def dogfall?
-    self.punch_record.dogfall?
+    self.punch_record.winner_punch_id == 0
   end
 
-  def player_a?
-    self.punch_record.punch_id == self.id
-  end
 
-  def player_b?
-    self.punch_record.rival_punch_id == self.id
-  end
-
-  # def win
-  #   PunchRecord.transaction do
-  #     self.user.user_score.earning(self.wager)
-  #     self.update_attibute(:result, RESULT_WIN)
-  #   end
-  # end
-  
-  # def lose
-  #   PunchRecord.transaction do
-  #     self.user.user_score.losing(self.wager)
-  #     self.update_attibute(:result, RESULT_LOSE)
-  #   end
-  # end
-
-  # def dogfall
-  #   self.user.user_score.unfreezing(self.wager)
-  #   self.update_attibute(:result, RESULT_EVEN)
-  # end
-  
   private
-  def freeze_score
-    self.user.user_score.freezing(self.wager)
+
+  def decrease_score
+    self.user.user_score.decrease self.wager
   end
 
   def set_wager

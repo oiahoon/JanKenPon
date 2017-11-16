@@ -25,9 +25,7 @@ class PunchesController < ApplicationController
 
   # POST /punches
   def create
-    puts punch_params
     @punch = Punch.new(punch_params.merge({user_id: current_user.id}))
-
     if @punch.save
       render json: @punch, status: :created, location: @punch
     else
