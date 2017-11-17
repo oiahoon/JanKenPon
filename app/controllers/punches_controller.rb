@@ -1,19 +1,12 @@
 class PunchesController < ApplicationController
   before_action :set_punch, only: [:show]
+  before_action :require_login
   PER_PAGE = 100
 
   # GET /punches
   def index
-
-    if params[:page]
-      page_number = params[:page]
-    else
-      page_number = 1
-    end
-
-    @punches     = Punch.of_today.order("id desc").paginate(page: page_number, per_page: PER_PAGE)
-    total_pages  = (Punch.of_today.count / PER_PAGE).ceil
-    current_page = page_number
+    current_page = params[:page].presence || 1
+    @punches     = paginate Punch.of_today.order("id desc"), per_page: PER_PAGE
 
     render json: @punches
   end

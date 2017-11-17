@@ -38,6 +38,20 @@ class Punch < ApplicationRecord
     self.punch_record.present?
   end
 
+  def win punch_record
+    self.user.user_score.increase(self.wager * 2)
+    self.update_attribute(:punch_record_id, punch_record.id)
+  end
+
+  def lose punch_record
+    self.update_attribute(:punch_record_id, punch_record.id)
+  end
+
+  def dogfall punch_record
+    self.user.user_score.increase self.wager
+    self.update_attribute(:punch_record_id, punch_record.id)
+  end
+
   def win?
     !self.dogfall? && self.punch_record.winner_punch_id == self.id
   end
@@ -49,7 +63,6 @@ class Punch < ApplicationRecord
   def dogfall?
     self.punch_record.winner_punch_id == 0
   end
-
 
   private
 

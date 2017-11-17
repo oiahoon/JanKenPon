@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   include ::ActionController::Cookies
   include ActionController::HttpAuthentication::Basic::ControllerMethods
+  include Rails::Pagination
 
   before_action :load_authlogic
 
@@ -13,6 +14,12 @@ class ApplicationController < ActionController::API
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.user
+  end
+
+  def require_login
+    unless current_user.present?
+      api_bad_request({ login: false, error: 'please login first' })
+    end
   end
 
   def api_bad_request(body = nil)

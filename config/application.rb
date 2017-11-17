@@ -30,7 +30,7 @@ module Jkp
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.time_zone = 'Beijing'
+    config.time_zone = 'Chongqing'
     config.active_record.default_timezone = :local
 
     config.middleware.use Rack::MethodOverride
