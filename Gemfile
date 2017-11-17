@@ -34,6 +34,7 @@ gem 'whenever'
 gem 'redis'
 gem 'redis-rails'
 
+gem 'rack-cors', :require => 'rack/cors'
 
 
 group :development, :test do
