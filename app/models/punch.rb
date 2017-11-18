@@ -21,11 +21,14 @@ class Punch < ApplicationRecord
 
   before_create :set_wager
   before_create :set_score_snapshoot
-  after_create :decrease_score
+  before_create :decrease_score
 
   validates :user_id, presence: true
   validates :pattern, inclusion: { in: PATTERN.values,
             message: "%{value} is not a valid type" }
+
+  validate :user_score_greater_than_wager, :on => :create
+
 
   def result
     return PUNCH_RESULT[:WAITING] if !self.published?
@@ -65,6 +68,12 @@ class Punch < ApplicationRecord
   end
 
   private
+
+  def user_score_greater_than_wager
+    if self.user.user_score.total_score < self.wager
+      errors.add(:user_id, "you hasn't enough score.")
+    end
+  end
 
   def decrease_score
     self.user.user_score.decrease self.wager
