@@ -1,5 +1,5 @@
 class RankController < ApplicationController
-  def today
+  def index
 
   end
 end

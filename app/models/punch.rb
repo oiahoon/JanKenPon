@@ -17,6 +17,7 @@ class Punch < ApplicationRecord
   scope :of_today, -> { where("created_at < ? AND created_at >=?",
                                   Time.zone.now.tomorrow.beginning_of_day,
                                   Time.zone.now.beginning_of_day) }
+  scope :of_user, ->(user_id) { where("user_id = ?", user_id) }
   scope :waiting, -> { where("punch_record_id IS NULL") }
 
   before_create :set_wager

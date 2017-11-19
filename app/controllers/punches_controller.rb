@@ -6,7 +6,7 @@ class PunchesController < ApplicationController
   # GET /punches
   def index
     current_page = params[:page].presence || 1
-    @punches     = paginate Punch.of_today.order("id desc"), per_page: PER_PAGE
+    @punches     = paginate Punch.of_today.of_user(current_user.id).includes(:user).order("id desc"), per_page: PER_PAGE
 
     render json: @punches
   end
