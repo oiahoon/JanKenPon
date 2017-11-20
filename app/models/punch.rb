@@ -57,15 +57,18 @@ class Punch < ApplicationRecord
   end
 
   def win?
-    !self.dogfall? && self.punch_record.winner_punch_id == self.id
+    self.published? &&\
+      !self.dogfall? && self.punch_record.winner_punch_id == self.id
   end
 
   def lose?
-    !self.dogfall? && self.punch_record.winner_punch_id != self.id
+    self.published? &&\
+      !self.dogfall? && self.punch_record.winner_punch_id != self.id
   end
 
   def dogfall?
-    self.punch_record.winner_punch_id == 0
+    self.published? &&\
+      self.punch_record.winner_punch_id == 0
   end
 
   private
