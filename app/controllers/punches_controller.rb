@@ -18,11 +18,15 @@ class PunchesController < ApplicationController
 
   # POST /punches
   def create
-    @punch = Punch.new(punch_params.merge({user_id: current_user.id}))
-    if @punch.save
-      render json: @punch, status: :created, location: @punch
+    unless Time.zone.now > Time.zone.parse("11pm") ||  Time.zone.now < Time.zone.parse("6am")
+      @punch = Punch.new(punch_params.merge({user_id: current_user.id}))
+      if @punch.save
+        render json: @punch, status: :created, location: @punch
+      else
+        render json: @punch.errors, status: :unprocessable_entity
+      end
     else
-      render json: @punch.errors, status: :unprocessable_entity
+      render json: {error:[I18n.t("punch.out_of_time_range")]}, status: :not_acceptable
     end
   end
 

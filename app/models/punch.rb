@@ -14,9 +14,8 @@ class Punch < ApplicationRecord
   belongs_to :user
   belongs_to :punch_record, optional: true
 
-  scope :of_today, -> { where("created_at < ? AND created_at >=?",
-                                  Time.zone.now.tomorrow.beginning_of_day,
-                                  Time.zone.now.beginning_of_day) }
+  scope :of_today, -> { where(:created_at => Date.today...Date.today + 1) }
+  scope :of_day, ->(date){ where("DATE(created_at) = ?", Date.parse(date)) }
   scope :of_user, ->(user_id) { where("user_id = ?", user_id) }
   scope :waiting, -> { where("punch_record_id IS NULL") }
 

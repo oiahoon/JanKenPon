@@ -13,3 +13,9 @@ zh-CN:
   punch:
     pattern:
       invalid: "不是一个合理的拳"
+    out_of_time_range: "早六点开门，晚11点关门，带来的不便敬请见谅。"
+
+  ranks:
+    params:
+      date:
+        missing: "你不给我个日期（date）我没办法查询，比如 ?date=2017-11-11"

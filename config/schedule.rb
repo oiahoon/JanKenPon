@@ -23,3 +23,12 @@
 every 1.minute do
   rake "punch:matching"
 end
+
+
+every :day, :at => '12:01am' do
+  rake "score:renew"
+end
+
+every :day, :at => '12:02am' do
+  rake "rank:calculating"
+end

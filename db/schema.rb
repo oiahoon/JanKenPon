@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114152803) do
+ActiveRecord::Schema.define(version: 20171121055336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,20 @@ ActiveRecord::Schema.define(version: 20171114152803) do
     t.datetime "updated_at", null: false
     t.index ["punch_record_id"], name: "index_punches_on_punch_record_id"
     t.index ["user_id"], name: "index_punches_on_user_id"
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "username", null: false
+    t.integer "score", default: 0, null: false
+    t.integer "win_times", default: 0, null: false
+    t.integer "lose_times", default: 0, null: false
+    t.integer "dog_times", default: 0, null: false
+    t.integer "total_times", default: 0, null: false
+    t.date "punch_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["punch_date", "score", "user_id"], name: "index_ranks_on_punch_date_and_score_and_user_id"
   end
 
   create_table "user_scores", force: :cascade do |t|

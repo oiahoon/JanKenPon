@@ -46,3 +46,9 @@ en:
   punch:
     pattern:
       invalid: "is not a valid type"
+    out_of_time_range: "punching is available during 6am to 11pm"
+
+  ranks:
+    params:
+      date:
+        missing: "params date missing, for example ?date=2017-11-11"

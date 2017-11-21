@@ -1,1 +1,5 @@
 * * * * * /bin/bash -l -c 'cd /usr/src/app && RAILS_ENV=development bundle exec rake punch:matching --silent'
+
+0 0 * * * /bin/bash -l -c 'cd /usr/src/app && RAILS_ENV=development bundle exec rake score:renew --silent'
+
+1 0 * * * /bin/bash -l -c 'cd /usr/src/app && RAILS_ENV=development bundle exec rake rank:calculating --silent'
