@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
 
   def require_login
     unless current_user.present?
-      api_bad_request({ login: false, error: I18n.t("require_login") }, :unauthorized)
+      api_bad_request([I18n.t("require_login")], :unauthorized)
     end
   end
 
