@@ -49,7 +49,7 @@ class Ranker
           logger.info rank
           rank.save
           logger.info "#{user_id}{win:#{rank.win_times},lose:#{rank.lose_times},dog:#{rank.dog_times}}"
-          Punch::PUNCH_RESULT[0..2].each do |s|
+          Punch::PUNCH_RESULT.values[0..2].each do |s|
             $redis.del "rank-#{user_id}-#{s}"
           end
         rescue Exception => e
