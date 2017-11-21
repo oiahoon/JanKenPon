@@ -4,13 +4,13 @@ class UserSessionsController < ApplicationController
     if user_session.save
       render json: current_user
     else
-      api_bad_request(user_session.errors.full_messages)
+      api_bad_request([I18n.t("user_session.errors.full_messages")], :unauthorized)
     end
   end
 
   def destroy
     current_user_session.destroy
-    render plain: "OK"
+    render json: I18n.t("user_session.logout.message")
   end
 
   private

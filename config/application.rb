@@ -33,6 +33,9 @@ module Jkp
     config.time_zone = 'Chongqing'
     config.active_record.default_timezone = :local
 
+    config.i18n.available_locales = ['zh-CN', :en]
+    config.i18n.default_locale    = "zh-CN"
+
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies

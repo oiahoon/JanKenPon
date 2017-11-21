@@ -26,7 +26,7 @@ class Punch < ApplicationRecord
 
   validates :user_id, presence: true
   validates :pattern, inclusion: { in: PATTERN.values,
-            message: "%{value} is not a valid type" }
+            message: "%{value} #{I18n.t('punch.pattern.invalid')}" }
 
   validate :user_score_greater_than_wager, :on => :create
 
@@ -75,7 +75,7 @@ class Punch < ApplicationRecord
 
   def user_score_greater_than_wager
     if self.user.user_score.total_score < self.wager
-      errors.add(:user_id, "you hasn't enough score.")
+      errors.add(:user, I18n.t("user_score.not_enough"))
     end
   end
 

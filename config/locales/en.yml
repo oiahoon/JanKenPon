@@ -31,3 +31,18 @@
 
 en:
   hello: "Hello world"
+
+  require_login: "please login first"
+
+  user_session:
+    errors:
+      full_messages: "login failed, please check your username and password"
+    logout:
+      message: "welcome back soon."
+
+  user_score:
+    not_enough: "you don't have enough score."
+
+  punch:
+    pattern:
+      invalid: "is not a valid type"

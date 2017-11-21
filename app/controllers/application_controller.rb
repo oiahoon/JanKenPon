@@ -18,16 +18,16 @@ class ApplicationController < ActionController::API
 
   def require_login
     unless current_user.present?
-      api_bad_request({ login: false, error: 'please login first' })
+      api_bad_request({ login: false, error: I18n.t("require_login") }, :unauthorized)
     end
   end
 
-  def api_bad_request(body = nil)
-    render json: {error: body}, status: 400
+  def api_bad_request(body = nil, status_code = :bad_request)
+    render json: {error: body}, status: status_code
   end
 
   def api_server_error(body = nil)
-    render json: {error: body}, status: 500
+    render json: {error: body}, status: :internal_server_error
   end
 
   def load_authlogic
