@@ -23,7 +23,7 @@ class PunchesController < ApplicationController
       if @punch.save
         render json: @punch, status: :ok, location: @punch
       else
-        render json: { error: @punch.errors }, status: :unprocessable_entity
+        render json: { error: @punch.errors.values.flatten }, status: :unprocessable_entity
       end
     else
       render json: { error:[I18n.t("punch.out_of_time_range")] }, status: :not_acceptable
