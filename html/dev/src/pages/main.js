@@ -1,7 +1,7 @@
 /**
  * Created by Hodge.Yuan@hotmail.com on 2017/11/14 0014.
  */
-import {awu, common} from "../common/common.js"
+import {awu, common, api, user} from "../common/common.js"
 
 // 猜拳页
 let jkp = new class
@@ -31,6 +31,7 @@ let jkp = new class
             icon1.style.top  = icon0.offset().top + "px";
             icon1.style.left = icon0.offset().left + "px";
             icon1.style.position = "fixed";
+            icon1.style.background = "";
             $(this).append(icon1);
 
             let top  = 0;
@@ -38,12 +39,12 @@ let jkp = new class
 
             if ($(".navbar-collapse").css("display") === "block") {
                 let nt = $(".navbar-toggler");
-                left = nt.offset().left;
                 top  = nt.offset().top;
+                left = nt.offset().left;
             } else {
                 let db = $(".design_bullet-list-67");
-                left = db.offset().left;
                 top  = db.offset().top;
+                left = db.offset().left;
             }
 
             top  = top - icon1.offsetHeight * 0.5;
@@ -59,9 +60,19 @@ let jkp = new class
 
             icon1.style.animation = "jkpICONAnimate 1.5s forwards";
 
-            setTimeout(function () {
+            api.punches({"punch": {"punch": $(this).attr("data-value")}}, function (data) {
+                console.log(data);
                 icon1.remove(); flag = false;
-            }, 1500)
+            }, function (errText, code) {
+                if (code !== 401) {
+                    common.dialog({content: errText})
+                } else {
+                    common.dialog({content: errText, cancel: function () {
+                        user.destroy() ;awu.NewPage("auth");
+                    }})
+                }
+                icon1.remove(); flag = false;
+            });
         });
     }
 };
@@ -93,6 +104,10 @@ export class main
     }
 
     __constructor() {
+        if (!user.id) {
+            awu.NewPage("auth"); return ;
+        }
+
         this.initAppPage();
         this.run['jkp'].__constructor();
     }

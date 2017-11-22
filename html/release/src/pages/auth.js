@@ -1,5 +1,5 @@
 import {awu, common, api, user} from "../common/common.js";
-export class user
+export class auth
 {
     __constructor() {
         if (user.id !== null) {
@@ -38,7 +38,7 @@ export class user
             };
             setDomDisabled(true);
             api.login({"user_session": {"username": username, "password": password}}, function (data) {
-                user = data.user;
+                user.set(data.user);
                 awu.NewPage("main");
             }, function (errText) {
                 common.dialog({content: errText});
@@ -90,7 +90,7 @@ export class user
             };
             setDomDisabled(true);
             api.register({"user": {"qq": qq, "username": username, "password": password, "password_confirmation": pwdconfn}}, function (data) {
-                user = data.user;
+                user.set(data.user);
                 awu.NewPage("main");
             }, function (errText) {
                 common.dialog({content: errText});

@@ -1,9 +1,9 @@
-import {awu, common} from "../common/common.js"
+import {awu, common, api, user} from "../common/common.js"
 let jkp = new class
 {
     __constructor() {
         let wrapper = $('.wrapper')[0];
-        wrapper.innerHTML = `<div class="section">    <!--     *********    PUNCH-BOX     *********      -->    <div class="about-description text-center">        <div class="features-5 choose-punch">            <div class="container">                <div class="row">                    <div class="col-md-8 mr-auto ml-auto">                        <h2 class="title">点击你的出拳</h2>                    </div>                </div>                <div class="row">                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="Jan" class="info ">                            <div class="icon icon-success icon-circle">                                <i class="fa fa-hand-scissors-o"></i>                            </div>                            <h4 class="info-title">Jan</h4>                        </div>                    </div>                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="Ken" class="info ">                            <div class="icon icon-info icon-circle">                                <i class="fa fa-hand-rock-o"></i>                            </div>                            <h4 class="info-title">Ken</h4>                        </div>                    </div>                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="Pon" class="info ">                            <div class="icon icon-primary icon-circle">                                <i class="fa fa-hand-paper-o"></i>                            </div>                            <h4 class="info-title">Pon</h4>                        </div>                    </div>                </div>                <div class="row">                    <div class="col-md-8 mr-auto ml-auto">                        <h2 class="score"> 金币: 99</h2>                        <h2 class="rank">  当前排名: 38</h2>                    </div>                </div>            </div>        </div>    </div>    <!--     *********    END PUNCH-BOX      *********      --></div>`;
+        wrapper.innerHTML = `<div class="section">    <!--     *********    PUNCH-BOX     *********      -->    <div class="about-description text-center">        <div class="features-5 choose-punch">            <div class="container">                <div class="row">                    <div class="col-md-8 mr-auto ml-auto">                        <h2 class="title">点击你的出拳</h2>                    </div>                </div>                <div class="row">                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="2" class="info ">                            <div class="icon icon-success icon-circle">                                <i class="fa fa-hand-scissors-o"></i>                            </div>                            <h4 class="info-title">Jan</h4>                        </div>                    </div>                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="1" class="info ">                            <div class="icon icon-info icon-circle">                                <i class="fa fa-hand-rock-o"></i>                            </div>                            <h4 class="info-title">Ken</h4>                        </div>                    </div>                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="3" class="info ">                            <div class="icon icon-primary icon-circle">                                <i class="fa fa-hand-paper-o"></i>                            </div>                            <h4 class="info-title">Pon</h4>                        </div>                    </div>                </div>                <div class="row">                    <div class="col-md-8 mr-auto ml-auto">                        <h2 class="score"> 金币: ${user.total_score}</h2>                        <h2 class="rank">  当前排名: 1</h2>                    </div>                </div>            </div>        </div>    </div>    <!--     *********    END PUNCH-BOX      *********      --></div>`;
         wrapper.className = 'wrapper punch-box';
         this.listenJKP();
     }
@@ -16,35 +16,46 @@ let jkp = new class
             flag = true;
             let icon0 = $(this).find(".icon");
             let icon1 = document.createElement("div");
-            icon1.style.position = "fixed";
+            icon1.innerHTML  = icon0.html();
+            icon1.className  = icon0[0].className;
+            icon1.style.top  = icon0.offset().top + "px";
             icon1.style.left = icon0.offset().left + "px";
-            icon1.style.top = icon0.offset().top + "px";
-            icon1.className = icon0[0].className;
-            icon1.innerHTML = icon0.html();
+            icon1.style.position = "fixed";
+            icon1.style.background = "";
             $(this).append(icon1);
-            let left = 0;
             let top  = 0;
+            let left = 0;
             if ($(".navbar-collapse").css("display") === "block") {
                 let nt = $(".navbar-toggler");
-                left = nt.offset().left;
                 top  = nt.offset().top;
+                left = nt.offset().left;
             } else {
                 let db = $(".design_bullet-list-67");
-                left = db.offset().left;
                 top  = db.offset().top;
+                left = db.offset().left;
             }
-            left = left - icon1.offsetWidth * 0.1;
             top  = top - icon1.offsetHeight * 0.5;
-            let styleRule = document.styleSheets[0]; styleRule.deleteRule(6);
-            let styleRuleTO = "top:" + top + "px;left:" + left + "px;opacity: 0.6;transform:scale(0.1)";
+            left = left - icon1.offsetWidth * 0.1;
+            let styleRule = document.styleSheets[0];
             let styleRule40 = "opacity:1; transform:scale(2)";
+            let styleRuleTO = "top:" + top + "px;left:" + left + "px;opacity: 0.6;transform:scale(0.1)";
             let styleRuleED = "top:" + icon0.offset().top + "px; left: " + icon0.offset().left + "px;opacity: 0.6;transform:scale(1)";
+            styleRule.deleteRule(6);
             styleRule.insertRule("@keyframes jkpICONAnimate{0% {" + styleRuleED + "} 40%{" + styleRule40 + "} 100%{" + styleRuleTO + "}}", 6);
             icon1.style.animation = "jkpICONAnimate 1.5s forwards";
-            setTimeout(function () {
-                icon1.remove();
-                flag = false;
-            }, 1500)
+            api.punches({"punch": {"punch": $(this).attr("data-value")}}, function (data) {
+                console.log(data);
+                icon1.remove(); flag = false;
+            }, function (errText, code) {
+                if (code !== 401) {
+                    common.dialog({content: errText})
+                } else {
+                    common.dialog({content: errText, cancel: function () {
+                        user.destroy() ;awu.NewPage("auth");
+                    }})
+                }
+                icon1.remove(); flag = false;
+            });
         });
     }
 };
@@ -70,6 +81,9 @@ export class main
         this.run = {"jkp": jkp, "rank": rank, "histories": histories};
     }
     __constructor() {
+        if (!user.id) {
+            awu.NewPage("auth"); return ;
+        }
         this.initAppPage();
         this.run['jkp'].__constructor();
     }

@@ -1,20 +1,32 @@
 import {awu} from "../../aoowu/awu.js"
-let common = new class Common
+import {api} from "../service/api.js";
+let user = new class user
 {
     constructor() {
-        this.user = {token: "", info: ""};
+        this.destroy();
     }
+    set(data) {
+        this.id = data.id;
+        this.win_rate = data.win_rate;
+        this.username = data.username;
+        this.user_score = data.user_score;
+        this.total_score = data.total_score;
+        this.last_punch_at = data.last_punch_at;
+    }
+    destroy() {
+        this.id = null;
+        this.win_rate = 0;
+        this.username = null;
+        this.user_score = {};
+        this.total_score = null;
+        this.last_punch_at = null;
+    }
+};
+let common = new class Common
+{
     render(html, call) {
         $("body").html(html);
         typeof call === "function" && call();
-    }
-    isLogin() {
-        let tk = sessionStorage.getItem("token");
-        let re = true;
-        if (!tk || !this.user.token || tk !== this.user.token) {
-            re =  false;
-        }
-        return re;
     }
     dialog(param) {
         let type    = param.type ? param.type : 1;
@@ -60,4 +72,4 @@ let common = new class Common
         }}
     }
 };
-export {awu, common}
+export {awu, common, api, user}
