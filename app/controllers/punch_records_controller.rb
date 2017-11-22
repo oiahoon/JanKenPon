@@ -1,0 +1,3 @@
+class PunchRecordsController < ApplicationController
+
+end

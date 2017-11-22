@@ -30,10 +30,20 @@ gem 'authlogic'
 gem 'active_model_serializers'
 gem 'will_paginate'
 gem 'api-pagination'
+gem 'whenever'
+gem 'redis'
+gem 'redis-rails'
+
+gem 'rack-cors', :require => 'rack/cors'
+
+gem 'rails-i18n', '~> 5.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'better_errors', '1.1.0'
+  gem 'rails_best_practices'
+  gem 'awesome_print', require: 'ap'
 end
 
 group :development do

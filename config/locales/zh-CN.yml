@@ -1,0 +1,21 @@
+---
+zh-CN:
+  require_login: "你好像没有注册登陆。"
+  user_session:
+    errors:
+      full_messages: "登录失败，是不是账号密码不对？"
+    logout:
+      message: "我居然提供了退出功能？"
+
+  user_score:
+    not_enough: "你没有足够的金币!"
+
+  punch:
+    pattern:
+      invalid: "不是一个合理的拳"
+    out_of_time_range: "早六点开门，晚11点关门，带来的不便敬请见谅。"
+
+  ranks:
+    params:
+      date:
+        missing: "你不给我个日期（date）我没办法查询，比如 ?date=2017-11-11"

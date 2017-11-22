@@ -1,5 +1,5 @@
 class PunchSerializer < ActiveModel::Serializer
-  attributes :id, :wager, :result, :result_score
+  attributes :id, :wager, :result, :score_snapshoot
 
   belongs_to :user
 
@@ -8,24 +8,7 @@ class PunchSerializer < ActiveModel::Serializer
   end
 
   def result
-    if object.result.empty?
-      "waiting"
-    else
-      object.result
-    end
-  end
-
-  def result_score
-    case object.result
-    when Punch::RESULT_EVEN
-      object.score_snapshoot
-    when Punch::RESULT_WIN
-      object.score_snapshoot + object.wager
-    when Punch::RESULT_LOSE
-      object.score_snapshoot - object.wager
-    else
-      'waiting'
-    end
+    object.result
   end
 
 end

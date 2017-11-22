@@ -30,11 +30,23 @@ module Jkp
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.time_zone = 'UTC'
+    config.time_zone = 'Chongqing'
+    config.active_record.default_timezone = :local
+
+    config.i18n.available_locales = ['zh-CN', :en]
+    config.i18n.default_locale    = "zh-CN"
 
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
   end
 end

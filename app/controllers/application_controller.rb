@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   include ::ActionController::Cookies
   include ActionController::HttpAuthentication::Basic::ControllerMethods
+  include Rails::Pagination
 
   before_action :load_authlogic
 
@@ -15,12 +16,18 @@ class ApplicationController < ActionController::API
     @current_user = current_user_session && current_user_session.user
   end
 
-  def api_bad_request(body = nil)
-    render json: {error: body}, status: 400
+  def require_login
+    unless current_user.present?
+      api_bad_request([I18n.t("require_login")], :unauthorized)
+    end
+  end
+
+  def api_bad_request(body = nil, status_code = :bad_request)
+    render json: {error: body}, status: status_code
   end
 
   def api_server_error(body = nil)
-    render json: {error: body}, status: 500
+    render json: {error: body}, status: :internal_server_error
   end
 
   def load_authlogic

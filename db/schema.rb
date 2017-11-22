@@ -10,30 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107165407) do
+ActiveRecord::Schema.define(version: 20171121055336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "punch_records", force: :cascade do |t|
+    t.integer "winner_punch_id", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "punches", force: :cascade do |t|
     t.integer "pattern", null: false
     t.integer "wager", default: 1, null: false
     t.integer "user_id", null: false
-    t.integer "rival_id", default: 0, null: false
-    t.string "result", default: "", null: false
+    t.integer "score_snapshoot", null: false
+    t.integer "punch_record_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["punch_record_id"], name: "index_punches_on_punch_record_id"
     t.index ["user_id"], name: "index_punches_on_user_id"
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "username", null: false
+    t.integer "score", default: 0, null: false
+    t.integer "win_times", default: 0, null: false
+    t.integer "lose_times", default: 0, null: false
+    t.integer "dog_times", default: 0, null: false
+    t.integer "total_times", default: 0, null: false
+    t.date "punch_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["punch_date", "score", "user_id"], name: "index_ranks_on_punch_date_and_score_and_user_id"
   end
 
   create_table "user_scores", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "total_score", default: 100, null: false
-    t.integer "freeze_score", default: 0, null: false
-    t.datetime "happened_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["happened_date"], name: "index_user_scores_on_happened_date"
+    t.index ["total_score"], name: "index_user_scores_on_total_score"
+    t.index ["user_id"], name: "index_user_scores_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +74,7 @@ ActiveRecord::Schema.define(version: 20171107165407) do
     t.datetime "updated_at", null: false
     t.index ["perishable_token"], name: "index_users_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_users_on_persistence_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end
