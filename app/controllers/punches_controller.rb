@@ -21,12 +21,12 @@ class PunchesController < ApplicationController
     unless Time.zone.now > Time.zone.parse("11pm") ||  Time.zone.now < Time.zone.parse("6am")
       @punch = Punch.new(punch_params.merge({user_id: current_user.id}))
       if @punch.save
-        render json: @punch, status: :created, location: @punch
+        render json: @punch, status: :ok, location: @punch
       else
-        render json: @punch.errors, status: :unprocessable_entity
+        render json: { error: @punch.errors.values.flatten }, status: :unprocessable_entity
       end
     else
-      render json: {error:[I18n.t("punch.out_of_time_range")]}, status: :not_acceptable
+      render json: { error:[I18n.t("punch.out_of_time_range")] }, status: :not_acceptable
     end
   end
 
