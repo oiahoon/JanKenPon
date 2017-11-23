@@ -19,10 +19,24 @@ class http
         XMLHttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
         XMLHttp.send(JSON.stringify(data));
         XMLHttp.onload = function () {
-            if (XMLHttp.status === 200) {
+            if (XMLHttp.status < 400) {
                 success(JSON.parse(XMLHttp.responseText));
             } else {
-                error((JSON.parse(XMLHttp.response)).error[0], XMLHttp.status);
+                let tip = "";
+                let err = (JSON.parse(XMLHttp.response)).error;
+                switch (typeof err) {
+                    case "object":
+                        err.forEach(function (v, i) {
+                            tip += "<p>" + v + "</p>";
+                        });
+                        break;
+                    case "string":
+                        tip = err;
+                        break;
+                    default:
+                        tip = "服务异常，请稍后再试";
+                }
+                error(tip, XMLHttp.status);
             }
         };
         XMLHttp.onerror   = function () {
@@ -67,5 +81,11 @@ export class api
     }
     static punches(...args) {
         http.ajax(api.getArgs("/punches", "POST", ...args));
+    }
+    static punchesHistory(page, ...args) {
+        http.ajax(api.getArgs("/punches?page=" + page, "GET", ...args));
+    };
+    static ranks(...args) {
+        http.ajax(api.getArgs("/ranks", "GET", ...args));
     }
 }

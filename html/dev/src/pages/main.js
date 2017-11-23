@@ -22,6 +22,10 @@ let jkp = new class
                 return ;
             }
 
+            if (user.total_score < 1) {
+                common.dialog({content: "你没有足够的金币"}); return ;
+            }
+
             flag = true;
             let icon0 = $(this).find(".icon");
             let icon1 = document.createElement("div");
@@ -60,9 +64,14 @@ let jkp = new class
 
             icon1.style.animation = "jkpICONAnimate 1.5s forwards";
 
-            api.punches({"punch": {"punch": $(this).attr("data-value")}}, function (data) {
-                console.log(data);
-                icon1.remove(); flag = false;
+            setTimeout(function () {
+                icon1.remove();
+            }, 1500);
+
+            api.punches({"punch": {"pattern": parseInt($(this).attr("data-value"))}}, function (data) {
+                user.total_score = data.punch.user.total_score;
+                $('#my_score').text(user.total_score);
+                flag = false;
             }, function (errText, code) {
                 if (code !== 401) {
                     common.dialog({content: errText})
@@ -84,6 +93,30 @@ let rank = new class
         let wrapper = $('.wrapper')[0];
         wrapper.innerHTML = `{rank.html}`;
         wrapper.className = 'wrapper rank-list';
+
+        this.table = $('#rankList');
+        this.list();
+    }
+
+    // 列表
+    list() {
+        let info = "";
+        let self = this;
+
+        api.ranks({}, function (data) {
+            data.users.forEach(function (v, i) {
+                info += `<tr>
+                        <td class="text-center">${i + 1}</td>
+                        <td class="td-name"><a href="#">${v.username}</a><br><small>最后一局: ${v.last_punch_at}</small></td>
+                        <td class="td-number">${v.total_score}</td>
+                        <td class="td-number">${v.win_rate}</td>
+                        <td class="td-number">0</td>
+                        </tr>`;
+            });
+
+            self.table.html(info);
+        });
+
     }
 };
 
@@ -94,6 +127,30 @@ let histories = new class
         let wrapper = $('.wrapper')[0];
         wrapper.innerHTML = `{histories.html}`;
         wrapper.className = 'wrapper rank-list';
+
+        this.page  = 1;
+        this.table = $('#historiesTable');
+        this.icons = {'JAN': 'fa fa-hand-scissors-o', 'KEN': "fa fa-hand-rock-o", 'PON': "fa fa-hand-paper-o"};
+        this.list();
+    }
+
+    // 列表
+    list() {
+        let info = "";
+        let self = this;
+
+        api.punchesHistory(this.page, {}, function (data) {
+            data.punches.forEach(function (v, i) {
+                info += `<tr>
+                         <td class="text-center media"><i class="${self.icons[v.pattern]}"></i></td>
+                         <td class="td-number">1</td>
+                         <td class="td-number"><small> ${v.score_snapshoot} </small></td>
+                         <td class="td-number"><small> ${v.result} </small></td>
+                         </tr>`;
+            });
+
+            self.table.html(info);
+        });
     }
 };
 

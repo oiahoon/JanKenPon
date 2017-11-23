@@ -3,7 +3,7 @@ let jkp = new class
 {
     __constructor() {
         let wrapper = $('.wrapper')[0];
-        wrapper.innerHTML = `<div class="section">    <!--     *********    PUNCH-BOX     *********      -->    <div class="about-description text-center">        <div class="features-5 choose-punch">            <div class="container">                <div class="row">                    <div class="col-md-8 mr-auto ml-auto">                        <h2 class="title">点击你的出拳</h2>                    </div>                </div>                <div class="row">                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="2" class="info ">                            <div class="icon icon-success icon-circle">                                <i class="fa fa-hand-scissors-o"></i>                            </div>                            <h4 class="info-title">Jan</h4>                        </div>                    </div>                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="1" class="info ">                            <div class="icon icon-info icon-circle">                                <i class="fa fa-hand-rock-o"></i>                            </div>                            <h4 class="info-title">Ken</h4>                        </div>                    </div>                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="3" class="info ">                            <div class="icon icon-primary icon-circle">                                <i class="fa fa-hand-paper-o"></i>                            </div>                            <h4 class="info-title">Pon</h4>                        </div>                    </div>                </div>                <div class="row">                    <div class="col-md-8 mr-auto ml-auto">                        <h2 class="score"> 金币: ${user.total_score}</h2>                        <h2 class="rank">  当前排名: 1</h2>                    </div>                </div>            </div>        </div>    </div>    <!--     *********    END PUNCH-BOX      *********      --></div>`;
+        wrapper.innerHTML = `<div class="section">    <!--     *********    PUNCH-BOX     *********      -->    <div class="about-description text-center">        <div class="features-5 choose-punch">            <div class="container">                <div class="row">                    <div class="col-md-8 mr-auto ml-auto">                        <h2 class="title">点击你的出拳</h2>                    </div>                </div>                <div class="row">                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="1" class="info ">                            <div class="icon icon-success icon-circle">                                <i class="fa fa-hand-scissors-o"></i>                            </div>                            <h4 class="info-title">Jan</h4>                        </div>                    </div>                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="2" class="info ">                            <div class="icon icon-info icon-circle">                                <i class="fa fa-hand-rock-o"></i>                            </div>                            <h4 class="info-title">Ken</h4>                        </div>                    </div>                    <div class="col-sm-4">                        <div data-flag="jkp" data-value="3" class="info ">                            <div class="icon icon-primary icon-circle">                                <i class="fa fa-hand-paper-o"></i>                            </div>                            <h4 class="info-title">Pon</h4>                        </div>                    </div>                </div>                <div class="row">                    <div class="col-md-8 mr-auto ml-auto">                        <h2 class="score"> 金币: <span id="my_score">${user.total_score}</span></h2>                    </div>                </div>            </div>        </div>    </div>    <!--     *********    END PUNCH-BOX      *********      --></div>`;
         wrapper.className = 'wrapper punch-box';
         this.listenJKP();
     }
@@ -12,6 +12,9 @@ let jkp = new class
         $("div[data-flag=jkp]").click(function () {
             if (flag) {
                 return ;
+            }
+            if (user.total_score < 1) {
+                common.dialog({content: "你没有足够的金币"}); return ;
             }
             flag = true;
             let icon0 = $(this).find(".icon");
@@ -43,9 +46,13 @@ let jkp = new class
             styleRule.deleteRule(6);
             styleRule.insertRule("@keyframes jkpICONAnimate{0% {" + styleRuleED + "} 40%{" + styleRule40 + "} 100%{" + styleRuleTO + "}}", 6);
             icon1.style.animation = "jkpICONAnimate 1.5s forwards";
-            api.punches({"punch": {"punch": $(this).attr("data-value")}}, function (data) {
-                console.log(data);
-                icon1.remove(); flag = false;
+            setTimeout(function () {
+                icon1.remove();
+            }, 1500);
+            api.punches({"punch": {"pattern": parseInt($(this).attr("data-value"))}}, function (data) {
+                user.total_score = data.punch.user.total_score;
+                $('#my_score').text(user.total_score);
+                flag = false;
             }, function (errText, code) {
                 if (code !== 401) {
                     common.dialog({content: errText})
@@ -63,16 +70,53 @@ let rank = new class
 {
     __constructor() {
         let wrapper = $('.wrapper')[0];
-        wrapper.innerHTML = `<div class="section">    <div class="container">        <div class="row">            <div class="col-md-12">                <h4>                    <small>排行榜</small>                </h4>            </div>            <div class="col-md-12">                <div class="card card-plain">                    <div class="card-body">                        <div class="table-responsive">                            <table class="table table-shopping">                                <thead class="">                                <tr>                                    <th class="text-center"> </th>                                    <th>                                        User                                    </th>                                    <th class="text-center">                                        Score                                    </th>                                    <th class="text-right">                                        胜率                                    </th>                                    <th class="text-right">                                        总局数                                    </th>                                </tr>                                </thead>                                <tbody>                                <tr>                                    <td class="text-center">                                        1                                    </td>                                    <td class="td-name">                                        <a href="#">岛主</a>                                        <br>                                        <small>最后一局: 2017-11-09 15:31:50</small>                                    </td>                                    <td class="td-number">                                        268                                    </td>                                    <td class="td-number">                                        85%                                    </td>                                    <td class="td-number">                                        1,390                                    </td>                                </tr>                                </tbody>                            </table>                        </div>                    </div>                </div>            </div>        </div>    </div></div>`;
+        wrapper.innerHTML = `<div class="section">    <div class="container">        <div class="row">            <div class="col-md-12">                <h4>                    <small>排行榜</small>                </h4>            </div>            <div class="col-md-12">                <div class="card card-plain">                    <div class="card-body">                        <div class="table-responsive">                            <table class="table table-shopping">                                <thead class="">                                <tr>                                    <th class="text-center"> </th>                                    <th>                                        User                                    </th>                                    <th class="text-center">                                        Score                                    </th>                                    <th class="text-right">                                        胜率                                    </th>                                    <th class="text-right">                                        总局数                                    </th>                                </tr>                                </thead>                                <tbody id="rankList"></tbody>                            </table>                        </div>                    </div>                </div>            </div>        </div>    </div></div>`;
         wrapper.className = 'wrapper rank-list';
+        this.table = $('#rankList');
+        this.list();
+    }
+    list() {
+        let info = "";
+        let self = this;
+        api.ranks({}, function (data) {
+            data.users.forEach(function (v, i) {
+                info += `<tr>
+                        <td class="text-center">${i + 1}</td>
+                        <td class="td-name"><a href="#">${v.username}</a><br><small>最后一局: ${v.last_punch_at}</small></td>
+                        <td class="td-number">${v.total_score}</td>
+                        <td class="td-number">${v.win_rate}</td>
+                        <td class="td-number">0</td>
+                        </tr>`;
+            });
+            self.table.html(info);
+        });
     }
 };
 let histories = new class
 {
     __constructor() {
         let wrapper = $('.wrapper')[0];
-        wrapper.innerHTML = `<div class="section">    <div class="container">        <div class="row">            <div class="col-md-12">                <h4>                    <small>出拳历史</small>                </h4>            </div>            <div class="col-md-12">                <div class="card card-plain">                    <div class="card-body">                        <div class="table-responsive">                            <table class="table table-shopping">                                <thead class="">                                <tr>                                    <th class="text-center"> </th>                                    <th>                                        User                                    </th>                                    <th class="text-center">                                        出拳                                    </th>                                    <th class="text-center">                                        押金                                    </th>                                    <th class="text-center">                                        结算后                                    </th>                                    <th class="text-right">                                        结果                                    </th>                                </tr>                                </thead>                                <tbody>                                <tr>                                    <td class="text-center">                                        1                                    </td>                                    <td class="td-name">                                        <a href="#">岛主</a>                                        <br>                                        <small>出拳时间: 2017-11-09 15:31:50</small>                                    </td>                                    <td class="text-center media">                                        <div class="avatar">                                            <img class="media-object img-raised" alt="64x64" src="assets/images/placeholder.jpg">                                        </div>                                    </td>                                    <td class="td-number">                                        1                                    </td>                                    <td class="td-number">                                        <small> 尚未开局 </small>                                    </td>                                    <td class="td-number">                                        <small> 等待开局 </small>                                    </td>                                </tr>                                </tbody>                            </table>                        </div>                    </div>                </div>            </div>        </div>        <!--     *********    END RANK LIST      *********      -->    </div></div>`;
+        wrapper.innerHTML = `<div class="section">    <div class="container">        <div class="row">            <div class="col-md-12">                <h4>                    <small>出拳历史</small>                </h4>            </div>            <div class="col-md-12">                <div class="card card-plain">                    <div class="card-body">                        <div class="table-responsive">                            <table class="table table-shopping">                                <thead class="">                                <tr>                                    <th class="text-center">                                        出拳                                    </th>                                    <th class="text-center">                                        押金                                    </th>                                    <th class="text-center">                                        结算后                                    </th>                                    <th class="text-right">                                        结果                                    </th>                                </tr>                                </thead>                                <tbody id="historiesTable"></tbody>                            </table>                        </div>                    </div>                </div>            </div>        </div>        <!--     *********    END RANK LIST      *********      -->    </div></div>`;
         wrapper.className = 'wrapper rank-list';
+        this.page  = 1;
+        this.table = $('#historiesTable');
+        this.icons = {'JAN': 'fa fa-hand-scissors-o', 'KEN': "fa fa-hand-rock-o", 'PON': "fa fa-hand-paper-o"};
+        this.list();
+    }
+    list() {
+        let info = "";
+        let self = this;
+        api.punchesHistory(this.page, {}, function (data) {
+            data.punches.forEach(function (v, i) {
+                info += `<tr>
+                         <td class="text-center media"><i class="${self.icons[v.pattern]}"></i></td>
+                         <td class="td-number">1</td>
+                         <td class="td-number"><small> ${v.score_snapshoot} </small></td>
+                         <td class="td-number"><small> ${v.result} </small></td>
+                         </tr>`;
+            });
+            self.table.html(info);
+        });
     }
 };
 export class main
