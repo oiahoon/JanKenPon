@@ -1,5 +1,5 @@
 class PunchSerializer < ActiveModel::Serializer
-  attributes :id, :wager, :result, :score_snapshoot, :rival_name
+  attributes :id, :wager, :result, :score_snapshoot, :rival_name, :user
 
   attribute :pattern do
     Punch::PATTERN.invert[object.pattern]
