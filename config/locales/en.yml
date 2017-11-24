@@ -34,6 +34,9 @@ en:
 
   require_login: "please login first"
 
+  user:
+    unknown: 'unknown user'
+
   user_session:
     errors:
       full_messages: "login failed, please check your username and password"

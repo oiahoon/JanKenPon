@@ -70,6 +70,11 @@ class Punch < ApplicationRecord
       self.punch_record.winner_punch_id == 0
   end
 
+  def rival
+    return nil if !self.published?
+    self.punch_record.punches.select{|p| p.id != self.id}.last.user
+  end
+
   private
 
   def user_score_greater_than_wager

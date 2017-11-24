@@ -6,6 +6,8 @@ zh-CN:
       full_messages: "登录失败，是不是账号密码不对？"
     logout:
       message: "我居然提供了退出功能？"
+  user:
+    unknown: '神秘对手'
 
   user_score:
     not_enough: "你没有足够的金币!"
