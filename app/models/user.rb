@@ -18,7 +18,7 @@ class User < ApplicationRecord
   end
 
   def win_rate
-    win_count / punch_count.to_f
+    punch_count == 0 ? 0 : win_count / punch_count.to_f
   end
 
   def win_count
