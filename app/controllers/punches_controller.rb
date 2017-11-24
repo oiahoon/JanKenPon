@@ -6,11 +6,10 @@ class PunchesController < ApplicationController
   # GET /punches
   def index
     current_page = params[:page].presence || 1
-    @punches     = Punch.includes({user: :user_score},  :punch_record).
+    @punches     = Punch.includes({user: [:user_score, punches: :punch_record]},  :punch_record).
                          of_today.of_user(current_user.id).
-                         joins("left join punch_records on punch_records.id = punches.punch_record_id").
                          order("punches.id desc").
-                         paginate(page: current_page, per_page: PER_PAGE )
+                         paginate(page: current_page, per_page: PER_PAGE)
 
     render json: @punches
   end

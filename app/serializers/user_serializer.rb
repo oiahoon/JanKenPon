@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :total_score, :last_punch_at, :win_rate, :punch_counts
+  attributes :id, :username, :total_score, :last_punch_at, :win_rate, :punch_count
 
   has_one :user_score
 
@@ -8,23 +8,12 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def last_punch_at
-    punch = object.punch.last
+    punch = object.punches.last
     punch.present? ? punch.created_at.strftime("%Y-%m-%d %H:%M:%S") : nil
   end
 
   def win_rate
-    @punch_list = Punch.joins(:punch_record).includes(:punch_record)
-                      .where(user_id: object.id)
-    win_times = 0
-    return 0 if @punch_list.blank?
-    @punch_list.each do |rst|
-      win_times += 1 if rst.win?
-    end
-    sprintf '%.2f', (win_times.to_f / @punch_list.count)
-  end
-
-  def punch_counts
-    @punch_list.count
+    sprintf '%.2f', object.win_rate
   end
 
 end
