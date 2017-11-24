@@ -83,12 +83,13 @@ let rank = new class
         api.ranks({}, function (data) {
             data.users.forEach(function (v, i) {
                 info += `<tr>
-                        <td class="text-center">${i + 1}</td>
-                        <td class="td-name"><a href="#">${v.username}</a><br><small>最后一局: ${v.last_punch_at}</small></td>
-                        <td class="td-number">${v.total_score}</td>
-                        <td class="td-number">${v.win_rate}</td>
-                        <td class="td-number">${v.punch_counts}</td>
-                        </tr>`;
+                         <td class="text-center">${i + 1}</td>
+                         <td class="td-name">
+                            <a href="javascript:;">${v.username}</a>` + (v.last_punch_at ? `<br><small>最后一局: ${v.last_punch_at}</small>` : '') + `
+                         </td>
+                         <td class="td-number">${v.total_score}</td>
+                         <td class="td-number">${v.win_rate}</td>
+                         <td class="td-number">${v.punch_count}</td> </tr>`;
             });
             self.table.html(info);
         });
@@ -98,7 +99,7 @@ let histories = new class
 {
     __constructor() {
         let wrapper = $('.wrapper')[0];
-        wrapper.innerHTML = `<div class="section">    <div class="container">        <div class="row">            <div class="col-md-12">                <h4>                    <small>出拳历史</small>                </h4>            </div>            <div class="col-md-12">                <div class="card card-plain">                    <div class="card-body">                        <div class="table-responsive">                            <table class="table table-shopping">                                <thead class="">                                <tr>                                    <th class="text-center">                                        出拳                                    </th>                                    <th class="text-center">                                        押金                                    </th>                                    <th class="text-center">                                        积分快照                                    </th>                                    <th class="text-right">                                        结果                                    </th>                                </tr>                                </thead>                                <tbody id="historiesTable"></tbody>                            </table>                        </div>                    </div>                </div>            </div>        </div>        <!--     *********    END RANK LIST      *********      -->    </div></div>`;
+        wrapper.innerHTML = `<div class="section">    <div class="container">        <div class="row">            <div class="col-md-12">                <h4>                    <small>出拳历史</small>                </h4>            </div>            <div class="col-md-12">                <div class="card card-plain">                    <div class="card-body">                        <div class="table-responsive">                            <table class="table table-shopping">                                <thead class="">                                <tr>                                    <th class="text-center">                                        出拳                                    </th>                                    <th class="text-center">                                        押金                                    </th>                                    <th class="text-center">                                        积分快照                                    </th>                                    <th class="text-center">                                        对手                                    </th>                                    <th class="text-center">                                        结果                                    </th>                                </tr>                                </thead>                                <tbody id="historiesTable"></tbody>                            </table>                        </div>                    </div>                </div>            </div>        </div>        <!--     *********    END RANK LIST      *********      -->    </div></div>`;
         wrapper.className = 'wrapper rank-list';
         this.page  = 1;
         this.table = $('#historiesTable');
@@ -109,15 +110,16 @@ let histories = new class
         let info = "";
         let self = this;
         let tips = {"win": "胜利", "lose": "输了", "dogfall": "平局", "waiting": "未开局"};
-        let loading = "<tr valign='middle' style='height:250px'><td align='center' rowspan='3' colspan='4'><h2><i class='fa fa-circle-o-notch fa-spin'></i></h2></td></tr>";
+        let loading = "<tr valign='middle' style='height:250px'><td align='center' rowspan='3' colspan='5'><h2><i class='fa fa-circle-o-notch fa-spin'></i></h2></td></tr>";
         self.table.html(loading);
         api.punchesHistory(this.page, {}, function (data) {
             data.punches.forEach(function (v, i) {
                 info += `<tr>
-                         <td class="text-center media"><i class="${self.icons[v.pattern]}"></i></td>
-                         <td class="td-number">1</td>
-                         <td class="td-number"><small> ${v.score_snapshoot} </small></td>
-                         <td class="td-number"><small> ${tips[v.result]} </small></td>
+                         <td class="text-center"><h3 style="margin:0"><i class="${self.icons[v.pattern]}"></i></h3></td>
+                         <td class="text-center td-number">1</td>
+                         <td class="text-center td-number">${v.score_snapshoot}</td>
+                         <td class="text-center">${v.rival_name}</td>
+                         <td class="text-center">${tips[v.result]}</td>
                          </tr>`;
             });
             self.table.html(info);
@@ -137,7 +139,7 @@ export class main
         this.run['jkp'].__constructor();
     }
     initAppPage() {
-        common.render(`<nav class="navbar navbar-toggleable-md bg-white fixed-top navbar-transparent" color-on-scroll="50">    <div class="container">        <div class="navbar-translate">            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">                <span class="navbar-toggler-bar bar1"></span>                <span class="navbar-toggler-bar bar2"></span>                <span class="navbar-toggler-bar bar3"></span>            </button>            <a class="navbar-brand" href="javascript:;" >                Jan Ken Pon            </a>        </div>        <div class="collapse navbar-collapse justify-content-end" data-nav-image="./assets/images/blurred-image-1.jpg" data-color="eggyellow">            <ul class="navbar-nav">                <li class="nav-item">                    <a data-target="jkp" class="nav-page nav-link" href="javascript:;">                        <i class="now-ui-icons tech_controller-modern"></i>                        <p>开始</p>                    </a>                </li>                <li class="nav-item">                    <a data-target="rank" class="nav-page nav-link" href="javascript:;">                        <i class="now-ui-icons sport_trophy"></i>                        <p>排行榜</p>                    </a>                </li>                <li class="nav-item">                    <a data-target="histories" class="nav-page nav-link" href="javascript:;">                        <i class="now-ui-icons design_bullet-list-67"></i>                        <p>出拳记录</p>                    </a>                </li>            </ul>        </div>    </div></nav><div class='wrapper'></div><script src="./assets/js/now-ui-kit.js?v=1.0.1" type="text/javascript"></script>`);
+        common.render(`<nav class="navbar navbar-toggleable-md bg-white fixed-top navbar-transparent" color-on-scroll="50">    <div class="container">        <div class="navbar-translate">            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">                <span class="navbar-toggler-bar bar1"></span>                <span class="navbar-toggler-bar bar2"></span>                <span class="navbar-toggler-bar bar3"></span>            </button>            <a class="navbar-brand" href="javascript:;" >                Jan Ken Pon            </a>        </div>        <div class="collapse navbar-collapse justify-content-end" data-nav-image="./assets/images/blurred-image-1.jpg" data-color="eggyellow">            <ul class="navbar-nav">                <li class="nav-item">                    <a data-target="jkp" class="nav-page nav-link" href="javascript:;">                        <i class="now-ui-icons tech_controller-modern"></i>                        <p>开始</p>                    </a>                </li>                <li class="nav-item">                    <a data-target="rank" class="nav-page nav-link" href="javascript:;">                        <i class="now-ui-icons sport_trophy"></i>                        <p>排行榜</p>                    </a>                </li>                <li class="nav-item">                    <a data-target="histories" class="nav-page nav-link" href="javascript:;">                        <i class="now-ui-icons design_bullet-list-67"></i>                        <p>出拳记录</p>                    </a>                </li>            </ul>        </div>    </div></nav><div class='wrapper'></div><script src="http://assets.aoowu.org/js/now-ui-kit.js?v=1.0.1" type="text/javascript"></script>`);
         $("body").attr("class", "punch-page");
         this.listenSomething();
     }

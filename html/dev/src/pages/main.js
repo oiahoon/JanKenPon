@@ -109,12 +109,13 @@ let rank = new class
         api.ranks({}, function (data) {
             data.users.forEach(function (v, i) {
                 info += `<tr>
-                        <td class="text-center">${i + 1}</td>
-                        <td class="td-name"><a href="#">${v.username}</a><br><small>最后一局: ${v.last_punch_at}</small></td>
-                        <td class="td-number">${v.total_score}</td>
-                        <td class="td-number">${v.win_rate}</td>
-                        <td class="td-number">${v.punch_counts}</td>
-                        </tr>`;
+                         <td class="text-center">${i + 1}</td>
+                         <td class="td-name">
+                            <a href="javascript:;">${v.username}</a>` + (v.last_punch_at ? `<br><small>最后一局: ${v.last_punch_at}</small>` : '') + `
+                         </td>
+                         <td class="td-number">${v.total_score}</td>
+                         <td class="td-number">${v.win_rate}</td>
+                         <td class="td-number">${v.punch_count}</td> </tr>`;
             });
 
             self.table.html(info);
@@ -142,17 +143,18 @@ let histories = new class
         let info = "";
         let self = this;
         let tips = {"win": "胜利", "lose": "输了", "dogfall": "平局", "waiting": "未开局"};
-        let loading = "<tr valign='middle' style='height:250px'><td align='center' rowspan='3' colspan='4'><h2><i class='fa fa-circle-o-notch fa-spin'></i></h2></td></tr>";
+        let loading = "<tr valign='middle' style='height:250px'><td align='center' rowspan='3' colspan='5'><h2><i class='fa fa-circle-o-notch fa-spin'></i></h2></td></tr>";
 
         self.table.html(loading);
 
         api.punchesHistory(this.page, {}, function (data) {
             data.punches.forEach(function (v, i) {
                 info += `<tr>
-                         <td class="text-center media"><i class="${self.icons[v.pattern]}"></i></td>
-                         <td class="td-number">1</td>
-                         <td class="td-number"><small> ${v.score_snapshoot} </small></td>
-                         <td class="td-number"><small> ${tips[v.result]} </small></td>
+                         <td class="text-center"><h3 style="margin:0"><i class="${self.icons[v.pattern]}"></i></h3></td>
+                         <td class="text-center td-number">1</td>
+                         <td class="text-center td-number">${v.score_snapshoot}</td>
+                         <td class="text-center">${v.rival_name}</td>
+                         <td class="text-center">${tips[v.result]}</td>
                          </tr>`;
             });
 
