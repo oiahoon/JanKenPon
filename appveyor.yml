@@ -7,10 +7,18 @@ branches:
 skip_tags: true
 
 
+cache:
+  - vendor/bundle
+
+install:
+  - SET PATH=C:\%ruby_version%\bin;%PATH%
+  - bundle env
+  - bundle check || bundle install --path=vendor/bundle --retry=3 --jobs=3
+  - bundle clean --force
+
 before_test:
   - ruby -v
   - gem -v
   - bundle -v
 
-build:
-  verbosity: minimal
+build: off
