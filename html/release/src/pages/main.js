@@ -78,6 +78,8 @@ let rank = new class
     list() {
         let info = "";
         let self = this;
+        let loading = "<tr valign='middle' style='height:250px'><td align='center' rowspan='3' colspan='5'><h2><i class='fa fa-circle-o-notch fa-spin'></i></h2></td></tr>";
+        self.table.html(loading);
         api.ranks({}, function (data) {
             data.users.forEach(function (v, i) {
                 info += `<tr>
@@ -85,7 +87,7 @@ let rank = new class
                         <td class="td-name"><a href="#">${v.username}</a><br><small>最后一局: ${v.last_punch_at}</small></td>
                         <td class="td-number">${v.total_score}</td>
                         <td class="td-number">${v.win_rate}</td>
-                        <td class="td-number">0</td>
+                        <td class="td-number">${v.punch_counts}</td>
                         </tr>`;
             });
             self.table.html(info);
@@ -96,7 +98,7 @@ let histories = new class
 {
     __constructor() {
         let wrapper = $('.wrapper')[0];
-        wrapper.innerHTML = `<div class="section">    <div class="container">        <div class="row">            <div class="col-md-12">                <h4>                    <small>出拳历史</small>                </h4>            </div>            <div class="col-md-12">                <div class="card card-plain">                    <div class="card-body">                        <div class="table-responsive">                            <table class="table table-shopping">                                <thead class="">                                <tr>                                    <th class="text-center">                                        出拳                                    </th>                                    <th class="text-center">                                        押金                                    </th>                                    <th class="text-center">                                        结算后                                    </th>                                    <th class="text-right">                                        结果                                    </th>                                </tr>                                </thead>                                <tbody id="historiesTable"></tbody>                            </table>                        </div>                    </div>                </div>            </div>        </div>        <!--     *********    END RANK LIST      *********      -->    </div></div>`;
+        wrapper.innerHTML = `<div class="section">    <div class="container">        <div class="row">            <div class="col-md-12">                <h4>                    <small>出拳历史</small>                </h4>            </div>            <div class="col-md-12">                <div class="card card-plain">                    <div class="card-body">                        <div class="table-responsive">                            <table class="table table-shopping">                                <thead class="">                                <tr>                                    <th class="text-center">                                        出拳                                    </th>                                    <th class="text-center">                                        押金                                    </th>                                    <th class="text-center">                                        积分快照                                    </th>                                    <th class="text-right">                                        结果                                    </th>                                </tr>                                </thead>                                <tbody id="historiesTable"></tbody>                            </table>                        </div>                    </div>                </div>            </div>        </div>        <!--     *********    END RANK LIST      *********      -->    </div></div>`;
         wrapper.className = 'wrapper rank-list';
         this.page  = 1;
         this.table = $('#historiesTable');
@@ -106,13 +108,16 @@ let histories = new class
     list() {
         let info = "";
         let self = this;
+        let tips = {"win": "胜利", "lose": "输了", "dogfall": "平局", "waiting": "未开局"};
+        let loading = "<tr valign='middle' style='height:250px'><td align='center' rowspan='3' colspan='4'><h2><i class='fa fa-circle-o-notch fa-spin'></i></h2></td></tr>";
+        self.table.html(loading);
         api.punchesHistory(this.page, {}, function (data) {
             data.punches.forEach(function (v, i) {
                 info += `<tr>
                          <td class="text-center media"><i class="${self.icons[v.pattern]}"></i></td>
                          <td class="td-number">1</td>
                          <td class="td-number"><small> ${v.score_snapshoot} </small></td>
-                         <td class="td-number"><small> ${v.result} </small></td>
+                         <td class="td-number"><small> ${tips[v.result]} </small></td>
                          </tr>`;
             });
             self.table.html(info);

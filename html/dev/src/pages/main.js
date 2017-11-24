@@ -102,6 +102,9 @@ let rank = new class
     list() {
         let info = "";
         let self = this;
+        let loading = "<tr valign='middle' style='height:250px'><td align='center' rowspan='3' colspan='5'><h2><i class='fa fa-circle-o-notch fa-spin'></i></h2></td></tr>";
+
+        self.table.html(loading);
 
         api.ranks({}, function (data) {
             data.users.forEach(function (v, i) {
@@ -110,7 +113,7 @@ let rank = new class
                         <td class="td-name"><a href="#">${v.username}</a><br><small>最后一局: ${v.last_punch_at}</small></td>
                         <td class="td-number">${v.total_score}</td>
                         <td class="td-number">${v.win_rate}</td>
-                        <td class="td-number">0</td>
+                        <td class="td-number">${v.punch_counts}</td>
                         </tr>`;
             });
 
@@ -138,6 +141,10 @@ let histories = new class
     list() {
         let info = "";
         let self = this;
+        let tips = {"win": "胜利", "lose": "输了", "dogfall": "平局", "waiting": "未开局"};
+        let loading = "<tr valign='middle' style='height:250px'><td align='center' rowspan='3' colspan='4'><h2><i class='fa fa-circle-o-notch fa-spin'></i></h2></td></tr>";
+
+        self.table.html(loading);
 
         api.punchesHistory(this.page, {}, function (data) {
             data.punches.forEach(function (v, i) {
@@ -145,7 +152,7 @@ let histories = new class
                          <td class="text-center media"><i class="${self.icons[v.pattern]}"></i></td>
                          <td class="td-number">1</td>
                          <td class="td-number"><small> ${v.score_snapshoot} </small></td>
-                         <td class="td-number"><small> ${v.result} </small></td>
+                         <td class="td-number"><small> ${tips[v.result]} </small></td>
                          </tr>`;
             });
 
