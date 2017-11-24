@@ -12,5 +12,6 @@ class CreatePunches < ActiveRecord::Migration[5.1]
 
     add_index :punches, :user_id
     add_index :punches, :punch_record_id
+    add_index :punches, :created_at
   end
 end
