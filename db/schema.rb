@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171121055336) do
     t.integer "punch_record_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_punches_on_created_at"
     t.index ["punch_record_id"], name: "index_punches_on_punch_record_id"
     t.index ["user_id"], name: "index_punches_on_user_id"
   end
