@@ -11,7 +11,7 @@ class PunchesController < ApplicationController
                          order("punches.id desc").
                          paginate(page: current_page, per_page: PER_PAGE)
 
-    render json: @punches
+    render json: @punches, show_detail_user: true
   end
 
   # GET /punches/1
