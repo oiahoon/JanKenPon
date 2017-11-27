@@ -64,13 +64,16 @@
     </nav>
     <!-- End Navbar -->
     <div class="wrapper rank-list">
-        <div class="section">
+        <!--     *********    BULLET SCREEN      *********      -->
+        <div class="row bullet-screen"> </div>
+        <!--     *********    END BULLET SCREEN      *********      -->
+        <div class="section punch-histories">
             <div class="container">
             <!--     *********    RANK LIST     *********      -->
                 <div class="row">
                     <div class="col-md-12">
                         <h4>
-                            <small>出拳记录</small>
+                            <small>出拳记录(鱿鱼技术原因，只显示最近100条)</small>
                         </h4>
                     </div>
                     <div class="col-md-12">
@@ -82,23 +85,26 @@
                                             <tr>
                                                 <th class="text-center"> </th>
                                                 <th>
-                                                    User
+                                                    拳手
                                                 </th>
                                                 <th class="text-center">
-                                                    出拳
+                                                    拳型
                                                 </th>
                                                 <th class="text-center">
                                                     押金
                                                 </th>
                                                 <th class="text-center">
-                                                    结算后
+                                                    积分快照
+                                                </th>
+                                                <th class="text-center">
+                                                    对手
                                                 </th>
                                                 <th class="text-right">
                                                     结果
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="historiesTable">
                                             <tr>
                                                 <td class="text-center">
                                                     1
@@ -110,7 +116,7 @@
                                                 </td>
                                                 <td class="text-center media">
                                                     <div class="avatar">
-                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/placeholder.jpg">
+                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/jan.png">
                                                     </div>
                                                 </td>
                                                 <td class="td-number">
@@ -118,6 +124,9 @@
                                                 </td>
                                                 <td class="td-number">
                                                     <small> 尚未开局 </small>
+                                                </td>
+                                                <td class="td-name">
+                                                    群帅
                                                 </td>
                                                 <td class="td-number">
                                                     <small> 等待开局 </small>
@@ -134,7 +143,7 @@
                                                 </td>
                                                 <td class="text-center media">
                                                     <div class="avatar">
-                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/placeholder.jpg">
+                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/pon.png">
                                                     </div>
                                                 </td>
                                                 <td class="td-number">
@@ -143,12 +152,13 @@
                                                 <td class="td-number">
                                                     217
                                                 </td>
+                                                <td class="td-name">
+                                                    群帅
+                                                </td>
                                                 <td class="td-number">
                                                     <span class="badge badge-success">
                                                         <i class="now-ui-icons ui-2_like"></i>
                                                     </span>
-                                                    <br>
-                                                    <small> 对手 群帅 </small>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -162,7 +172,7 @@
                                                 </td>
                                                 <td class="text-center media">
                                                     <div class="avatar">
-                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/placeholder.jpg">
+                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/jan.png">
                                                     </div>
                                                 </td>
                                                 <td class="td-number">
@@ -171,12 +181,13 @@
                                                 <td class="td-number">
                                                     218
                                                 </td>
+                                                <td class="td-name">
+                                                    群帅
+                                                </td>
                                                 <td class="td-number">
                                                     <span class="badge badge-default">
                                                         <i class="now-ui-icons ui-2_like bottom-up"></i>
                                                     </span>
-                                                    <br>
-                                                    <small> 对手 群帅 </small>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -190,7 +201,7 @@
                                                 </td>
                                                 <td class="text-center media">
                                                     <div class="avatar">
-                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/placeholder.jpg">
+                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/ken.png">
                                                     </div>
                                                 </td>
                                                 <td class="td-number">
@@ -199,12 +210,13 @@
                                                 <td class="td-number">
                                                     217
                                                 </td>
+                                                <td class="td-name">
+                                                    群帅
+                                                </td>
                                                 <td class="td-number">
                                                     <span class="badge badge-success">
                                                         <i class="now-ui-icons ui-2_like"></i>
                                                     </span>
-                                                    <br>
-                                                    <small> 对手 群帅 </small>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -218,7 +230,7 @@
                                                 </td>
                                                 <td class="text-center media">
                                                     <div class="avatar">
-                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/placeholder.jpg">
+                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/jan.png">
                                                     </div>
                                                 </td>
                                                 <td class="td-number">
@@ -227,12 +239,13 @@
                                                 <td class="td-number">
                                                     216
                                                 </td>
+                                                <td class="td-name">
+                                                    群帅
+                                                </td>
                                                 <td class="td-number">
                                                     <span class="badge badge-success">
                                                         <i class="now-ui-icons ui-2_like"></i>
                                                     </span>
-                                                    <br>
-                                                    <small> 对手 群帅 </small>
                                                 </td>
                                             </tr>
 
@@ -247,7 +260,7 @@
                                                 </td>
                                                 <td class="text-center media">
                                                     <div class="avatar">
-                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/placeholder.jpg">
+                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/pon.png">
                                                     </div>
                                                 </td>
                                                 <td class="td-number">
@@ -256,12 +269,13 @@
                                                 <td class="td-number">
                                                     216
                                                 </td>
+                                                <td class="td-name">
+                                                    群帅
+                                                </td>
                                                 <td class="td-number">
                                                     <span class="badge badge-success">
                                                         <i class="now-ui-icons ui-2_like"></i>
                                                     </span>
-                                                    <br>
-                                                    <small> 对手 群帅 </small>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -275,7 +289,7 @@
                                                 </td>
                                                 <td class="text-center media">
                                                     <div class="avatar">
-                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/placeholder.jpg">
+                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/jan.png">
                                                     </div>
                                                 </td>
                                                 <td class="td-number">
@@ -284,12 +298,13 @@
                                                 <td class="td-number">
                                                     216
                                                 </td>
+                                                <td class="td-name">
+                                                    群帅
+                                                </td>
                                                 <td class="td-number">
                                                     <span class="badge badge-success">
                                                         <i class="now-ui-icons ui-2_like"></i>
                                                     </span>
-                                                    <br>
-                                                    <small> 对手 群帅 </small>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -303,7 +318,7 @@
                                                 </td>
                                                 <td class="text-center media">
                                                     <div class="avatar">
-                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/placeholder.jpg">
+                                                        <img class="media-object img-raised" alt="64x64" src="assets/img/ken.png">
                                                     </div>
                                                 </td>
                                                 <td class="td-number">
@@ -312,12 +327,13 @@
                                                 <td class="td-number">
                                                     216
                                                 </td>
+                                                <td class="td-name">
+                                                    群帅
+                                                </td>
                                                 <td class="td-number">
                                                     <span class="badge badge-success">
                                                         <i class="now-ui-icons ui-2_like"></i>
                                                     </span>
-                                                    <br>
-                                                    <small> 对手 群帅 </small>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -339,7 +355,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, Designed by
-                    <a href="https://auwoo.org" class="link-black" target="_blank">auWoo</a>.
+                    <a href="https://auwoo.org" class="link-cyan" target="_blank">auWoo</a>.
                 </div>
             </div>
         </footer>
@@ -368,6 +384,55 @@
 <script src="./assets/js/plugins/presentation-page/jquery.sharrre.js" type="text/javascript"></script>
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the pages etc -->
 <script src="./assets/js/now-ui-kit.js?v=1.0.1" type="text/javascript"></script>
+
+
+<script>
+    // $('.punch-history[data-toggle="popover"]').popover("show");
+    var records = [{
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 4,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }]
+    var bullets = '';
+    records.map(function(item) {
+        bullets += '<div class="col-md-' + (item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
+    })
+    $(document).ready(function() {
+        $(".bullet-screen").append(bullets);
+    });
+</script>
 
 </html>
 <!-- common footer end-->

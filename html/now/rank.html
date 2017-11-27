@@ -64,13 +64,16 @@
     </nav>
     <!-- End Navbar -->
     <div class="wrapper rank-list">
-        <div class="section">
+        <!--     *********    BULLET SCREEN      *********      -->
+        <div class="row bullet-screen"> </div>
+        <!--     *********    END BULLET SCREEN      *********      -->
+        <div class="section rank-list">
             <div class="container">
             <!--     *********    RANK LIST     *********      -->
                 <div class="row">
                     <div class="col-md-12">
                         <h4>
-                            <small>排行榜</small>
+                            <small>排行榜(应该没有超过100个人在玩，吧？)</small>
                         </h4>
                     </div>
                     <div class="col-md-12">
@@ -82,10 +85,10 @@
                                             <tr>
                                                 <th class="text-center"> </th>
                                                 <th>
-                                                    User
+                                                    拳手
                                                 </th>
                                                 <th class="text-center">
-                                                    Score
+                                                    积分
                                                 </th>
                                                 <th class="text-right">
                                                     胜率
@@ -248,7 +251,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, Designed by
-                    <a href="https://auwoo.org" class="link-black" target="_blank">auWoo</a>.
+                    <a href="https://auwoo.org" class="link-cyan" target="_blank">auWoo</a>.
                 </div>
             </div>
         </footer>
@@ -277,6 +280,54 @@
 <script src="./assets/js/plugins/presentation-page/jquery.sharrre.js" type="text/javascript"></script>
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the pages etc -->
 <script src="./assets/js/now-ui-kit.js?v=1.0.1" type="text/javascript"></script>
+
+<script>
+    // $('.punch-history[data-toggle="popover"]').popover("show");
+    var records = [{
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 4,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }]
+    var bullets = '';
+    records.map(function(item) {
+        bullets += '<div class="col-md-' + (item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
+    })
+    $(document).ready(function() {
+        $(".bullet-screen").append(bullets);
+    });
+</script>
 
 </html>
 <!-- common footer end-->

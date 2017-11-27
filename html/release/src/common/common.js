@@ -58,12 +58,12 @@ let common = new class Common
         modal.className = "modal fade";
         $(modal).attr({"tabindex": -1, "role": "dialog"});
         $("body").append(modal);
-        if (type !== 1 && typeof confirm === "function") {
+                if (type !== 1 && typeof confirm === "function") {
             $("#" + primaryID).click(function () {
                 confirm();
             });
         }
-        $(modal).on("hidden.bs.modal", function (e) {
+                $(modal).on("hidden.bs.modal", function (e) {
             (typeof cancel === "function" && cancel()); $(modal).remove();
         });
         $(modal).modal("show");
