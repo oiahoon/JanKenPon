@@ -11,6 +11,9 @@ body {
 .login-form {
     border-radius: 0.25rem;
     padding-bottom: 0.7rem;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .login-page .title {
