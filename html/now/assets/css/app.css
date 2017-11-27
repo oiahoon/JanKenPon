@@ -136,7 +136,7 @@ body {
     color: hsla(0, 0%, 43%, 0.26);
 }
 .page-header[filter-color="eggyellow"] {
-    background: rgb(254, 253, 217));
+    background: rgb(254, 253, 217);
     /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgb(254, 253, 217));
     /* For Safari 5.1 to 6.0 */
@@ -147,9 +147,15 @@ body {
     background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgb(254, 253, 217));
 }
 
-.link-black {
-    color: #2d2d2d;
+.link-cyan {
+    color: #5A9B93;
 }
+.footer {
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+
 /* btn green */
 .btn-green {
     background-color: #76a541;
