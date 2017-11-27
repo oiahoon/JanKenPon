@@ -1,42 +1,80 @@
 <div class="section">
+    <!--     *********    BULLET SCREEN      *********      -->
+    <div class="row bullet-screen"> </div>
+    <!--     *********    END BULLET SCREEN      *********      -->
     <!--     *********    PUNCH-BOX     *********      -->
     <div class="about-description text-center">
         <div class="features-5 choose-punch">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 mr-auto ml-auto">
-                        <h2 class="title">点击你的出拳</h2>
+                    <div class="col-md-8 mr-auto ml-auto score">
+                        <span class="badge badge-score" id="my_score">${user.total_score}</span>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col-sm-4">
-                        <div data-flag="jkp" data-value="1" class="info ">
-                            <div class="icon icon-success icon-circle">
-                                <i class="fa fa-hand-scissors-o"></i>
+                    <div class="col-md-4 punch-pattern">
+                        <div class="card card-testimonial">
+                            <div class="card-avatar" data-flag="jkp" data-value="1">
+                                <a href="javascript:;" data-pattern="#Jan">
+                                    <img class="img img-raised" src="./assets/img/jan.png">
+                                </a>
                             </div>
-                            <h4 class="info-title">Jan</h4>
+                            <div class="card-body">
+                                <p class="card-description">
+                                    告诉你们一个小技巧秘密，猜拳的时候出剪刀的胜率是33.33%。
+                                </p>
+                            </div>
+                            <div class="icon icon-primary">
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                            <div class="card-footer">
+                                <h4 class="card-title">Jan</h4>
+                                <p class="category">@夺命连环剪刀</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div data-flag="jkp" data-value="2" class="info ">
-                            <div class="icon icon-info icon-circle">
-                                <i class="fa fa-hand-rock-o"></i>
+                    <div class="col-md-4 punch-pattern">
+                        <div class="card card-testimonial">
+                            <div class="card-avatar" data-flag="jkp" data-value="2">
+                                <a href="javascript:;" data-pattern="#Ken">
+                                    <img class="img img-raised" src="./assets/img/ken.png">
+                                </a>
                             </div>
-                            <h4 class="info-title">Ken</h4>
+                            <div class="card-body">
+                                <p class="card-description">
+                                    又臭又硬的石头，总是出石头的人性格大概也是如此吧。
+                                </p>
+                            </div>
+                            <div class="icon icon-primary">
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                            <div class="card-footer">
+                                <h4 class="card-title">Ken</h4>
+                                <p class="category">@茅坑里的石头</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div data-flag="jkp" data-value="3" class="info ">
-                            <div class="icon icon-primary icon-circle">
-                                <i class="fa fa-hand-paper-o"></i>
+                    <div class="col-md-4 punch-pattern">
+                        <div class="card card-testimonial">
+                            <div class="card-avatar" data-flag="jkp" data-value="3">
+                                <a href="javascript:;" data-pattern="#Pon">
+                                    <img class="img img-raised" src="./assets/img/pon.png">
+                                </a>
                             </div>
-                            <h4 class="info-title">Pon</h4>
+                            <div class="card-body">
+                                <p class="card-description">
+                                    包罗万象，五指张开，出布的时候有一种烟花绽放的感觉。
+                                </p>
+                            </div>
+                            <div class="icon icon-primary">
+                                <i class="fa fa-quote-right"></i>
+                            </div>
+                            <div class="card-footer">
+                                <h4 class="card-title">Pon</h4>
+                                <p class="category">@从天而降的帕子</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 mr-auto ml-auto">
-                        <h2 class="score"> 金币: <span id="my_score">${user.total_score}</span></h2>
                     </div>
                 </div>
             </div>

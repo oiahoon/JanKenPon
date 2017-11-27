@@ -34,5 +34,54 @@
 <script src="http://assets.aoowu.org/js/core/tether.min.js" type="text/javascript"></script>
 <script src="http://assets.aoowu.org/js/core/bootstrap.min.js" type="text/javascript"></script>
 <script src="http://assets.aoowu.org/js/now-ui-kit.js?v=1.0.1" type="text/javascript"></script>
-<script type="module">import {app} from "./src/app.js"; new app();</script>
+<script type="module">import {app} from "/src/app.js"; new app();</script>
+
+<script>
+    // $('.punch-history[data-toggle="popover"]').popover("show");
+    var records = [{
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 4,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 2,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 1,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }, {
+        "rand": 3,
+        "text": "岛主刚刚用拳头战胜了盐煎肉。"
+    }]
+    var bullets = '';
+    records.map(function(item) {
+        bullets += '<div class="col-md-' + (2 + item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
+    })
+    $(document).ready(function() {
+        $(".bullet-screen").append(bullets);
+    });
+</script>
+
 </html>

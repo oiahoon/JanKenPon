@@ -1,6 +1,5 @@
-import {auth} from ".././src/pages/auth.js"
-import {main} from ".././src/pages/main.js"
-let classMap  = {"auth": auth,"main": main};
+import {main} from "..//src/pages/main.js"
+let classMap  = {"main": main};
 let instances = {};
 let loadingFn = {};
 class AooWu
