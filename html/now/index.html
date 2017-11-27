@@ -189,46 +189,103 @@
 <script src="./assets/js/now-ui-kit.js?v=1.0.1" type="text/javascript"></script>
 <script>
     // $('.punch-history[data-toggle="popover"]').popover("show");
-    var records = [{
-        "rand": 1,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
-        "rand": 3,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
+    var records = [
+    {
         "rand": 4,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
+        "text": "joey1刚刚使用[JAN]战胜了joey2"
+    },
+    {
+        "rand": 5,
+        "text": "joey2刚刚使用[一耳屎]战胜了joey1"
+    },
+    {
         "rand": 2,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
+        "text": "joey1居然和joey2互相给了对方[帕子],难分高低"
+    },
+    {
+        "rand": 5,
+        "text": "joey1刚刚使出[石头]但是败给了joey2"
+    },
+    {
+        "rand": 4,
+        "text": "joey2刚刚使用[剪刀]战胜了joey1"
+    },
+    {
+        "rand": 3,
+        "text": "joey1刚刚使用[夺命剪刀脚]战胜了joey2"
+    },
+    {
+        "rand": 4,
+        "text": "joey1刚刚使用[砣子]战胜了joey2"
+    },
+    {
+        "rand": 5,
+        "text": "joey2刚刚使用[理不断剪还乱]战胜了joey1"
+    },
+    {
+        "rand": 5,
+        "text": "joey2刚刚使用[一耳屎]战胜了joey1"
+    },
+    {
+        "rand": 4,
+        "text": "joey1刚刚使用[锤子]战胜了joey2"
+    },
+    {
+        "rand": 4,
+        "text": "joey1刚刚使用[理不断剪还乱]战胜了joey2"
+    },
+    {
+        "rand": 3,
+        "text": "joey2刚刚使用[一耳屎]战胜了joey1"
+    },
+    {
+        "rand": 3,
+        "text": "joey1刚刚使用[夺命剪刀脚]战胜了joey2"
+    },
+    {
+        "rand": 3,
+        "text": "joey1刚刚使用[理不断剪还乱]战胜了joey2"
+    },
+    {
+        "rand": 4,
+        "text": "joey1刚刚使用[JAN]战胜了joey2"
+    },
+    {
         "rand": 2,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
-        "rand": 1,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
-        "rand": 1,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
-        "rand": 3,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
+        "text": "joey1居然和joey2互相给了对方[PON],难分高低"
+    },
+    {
         "rand": 2,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
+        "text": "joey1刚刚使用[剪刀]战胜了joey2"
+    },
+    {
+        "rand": 4,
+        "text": "joey2刚刚使用[剪刀]战胜了joey1"
+    },
+    {
+        "rand": 4,
+        "text": "joey1刚刚使用[KEN]战胜了joey2"
+    },
+    {
+        "rand": 4,
+        "text": "joey1居然和joey2互相给了对方[布],难分高低"
+    },
+    {
+        "rand": 2,
+        "text": "joey1刚刚使用[理不断剪还乱]战胜了joey2"
+    },
+    {
+        "rand": 4,
+        "text": "joey1居然和joey2互相给了对方[布],难分高低"
+    },
+    {
         "rand": 3,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
-        "rand": 1,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }, {
-        "rand": 3,
-        "text": "岛主刚刚用拳头战胜了盐煎肉。"
-    }]
+        "text": "joey2刚刚使用[夺命剪刀脚]战胜了joey1"
+    }
+];
     var bullets = '';
     records.map(function(item) {
-        bullets += '<div class="col-md-' + (2 + item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
+        bullets += '<div class="col-md-' + (item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
     })
     $(document).ready(function() {
         $(".bullet-screen").append(bullets);

@@ -181,7 +181,7 @@
     }]
     var bullets = '';
     records.map(function(item) {
-        bullets += '<div class="col-md-' + (2 + item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
+        bullets += '<div class="col-md-' + (item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
     })
     $(document).ready(function() {
         $(".bullet-screen").append(bullets);

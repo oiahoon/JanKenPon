@@ -55,3 +55,20 @@ en:
     params:
       date:
         missing: "params date missing, for example ?date=2017-11-11"
+
+  punch_record:
+    bullet_win: "%{user_a} just beat %{user_b} by using [%{pattern}]"
+    bullet_lose: "%{user_a} just lose out to %{user_b} by using [%{pattern}]"
+    bullet_dogfall: "%{user_a} and %{user_b} both gave [%{pattern}],no winner"
+    patterns:
+      "1":
+        "1": "Jan"
+        "2": "scissor"
+        "3": "shear"
+      "2":
+        "1": "rock"
+        "2": "KEN"
+      "3":
+        "1": "handkerchief"
+        "2": "PON"
+        "3": "paper"
