@@ -1,5 +1,6 @@
 body {
     color: #565656;
+    background-color: #333333;
 }
 .navbar .navbar-toggler-bar {
     display: block;
@@ -15,15 +16,7 @@ body {
 }
 
 .punch-box {
-    background: rgb(254, 253, 217));
-    /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0), rgb(254, 253, 217));
-    /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0), rgb(254, 253, 217));
-    /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0), rgb(254, 253, 217));
-    /* For Firefox 3.6 to 15 */
-    background: linear-gradient(0deg, rgba(44, 44, 44, 0), rgb(254, 253, 217));
+    /*background: #697872;*/
     /* Standard syntax */
     min-height: 100vh;
     max-height: 999px;
@@ -45,18 +38,52 @@ body {
 }
 
 .punch-box .score {
-    padding-top: 20px;
-    line-height: 30px;
+    line-height: 1.61em;
+    font-weight: 300;
+    font-size: 1.2em;
+    margin-bottom: 6vh;
+    text-align: center;
 }
 
-.punch-box .score .now-ui-icons {
-    position: relative;
-    top: 6px;
-    margin-right: 5px;
-    color: #fededf;
+.punch-box .score .badge {
+    font-size: 2em;
+    padding: 1.1em 0.5em;
+}
+
+.punch-box .score .badge:first-child {
+
+}
+.punch-box .score .badge:last-child {
+}
+
+.punch-pattern .card {
+    background-color: #DDD09C;
+    color: #5A9B93;
+}
+
+.punch-pattern .card p {
+    color: #333333;
+}
+
+.bullet-screen {
+    position: absolute;
+    padding-top: 7vh;
+    max-height: 100%;
+    height: 100%;
+    overflow-y: hidden;
+    font-size: 1.5em;
+    font-weight: bolder;
+    line-height: 1.15;
+    margin-bottom: 30px;
+    color: hsla(0, 0%, 62%, 0.46);
+}
+
+.badge-score {
+    background-color: #f96332;
+    border-color: #f96332;
 }
 .punch-page .navbar a:not(.btn):not(.dropdown-item) {
-    color: #CCCC99;
+    color: #68B3AC;
 }
 .choose-punch {
     padding: 20px 0;

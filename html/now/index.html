@@ -50,13 +50,12 @@
                             <p>排行榜</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item punch-history" data-toggle="popover" data-placement="bottom" data-content="你可以在这里看你的出拳记录哦！">
                         <a class="nav-link" href="/histories.html">
                             <i class="now-ui-icons design_bullet-list-67"></i>
                             <p>出拳记录</p>
                         </a>
                     </li>
-
 
                 </ul>
             </div>
@@ -64,49 +63,89 @@
     </nav>
     <!-- End Navbar -->
     <div class="wrapper punch-box">
+        <!--     *********    BULLET SCREEN      *********      -->
+        <div class="row bullet-screen">
 
+        </div>
+        <!--     *********    END BULLET SCREEN      *********      -->
         <div class="section">
         <!--     *********    PUNCH-BOX     *********      -->
             <div class="about-description text-center">
                 <div class="features-5 choose-punch">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-8 mr-auto ml-auto">
-                                <h2 class="title">点击你的出拳</h2>
+                            <div class="col-md-8 mr-auto ml-auto score">
+                                <span class="badge badge-score">9</span>
+                                <span class="badge badge-score">5</span>
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="col-sm-4">
-                                <div class="info info-hover">
-                                    <div class="icon icon-success icon-circle">
-                                        <i class="now-ui-icons objects_globe"></i>
+                            <div class="col-md-4 punch-pattern">
+                                <div class="card card-testimonial">
+                                    <div class="card-avatar">
+                                        <a href="#pablo">
+                                            <img class="img img-raised" src="./assets/img/jan.png">
+                                        </a>
                                     </div>
-                                    <h4 class="info-title">Jan</h4>
+                                    <div class="card-body">
+                                        <p class="card-description">
+                                            The networking at Web Summit is like no other European tech conference.
+                                        </p>
+                                    </div>
+                                    <div class="icon icon-primary">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="card-footer">
+                                        <h4 class="card-title">Jan</h4>
+                                        <p class="category">@夺命连环剪刀</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="info info-hover">
-                                    <div class="icon icon-info icon-circle">
-                                        <i class="now-ui-icons education_atom"></i>
+                            <div class="col-md-4 punch-pattern">
+                                <div class="card card-testimonial">
+                                    <div class="card-avatar">
+                                        <a href="#pablo">
+                                            <img class="img img-raised" src="./assets/img/ken.png">
+                                        </a>
                                     </div>
-                                    <h4 class="info-title">Ken</h4>
+                                    <div class="card-body">
+                                        <p class="card-description">
+                                            The connections you make at Web Summit e world.
+                                        </p>
+                                    </div>
+                                    <div class="icon icon-primary">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="card-footer">
+                                        <h4 class="card-title">Ken</h4>
+                                        <p class="category">@茅坑里的石头</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="info info-hover">
-                                    <div class="icon icon-primary icon-circle">
-                                        <i class="now-ui-icons tech_watch-time"></i>
+                            <div class="col-md-4 punch-pattern">
+                                <div class="card card-testimonial">
+                                    <div class="card-avatar">
+                                        <a href="#pablo">
+                                            <img class="img img-raised" src="./assets/img/pon.png">
+                                        </a>
                                     </div>
-                                    <h4 class="info-title">Pon</h4>
+                                    <div class="card-body">
+                                        <p class="card-description">
+                                            Web Summit will increase your appetite, your inspiration, and your network.
+                                        </p>
+                                    </div>
+                                    <div class="icon icon-primary">
+                                        <i class="fa fa-quote-right"></i>
+                                    </div>
+                                    <div class="card-footer">
+                                        <h4 class="card-title">Pon</h4>
+                                        <p class="category">@从天而降的帕子</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8 mr-auto ml-auto">
-                                <h2 class="score"> 金币: 99</h2>
-                                <h2 class="rank">  当前排名: 38</h2>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -150,6 +189,63 @@
 <script src="./assets/js/plugins/presentation-page/jquery.sharrre.js" type="text/javascript"></script>
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the pages etc -->
 <script src="./assets/js/now-ui-kit.js?v=1.0.1" type="text/javascript"></script>
-
+<script>
+    // $('.punch-history[data-toggle="popover"]').popover("show");
+    var records =  [
+        {
+            "rand": 1,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 3,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 4,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 2,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 2,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 1,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 1,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 3,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 2,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 3,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 1,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        },
+        {
+            "rand": 3,
+            "text":"岛主刚刚用拳头战胜了盐煎肉。"
+        }
+    ]
+    var bullets = '';
+    records.map (function(item) {
+      bullets += '<div class="col-md-'+(2+item['rand'])+' ml-md-auto"><h'+(6-item['rand'])+'>' + item['text'] + '</h1></div>';
+    })
+    $(".bullet-screen").append(bullets);
+</script>
 </html>
 <!-- common footer end-->
