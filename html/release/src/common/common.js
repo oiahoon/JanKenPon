@@ -1,5 +1,22 @@
-import {awu} from "../../aoowu/awu.js"
 import {api} from "../service/api.js";
+let JKP = new class {
+    constructor() {
+        this.classMap = {};
+    }
+    Page(cls) {
+        if (typeof cls === 'function') {
+            if (!this.classMap.hasOwnProperty(cls.name)) {
+                this.classMap[cls.name] = new cls;
+            }
+            this.classMap[cls.name].__constructor();
+        } else {
+            if (!this.classMap.hasOwnProperty(cls)) {
+                throw "JKP.NEW: class " + cls + " undefined";
+            }
+            this.classMap[cls].__constructor();
+        }
+    }
+};
 let user = new class user
 {
     constructor() {
@@ -25,8 +42,18 @@ let user = new class user
 let common = new class Common
 {
     render(html, call) {
-        $("body").html(html);
-        typeof call === "function" && call();
+        let wrapper = $('.wrapper .section')[0];
+        if (typeof wrapper === 'object') {
+            wrapper.innerHTML = html;
+            typeof call === "function" && call();
+        }
+    }
+    header(bln) {
+        if (bln) {
+            $("#navbar").html(`<ul class="navbar-nav">    <li class="nav-item active">        <a data-target="jkp" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons tech_controller-modern"></i>            <p>出拳吧</p>        </a>    </li>    <li class="nav-item">        <a data-target="rank" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons sport_trophy"></i>            <p>排行榜</p>        </a>    </li>    <li class="nav-item">        <a data-target="histories" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons design_bullet-list-67"></i>            <p>出拳记录</p>        </a>    </li></ul>`);
+        } else {
+            $("#navbar").html('');
+        }
     }
     dialog(param) {
         let type    = param.type ? param.type : 1;
@@ -58,12 +85,12 @@ let common = new class Common
         modal.className = "modal fade";
         $(modal).attr({"tabindex": -1, "role": "dialog"});
         $("body").append(modal);
-                if (type !== 1 && typeof confirm === "function") {
+        if (type !== 1 && typeof confirm === "function") {
             $("#" + primaryID).click(function () {
                 confirm();
             });
         }
-                $(modal).on("hidden.bs.modal", function (e) {
+        $(modal).on("hidden.bs.modal", function (e) {
             (typeof cancel === "function" && cancel()); $(modal).remove();
         });
         $(modal).modal("show");
@@ -72,4 +99,4 @@ let common = new class Common
         }}
     }
 };
-export {awu, common, api, user}
+export {JKP, common, api, user}
