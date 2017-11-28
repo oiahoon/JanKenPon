@@ -119,6 +119,20 @@ body {
 .rank-list table,
 .punch-histories table {
     color: #9A9A9A;
+    background: rgba(0, 0, 0, 0.5803921568627451);
+    border-radius: 5px;
+}
+.rank-list table thead,
+.punch-histories table thead{
+    color: wheat;
+    font-size: 1.6em;
+}
+
+.rank-list table thead th,
+.punch-histories table thead th{
+    height: 3em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 
 .rank-list table a,
