@@ -11,7 +11,7 @@ let JKP = new class {
             this.classMap[cls.name].__constructor();
         } else {
             if (!this.classMap.hasOwnProperty(cls)) {
-                throw "JKP.NEW: class " + cls + " undefined";
+                throw "JKP.Page: class " + cls + " undefined";
             }
             this.classMap[cls].__constructor();
         }
@@ -42,8 +42,8 @@ let user = new class user
 let common = new class Common
 {
     render(html, call) {
-        let wrapper = $('.wrapper .section')[0];
-        if (typeof wrapper === 'object') {
+        let wrapper =  document.getElementById('jkp_container');
+        if (wrapper) {
             wrapper.innerHTML = html;
             typeof call === "function" && call();
         }
