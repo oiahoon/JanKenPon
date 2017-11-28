@@ -133,6 +133,13 @@ body {
 .punch-histories .bullet-screen{
     color: hsla(0, 0%, 43%, 0.26);
 }
+.bullet-screen h1, h2, h3, h4, h5, h6 {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+
 .page-header[filter-color="eggyellow"] {
     background: rgb(254, 253, 217);
     /* For browsers that do not support gradients */
