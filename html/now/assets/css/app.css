@@ -82,6 +82,7 @@ body {
 
 .punch-pattern .card p {
     color: #333333;
+    padding: 0 1em;
 }
 
 .bullet-screen {
