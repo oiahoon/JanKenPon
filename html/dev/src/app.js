@@ -19,16 +19,16 @@ export class app
 
     // 弹幕墙
     barrageWall() {
-        // let bullets = '';
+        let timeDuring = 150000;
         bulletsShooting();
-        setInterval(bulletsShooting, 10000);
+        setInterval(bulletsShooting, timeDuring);
         function bulletsShooting() {
             api.bullets({}, function (data) {
                 var i = data.length-1;
                 var doAppend = function(){
                     if(i > 0){
                         appendBullet(data[i--]);
-                        setTimeout(doAppend, 834);
+                        setTimeout(doAppend, ((timeDuring/data.length)|0));
                     }
                 }
                 doAppend();
