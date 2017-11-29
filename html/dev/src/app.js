@@ -32,9 +32,8 @@ export class app
                         currentBullets.eq(toDelNumber).fadeOut('slow',function(){ $(this).remove();});
                     }
                     var item_rand=getRandomInt(2,6);
-                    $(".bullet-screen").append(
-                        '<div class="bullet hidden col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>'
-                    ).fadeIn('slow');
+                    var bullet = $('<div class="bullet hidden col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>').hide().fadeIn('slow');
+                    $(".bullet-screen").append(bullet);
                 })
             });
         }
