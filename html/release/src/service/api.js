@@ -147,4 +147,12 @@ export class api
     static ranks(...args) {
         http.ajax(api.getArgs("/ranks", "GET", ...args));
     }
+
+    /**
+     * 弹幕
+     * @param args
+     */
+    static bullets(...args) {
+        http.ajax(api.getArgs("/punch_records", "GET", ...args));
+    }
 }

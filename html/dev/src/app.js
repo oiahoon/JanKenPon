@@ -44,8 +44,8 @@ export class app
                 var toDelNumber = getRandomInt(0,50);
                 currentBullets.eq(toDelNumber).fadeOut('slow',function(){ $(this).remove();});
             }
-            // var item_rand=getRandomInt(2,7);
-            var bullet = $('<div class="bullet col-md-' + getRandomInt(1,7) + ' ml-md-auto"><h' + getRandomInt(1,7) + '>' + item['text'] + '</h1></div>').hide().fadeIn('slow');
+            var item_rand=getRandomInt(2,6);
+            var bullet = $('<div class="bullet col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>').hide().fadeIn('slow');
             $(".bullet-screen").prepend(bullet);
         }
 
