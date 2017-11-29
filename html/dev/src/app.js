@@ -28,7 +28,7 @@ export class app
                     var currentBullets = $(".bullet-screen > .bullet")
                     var bulletsCount = currentBullets.length;
                     if(bulletsCount >= 50){
-                        toDelNumber = this.getRandomInt(0,50);
+                        toDelNumber = getRandomInt(0,50);
                         currentBullets[toDelNumber].fadeOut('slow').remove();
                     }
                     $(".bullet-screen").append(
@@ -38,16 +38,7 @@ export class app
             });
         }
 
-        let cache = [
-            {
-                "rand": 2,
-                "text": "joey刚刚使出[小拳拳捶你胸口]但是败给了我是第一"
-            },
-            {
-                "rand": 3,
-                "text": "我是第一刚刚使出[就如你轻轻地来一掌]但是败给了joey"
-            }
-        ];
+        let cache = [ ];
 
         function getRandomInt(min, max) {
           min = Math.ceil(min);
