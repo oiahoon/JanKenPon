@@ -2,9 +2,11 @@ body {
     color: #565656;
     background-color: #333333;
 }
-.login-form,
-.punch-histories,
-.rank-list {
+
+.section.login-form,
+.section.punch-histories,
+.section.rank-list,
+.section.punch-box {
     background: rgba(51, 51, 51, 0);
 }
 
@@ -41,7 +43,7 @@ body {
     /* Standard syntax */
     min-height: 100vh;
     max-height: 999px;
-    padding: 0;
+    padding: 100px 0 0 0;
 }
 
 .punch-box:after,
@@ -52,10 +54,6 @@ body {
     left: 0;
     top: 0;
     content: "";
-}
-
-.punch-box .section {
-    background:unset;
 }
 
 .punch-box .score {
@@ -84,6 +82,7 @@ body {
 
 .punch-pattern .card p {
     color: #333333;
+    padding: 0 1em;
 }
 
 .bullet-screen {
@@ -120,6 +119,20 @@ body {
 .rank-list table,
 .punch-histories table {
     color: #9A9A9A;
+    background: rgba(0, 0, 0, 0.5803921568627451);
+    border-radius: 5px;
+}
+.rank-list table thead,
+.punch-histories table thead{
+    color: wheat;
+    font-size: 1.6em;
+}
+
+.rank-list table thead th,
+.punch-histories table thead th{
+    height: 3em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 
 .rank-list table a,
@@ -158,7 +171,7 @@ body {
     color: #5A9B93;
 }
 .footer {
-    position:absolute;
+    /*position:absolute;*/
     bottom:0;
     left:0;
 }

@@ -1,27 +1,5 @@
-/* ========================================================================
- * bootstrap-switch - v3.3.2
- * http://www.bootstrap-switch.org
- * ========================================================================
- * Copyright 2012-2013 Mattia Larentis
- *
- * ========================================================================
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ========================================================================
- */
-
 (function() {
     var slice = [].slice;
-
     (function($, window) {
         "use strict";
         var BootstrapSwitch;
@@ -124,13 +102,10 @@
                 this._externalLabelHandler();
                 this.$element.trigger("init.bootstrapSwitch", this.options.state);
             }
-
             BootstrapSwitch.prototype._constructor = BootstrapSwitch;
-
             BootstrapSwitch.prototype.setPrevOptions = function() {
                 return this.prevOptions = $.extend(true, {}, this.options);
             };
-
             BootstrapSwitch.prototype.state = function(value, skip) {
                 if (typeof value === "undefined") {
                     return this.options.state;
@@ -153,7 +128,6 @@
                 this.$element.prop("checked", value).trigger("change.bootstrapSwitch", skip);
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.toggleState = function(skip) {
                 if (this.options.disabled || this.options.readonly) {
                     return this.$element;
@@ -165,7 +139,6 @@
                     return this.$element.prop("checked", !this.options.state).trigger("change.bootstrapSwitch", skip);
                 }
             };
-
             BootstrapSwitch.prototype.size = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.size;
@@ -181,7 +154,6 @@
                 this.options.size = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.animate = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.animate;
@@ -192,13 +164,11 @@
                 }
                 return this.toggleAnimate();
             };
-
             BootstrapSwitch.prototype.toggleAnimate = function() {
                 this.options.animate = !this.options.animate;
                 this.$wrapper.toggleClass(this.options.baseClass + "-animate");
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.disabled = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.disabled;
@@ -209,14 +179,12 @@
                 }
                 return this.toggleDisabled();
             };
-
             BootstrapSwitch.prototype.toggleDisabled = function() {
                 this.options.disabled = !this.options.disabled;
                 this.$element.prop("disabled", this.options.disabled);
                 this.$wrapper.toggleClass(this.options.baseClass + "-disabled");
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.readonly = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.readonly;
@@ -227,14 +195,12 @@
                 }
                 return this.toggleReadonly();
             };
-
             BootstrapSwitch.prototype.toggleReadonly = function() {
                 this.options.readonly = !this.options.readonly;
                 this.$element.prop("readonly", this.options.readonly);
                 this.$wrapper.toggleClass(this.options.baseClass + "-readonly");
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.indeterminate = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.indeterminate;
@@ -245,7 +211,6 @@
                 }
                 return this.toggleIndeterminate();
             };
-
             BootstrapSwitch.prototype.toggleIndeterminate = function() {
                 this.options.indeterminate = !this.options.indeterminate;
                 this.$element.prop("indeterminate", this.options.indeterminate);
@@ -253,7 +218,6 @@
                 this._containerPosition();
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.inverse = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.inverse;
@@ -264,7 +228,6 @@
                 }
                 return this.toggleInverse();
             };
-
             BootstrapSwitch.prototype.toggleInverse = function() {
                 var $off, $on;
                 this.$wrapper.toggleClass(this.options.baseClass + "-inverse");
@@ -277,7 +240,6 @@
                 this.options.inverse = !this.options.inverse;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.onColor = function(value) {
                 var color;
                 color = this.options.onColor;
@@ -291,7 +253,6 @@
                 this.options.onColor = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.offColor = function(value) {
                 var color;
                 color = this.options.offColor;
@@ -305,7 +266,6 @@
                 this.options.offColor = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.onText = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.onText;
@@ -316,7 +276,6 @@
                 this.options.onText = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.offText = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.offText;
@@ -327,7 +286,6 @@
                 this.options.offText = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.labelText = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.labelText;
@@ -337,7 +295,6 @@
                 this.options.labelText = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.handleWidth = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.handleWidth;
@@ -347,7 +304,6 @@
                 this._containerPosition();
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.labelWidth = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.labelWidth;
@@ -357,11 +313,9 @@
                 this._containerPosition();
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.baseClass = function(value) {
                 return this.options.baseClass;
             };
-
             BootstrapSwitch.prototype.wrapperClass = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.wrapperClass;
@@ -374,7 +328,6 @@
                 this.options.wrapperClass = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.radioAllOff = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.radioAllOff;
@@ -386,7 +339,6 @@
                 this.options.radioAllOff = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.onInit = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.onInit;
@@ -397,7 +349,6 @@
                 this.options.onInit = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.onSwitchChange = function(value) {
                 if (typeof value === "undefined") {
                     return this.options.onSwitchChange;
@@ -408,7 +359,6 @@
                 this.options.onSwitchChange = value;
                 return this.$element;
             };
-
             BootstrapSwitch.prototype.destroy = function() {
                 var $form;
                 $form = this.$element.closest("form");
@@ -419,7 +369,6 @@
                 this.$element.unwrap().unwrap().off(".bootstrapSwitch").removeData("bootstrap-switch");
                 return this.$element;
             };
-
             BootstrapSwitch.prototype._width = function() {
                 var $handles, handleWidth;
                 $handles = this.$on.add(this.$off);
@@ -443,7 +392,6 @@
                 this.$container.width((this._handleWidth * 2) + this._labelWidth);
                 return this.$wrapper.width(this._handleWidth + this._labelWidth);
             };
-
             BootstrapSwitch.prototype._containerPosition = function(state, callback) {
                 if (state == null) {
                     state = this.options.state;
@@ -477,7 +425,6 @@
                     return callback();
                 }, 50);
             };
-
             BootstrapSwitch.prototype._init = function() {
                 var init, initInterval;
                 init = (function(_this) {
@@ -503,7 +450,6 @@
                     };
                 })(this), 50);
             };
-
             BootstrapSwitch.prototype._elementHandlers = function() {
                 return this.$element.on({
                     "setPreviousOptions.bootstrapSwitch": (function(_this) {
@@ -571,7 +517,6 @@
                     })(this)
                 });
             };
-
             BootstrapSwitch.prototype._handleHandlers = function() {
                 this.$on.on("click.bootstrapSwitch", (function(_this) {
                     return function(event) {
@@ -590,7 +535,6 @@
                     };
                 })(this));
             };
-
             BootstrapSwitch.prototype._labelHandlers = function() {
                 return this.$label.on({
                     "click": function(e) {
@@ -652,7 +596,6 @@
                     })(this)
                 });
             };
-
             BootstrapSwitch.prototype._externalLabelHandler = function() {
                 var $externalLabel;
                 $externalLabel = this.$element.closest("label");
@@ -666,7 +609,6 @@
                     };
                 })(this));
             };
-
             BootstrapSwitch.prototype._formHandler = function() {
                 var $form;
                 $form = this.$element.closest("form");
@@ -683,7 +625,6 @@
                     }, 1);
                 }).data("bootstrap-switch", true);
             };
-
             BootstrapSwitch.prototype._getClasses = function(classes) {
                 var c, cls, i, len;
                 if (!$.isArray(classes)) {
@@ -696,9 +637,7 @@
                 }
                 return cls;
             };
-
             return BootstrapSwitch;
-
         })();
         $.fn.bootstrapSwitch = function() {
             var args, option, ret;
@@ -740,5 +679,4 @@
             onSwitchChange: function() {}
         };
     })(window.jQuery, window);
-
 }).call(this);

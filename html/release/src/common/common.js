@@ -50,7 +50,7 @@ let common = new class Common
     }
     header(bln) {
         if (bln) {
-            $("#navbar").html(`<ul class="navbar-nav">    <li class="nav-item active">        <a data-target="jkp" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons tech_controller-modern"></i>            <p>出拳吧</p>        </a>    </li>    <li class="nav-item">        <a data-target="rank" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons sport_trophy"></i>            <p>排行榜</p>        </a>    </li>    <li class="nav-item">        <a data-target="histories" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons design_bullet-list-67"></i>            <p>出拳记录</p>        </a>    </li></ul>`);
+            $("#navbar").html(`<ul class="navbar-nav">    <li class="nav-item">        <a data-target="jkp" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons tech_controller-modern"></i>            <p>出拳吧</p>        </a>    </li>    <li class="nav-item">        <a data-target="rank" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons sport_trophy"></i>            <p>排行榜</p>        </a>    </li>    <li class="nav-item">        <a data-target="histories" class="nav-page nav-link" href="javascript:;">            <i class="now-ui-icons design_bullet-list-67"></i>            <p>出拳记录</p>        </a>    </li></ul>`);
         } else {
             $("#navbar").html('');
         }
