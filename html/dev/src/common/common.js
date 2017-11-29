@@ -3,6 +3,10 @@
  */
 import {api} from "../service/api.js";
 
+/**
+ * JKP Core
+ * @type {{Page: (function(*=))}}
+ */
 let JKP = new class {
     constructor() {
         this.classMap = {};

@@ -140,7 +140,10 @@ export class api
         http.ajax(api.getArgs("/punches?page=" + page, "GET", ...args));
     };
 
-    // 排行榜
+    /**
+     * 排行榜
+     * @param args
+     */
     static ranks(...args) {
         http.ajax(api.getArgs("/ranks", "GET", ...args));
     }
