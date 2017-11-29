@@ -29,12 +29,12 @@ export class app
                     var bulletsCount = currentBullets.length;
                     if(bulletsCount >= 50){
                         var toDelNumber = getRandomInt(0,50);
-                        currentBullets[toDelNumber].fadeOut('slow').remove();
+                        $(currentBullets[toDelNumber]).fadeOut('slow').remove();
                     }
                     var item_rand=getRandomInt(2,6);
                     $(".bullet-screen").append(
                         '<div class="bullet hidden col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>'
-                    ).fadeIn('fast');
+                    ).fadeIn('slow');
                 })
             });
         }
