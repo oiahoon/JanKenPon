@@ -47,16 +47,16 @@
             var self = this;
             if (self.options.maxTags && self.itemsArray.length >= self.options.maxTags)
                 return;
-            if (item !== false && !item)
+                        if (item !== false && !item)
                 return;
-            if (typeof item === "string" && self.options.trimValue) {
+                        if (typeof item === "string" && self.options.trimValue) {
                 item = $.trim(item);
             }
-            if (typeof item === "object" && !self.objectItems)
+                        if (typeof item === "object" && !self.objectItems)
                 throw ("Can't add objects when itemValue option is not set");
-            if (item.toString().match(/^\s*$/))
+                        if (item.toString().match(/^\s*$/))
                 return;
-            if (self.isSelect && !self.multiple && self.itemsArray.length > 0)
+                        if (self.isSelect && !self.multiple && self.itemsArray.length > 0)
                 self.remove(self.itemsArray[0]);
             if (typeof item === "string" && this.$element[0].tagName === 'INPUT') {
                 var delimiter = (self.options.delimiterRegex) ? self.options.delimiterRegex : self.options.delimiter;
@@ -74,11 +74,11 @@
                 itemText = self.options.itemText(item),
                 tagClass = self.options.tagClass(item),
                 itemTitle = self.options.itemTitle(item);
-            var existing = $.grep(self.itemsArray, function(item) {
+                        var existing = $.grep(self.itemsArray, function(item) {
                 return self.options.itemValue(item) === itemValue;
             })[0];
             if (existing && !self.options.allowDuplicates) {
-                if (self.options.onTagExists) {
+                                if (self.options.onTagExists) {
                     var $existingTag = $(".tag", self.$container).filter(function() {
                         return $(this).data("item") === existing;
                     });
@@ -86,9 +86,9 @@
                 }
                 return;
             }
-            if (self.items().toString().length + item.length + 1 > self.options.maxInputLength)
+                        if (self.items().toString().length + item.length + 1 > self.options.maxInputLength)
                 return;
-            var beforeItemAddEvent = $.Event('beforeItemAdd', {
+                        var beforeItemAddEvent = $.Event('beforeItemAdd', {
                 item: item,
                 cancel: false,
                 options: options
@@ -96,12 +96,12 @@
             self.$element.trigger(beforeItemAddEvent);
             if (beforeItemAddEvent.cancel)
                 return;
-            self.itemsArray.push(item);
+                        self.itemsArray.push(item);
             var $tag = $('<span class="tag ' + htmlEncode(tagClass) + (itemTitle !== null ? ('" title="' + itemTitle) : '') + '">' + htmlEncode(itemText) + '<span data-role="remove"></span></span>');
             $tag.data('item', item);
             self.findInputWrapper().before($tag);
             $tag.after(' ');
-            if (self.isSelect && !$('option[value="' + encodeURIComponent(itemValue) + '"]', self.$element)[0]) {
+                        if (self.isSelect && !$('option[value="' + encodeURIComponent(itemValue) + '"]', self.$element)[0]) {
                 var $option = $('<option selected>' + htmlEncode(itemText) + '</option>');
                 $option.data('item', item);
                 $option.attr('value', itemValue);
@@ -109,7 +109,7 @@
             }
             if (!dontPushVal)
                 self.pushVal();
-            if (self.options.maxTags === self.itemsArray.length || self.items().toString().length === self.options.maxInputLength)
+                        if (self.options.maxTags === self.itemsArray.length || self.items().toString().length === self.options.maxInputLength)
                 self.$container.addClass('bootstrap-tagsinput-max');
             self.$element.trigger($.Event('itemAdded', {
                 item: item,
@@ -149,7 +149,7 @@
             }
             if (!dontPushVal)
                 self.pushVal();
-            if (self.options.maxTags > self.itemsArray.length)
+                        if (self.options.maxTags > self.itemsArray.length)
                 self.$container.removeClass('bootstrap-tagsinput-max');
             self.$element.trigger($.Event('itemRemoved', {
                 item: item,
@@ -172,7 +172,7 @@
                     itemValue = self.options.itemValue(item),
                     itemText = self.options.itemText(item),
                     tagClass = self.options.tagClass(item);
-                $tag.attr('class', null);
+                                $tag.attr('class', null);
                 $tag.addClass('tag ' + htmlEncode(tagClass));
                 $tag.contents().filter(function() {
                     return this.nodeType == 3;
@@ -198,12 +198,12 @@
         build: function(options) {
             var self = this;
             self.options = $.extend({}, defaultOptions, options);
-            if (self.objectItems)
+                        if (self.objectItems)
                 self.options.freeInput = false;
             makeOptionItemFunction(self.options, 'itemValue');
             makeOptionItemFunction(self.options, 'itemText');
             makeOptionFunction(self.options, 'tagClass');
-            if (self.options.typeahead) {
+                        if (self.options.typeahead) {
                 var typeahead = self.options.typeahead || {};
                 makeOptionFunction(typeahead, 'source');
                 self.$input.typeahead($.extend({}, typeahead, {
@@ -221,11 +221,11 @@
                         var map = this.map,
                             data = typeahead.source(query);
                         if ($.isFunction(data.success)) {
-                            data.success(processItems);
+                                                        data.success(processItems);
                         } else if ($.isFunction(data.then)) {
-                            data.then(processItems);
+                                                        data.then(processItems);
                         } else {
-                            $.when(data)
+                                                        $.when(data)
                                 .then(processItems);
                         }
                     },
@@ -245,10 +245,10 @@
                     }
                 }));
             }
-            if (self.options.typeaheadjs) {
+                        if (self.options.typeaheadjs) {
                 var typeaheadConfig = null;
                 var typeaheadDatasets = {};
-                var typeaheadjs = self.options.typeaheadjs;
+                                var typeaheadjs = self.options.typeaheadjs;
                 if ($.isArray(typeaheadjs)) {
                     typeaheadConfig = typeaheadjs[0];
                     typeaheadDatasets = typeaheadjs[1];
@@ -271,7 +271,7 @@
             }, self));
             if (self.options.addOnBlur && self.options.freeInput) {
                 self.$input.on('focusout', $.proxy(function(event) {
-                    if ($('.typeahead, .twitter-typeahead', self.$container).length === 0) {
+                                                            if ($('.typeahead, .twitter-typeahead', self.$container).length === 0) {
                         self.add(self.$input.val());
                         self.$input.val('');
                     }
@@ -285,7 +285,7 @@
                     return;
                 }
                 switch (event.which) {
-                    case 8:
+                                        case 8:
                         if (doGetCaretPosition($input[0]) === 0) {
                             var prev = $inputWrapper.prev();
                             if (prev.length) {
@@ -293,7 +293,7 @@
                             }
                         }
                         break;
-                    case 46:
+                                            case 46:
                         if (doGetCaretPosition($input[0]) === 0) {
                             var next = $inputWrapper.next();
                             if (next.length) {
@@ -301,23 +301,23 @@
                             }
                         }
                         break;
-                    case 37:
-                        var $prevTag = $inputWrapper.prev();
+                                            case 37:
+                                                var $prevTag = $inputWrapper.prev();
                         if ($input.val().length === 0 && $prevTag[0]) {
                             $prevTag.before($inputWrapper);
                             $input.focus();
                         }
                         break;
-                    case 39:
-                        var $nextTag = $inputWrapper.next();
+                                            case 39:
+                                                var $nextTag = $inputWrapper.next();
                         if ($input.val().length === 0 && $nextTag[0]) {
                             $nextTag.after($inputWrapper);
                             $input.focus();
                         }
                         break;
                     default:
-                }
-                var textLength = $input.val().length,
+                                        }
+                                var textLength = $input.val().length,
                     wordSpace = Math.ceil(textLength / 5),
                     size = textLength + wordSpace + 1;
                 $input.attr('size', Math.max(this.inputSize, $input.val().length));
@@ -331,26 +331,26 @@
                 var text = $input.val(),
                     maxLengthReached = self.options.maxChars && text.length >= self.options.maxChars;
                 if (self.options.freeInput && (keyCombinationInList(event, self.options.confirmKeys) || maxLengthReached)) {
-                    if (text.length !== 0) {
+                                        if (text.length !== 0) {
                         self.add(maxLengthReached ? text.substr(0, self.options.maxChars) : text);
                         $input.val('');
                     }
-                    if (self.options.cancelConfirmKeysOnEmpty === false) {
+                                        if (self.options.cancelConfirmKeysOnEmpty === false) {
                         event.preventDefault();
                     }
                 }
-                var textLength = $input.val().length,
+                                var textLength = $input.val().length,
                     wordSpace = Math.ceil(textLength / 5),
                     size = textLength + wordSpace + 1;
                 $input.attr('size', Math.max(this.inputSize, $input.val().length));
             }, self));
-            self.$container.on('click', '[data-role=remove]', $.proxy(function(event) {
+                        self.$container.on('click', '[data-role=remove]', $.proxy(function(event) {
                 if (self.$element.attr('disabled')) {
                     return;
                 }
                 self.remove($(event.target).closest('.tag').data('item'));
             }, self));
-            if (self.options.itemValue === defaultOptions.itemValue) {
+                        if (self.options.itemValue === defaultOptions.itemValue) {
                 if (self.$element[0].tagName === 'INPUT') {
                     self.add(self.$element.val());
                 } else {
@@ -362,7 +362,7 @@
         },
         destroy: function() {
             var self = this;
-            self.$container.off('keypress', 'input');
+                        self.$container.off('keypress', 'input');
             self.$container.off('click', '[role=remove]');
             self.$container.remove();
             self.$element.removeData('tagsinput');
@@ -386,18 +386,18 @@
         var results = [];
         this.each(function() {
             var tagsinput = $(this).data('tagsinput');
-            if (!tagsinput) {
+                        if (!tagsinput) {
                 tagsinput = new TagsInput(this, arg1);
                 $(this).data('tagsinput', tagsinput);
                 results.push(tagsinput);
                 if (this.tagName === 'SELECT') {
                     $('option', $(this)).attr('selected', 'selected');
                 }
-                $(this).val($(this).val());
+                                $(this).val($(this).val());
             } else if (!arg1 && !arg2) {
-                results.push(tagsinput);
+                                                results.push(tagsinput);
             } else if (tagsinput[arg1] !== undefined) {
-                if (tagsinput[arg1].length === 3 && arg3 !== undefined) {
+                                if (tagsinput[arg1].length === 3 && arg3 !== undefined) {
                     var retVal = tagsinput[arg1](arg2, null, arg3);
                 } else {
                     var retVal = tagsinput[arg1](arg2);
@@ -407,7 +407,7 @@
             }
         });
         if (typeof arg1 == 'string') {
-            return results.length > 1 ? results : results[0];
+                        return results.length > 1 ? results : results[0];
         } else {
             return results;
         }

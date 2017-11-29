@@ -5,14 +5,14 @@ var navbar_initialized,
     backgroundOrange = false,
     toggle_initialized = false;
 $(document).ready(function() {
-    $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
-    $('[data-toggle="popover"]').each(function() {
+        $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
+        $('[data-toggle="popover"]').each(function() {
         color_class = $(this).data('color');
         $(this).popover({
             template: '<div class="popover popover-' + color_class + '" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
         });
     });
-    nowuiKit.initNavbarImage();
+        nowuiKit.initNavbarImage();
     $navbar = $('.navbar[color-on-scroll]');
     scroll_distance = $navbar.attr('color-on-scroll') || 500;
     if ($('.navbar[color-on-scroll]').length != 0) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
     }).on("blur", function() {
         $(this).parent(".input-group").removeClass("input-group-focus");
     });
-    $('.bootstrap-switch').each(function() {
+        $('.bootstrap-switch').each(function() {
         $this = $(this);
         data_on_label = $this.data('on-label') || '';
         data_off_label = $this.data('off-label') || '';
@@ -37,7 +37,7 @@ $(document).ready(function() {
         big_image = $('.page-header-image[data-parallax="true"]');
         $(window).on('scroll', nowuiKitDemo.checkScrollForParallax);
     }
-    $('.carousel').carousel({
+        $('.carousel').carousel({
         interval: 4000
     });
     $('.date-picker').each(function() {
@@ -121,7 +121,7 @@ nowuiKit = {
         }
     },
     initSliders: function() {
-        var slider = document.getElementById('sliderRegular');
+                var slider = document.getElementById('sliderRegular');
         noUiSlider.create(slider, {
             start: 40,
             connect: [true, false],

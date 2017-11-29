@@ -1,22 +1,21 @@
 (function(root, factory) {
     if (typeof define === 'function' && define.amd) {
-        define(["jquery"], function(a0) {
+                define(["jquery"], function(a0) {
             return (factory(a0));
         });
     } else if (typeof module === 'object' && module.exports) {
-        module.exports = factory(require("jquery"));
+                                module.exports = factory(require("jquery"));
     } else {
         factory(root["jQuery"]);
     }
 }(this, function(jQuery) {
     (function($) {
         'use strict';
-        if (!String.prototype.includes) {
+                if (!String.prototype.includes) {
             (function() {
-                'use strict'; 
-                var toString = {}.toString;
+                'use strict';                 var toString = {}.toString;
                 var defineProperty = (function() {
-                    try {
+                                        try {
                         var object = {};
                         var $defineProperty = Object.defineProperty;
                         var result = $defineProperty(object, object, object) && $defineProperty;
@@ -36,12 +35,11 @@
                     var searchString = String(search);
                     var searchLength = searchString.length;
                     var position = arguments.length > 1 ? arguments[1] : undefined;
-                    var pos = position ? Number(position) : 0;
-                    if (pos != pos) { 
-                        pos = 0;
+                                        var pos = position ? Number(position) : 0;
+                    if (pos != pos) {                         pos = 0;
                     }
                     var start = Math.min(Math.max(pos, 0), stringLength);
-                    if (searchLength + start > stringLength) {
+                                        if (searchLength + start > stringLength) {
                         return false;
                     }
                     return indexOf.call(string, searchString, pos) != -1;
@@ -59,9 +57,8 @@
         }
         if (!String.prototype.startsWith) {
             (function() {
-                'use strict'; 
-                var defineProperty = (function() {
-                    try {
+                'use strict';                 var defineProperty = (function() {
+                                        try {
                         var object = {};
                         var $defineProperty = Object.defineProperty;
                         var result = $defineProperty(object, object, object) && $defineProperty;
@@ -81,12 +78,11 @@
                     var searchString = String(search);
                     var searchLength = searchString.length;
                     var position = arguments.length > 1 ? arguments[1] : undefined;
-                    var pos = position ? Number(position) : 0;
-                    if (pos != pos) { 
-                        pos = 0;
+                                        var pos = position ? Number(position) : 0;
+                    if (pos != pos) {                         pos = 0;
                     }
                     var start = Math.min(Math.max(pos, 0), stringLength);
-                    if (searchLength + start > stringLength) {
+                                        if (searchLength + start > stringLength) {
                         return false;
                     }
                     var index = -1;
@@ -110,17 +106,14 @@
         }
         if (!Object.keys) {
             Object.keys = function(
-                o, 
-                k, 
-                r 
-            ) {
-                r = [];
-                for (k in o)
-                    r.hasOwnProperty.call(o, k) && r.push(k);
-                return r;
+                o,                 k,                 r             ) {
+                                r = [];
+                                for (k in o)
+                                        r.hasOwnProperty.call(o, k) && r.push(k);
+                                return r;
             };
         }
-        var valHooks = {
+                                var valHooks = {
             useDefault: false,
             _set: $.valHooks.select.set
         };
@@ -132,40 +125,38 @@
         $.fn.triggerNative = function(eventName) {
             var el = this[0],
                 event;
-            if (el.dispatchEvent) { 
-                if (typeof Event === 'function') {
-                    event = new Event(eventName, {
+            if (el.dispatchEvent) {                 if (typeof Event === 'function') {
+                                        event = new Event(eventName, {
                         bubbles: true
                     });
                 } else {
-                    event = document.createEvent('Event');
+                                        event = document.createEvent('Event');
                     event.initEvent(eventName, true, false);
                 }
                 el.dispatchEvent(event);
-            } else if (el.fireEvent) { 
-                event = document.createEventObject();
+            } else if (el.fireEvent) {                 event = document.createEventObject();
                 event.eventType = eventName;
                 el.fireEvent('on' + eventName, event);
             } else {
-                this.trigger(eventName);
+                                this.trigger(eventName);
             }
         };
-        $.expr.pseudos.icontains = function(obj, index, meta) {
+                $.expr.pseudos.icontains = function(obj, index, meta) {
             var $obj = $(obj);
             var haystack = ($obj.data('tokens') || $obj.text()).toString().toUpperCase();
             return haystack.includes(meta[3].toUpperCase());
         };
-        $.expr.pseudos.ibegins = function(obj, index, meta) {
+                $.expr.pseudos.ibegins = function(obj, index, meta) {
             var $obj = $(obj);
             var haystack = ($obj.data('tokens') || $obj.text()).toString().toUpperCase();
             return haystack.startsWith(meta[3].toUpperCase());
         };
-        $.expr.pseudos.aicontains = function(obj, index, meta) {
+                $.expr.pseudos.aicontains = function(obj, index, meta) {
             var $obj = $(obj);
             var haystack = ($obj.data('tokens') || $obj.data('normalizedText') || $obj.text()).toString().toUpperCase();
             return haystack.includes(meta[3].toUpperCase());
         };
-        $.expr.pseudos.aibegins = function(obj, index, meta) {
+                $.expr.pseudos.aibegins = function(obj, index, meta) {
             var $obj = $(obj);
             var haystack = ($obj.data('tokens') || $obj.data('normalizedText') || $obj.text()).toString().toUpperCase();
             return haystack.startsWith(meta[3].toUpperCase());
@@ -229,7 +220,7 @@
             });
             return text;
         }
-        var escapeMap = {
+                var escapeMap = {
             '&': '&amp;',
             '<': '&lt;',
             '>': '&gt;',
@@ -245,11 +236,11 @@
             '&#x27;': "'",
             '&#x60;': '`'
         };
-        var createEscaper = function(map) {
+                var createEscaper = function(map) {
             var escaper = function(match) {
                 return map[match];
             };
-            var source = '(?:' + Object.keys(map).join('|') + ')';
+                        var source = '(?:' + Object.keys(map).join('|') + ')';
             var testRegexp = RegExp(source);
             var replaceRegexp = RegExp(source, 'g');
             return function(string) {
@@ -260,7 +251,7 @@
         var htmlEscape = createEscaper(escapeMap);
         var htmlUnescape = createEscaper(unescapeMap);
         var Selectpicker = function(element, options) {
-            if (!valHooks.useDefault) {
+                        if (!valHooks.useDefault) {
                 $.valHooks.select.set = valHooks._set;
                 valHooks.useDefault = true;
             }
@@ -270,14 +261,14 @@
             this.$menu = null;
             this.$lis = null;
             this.options = options;
-            if (this.options.title === null) {
+                                    if (this.options.title === null) {
                 this.options.title = this.$element.attr('title');
             }
-            var winPad = this.options.windowPadding;
+                        var winPad = this.options.windowPadding;
             if (typeof winPad === 'number') {
                 this.options.windowPadding = [winPad, winPad, winPad, winPad];
             }
-            this.val = Selectpicker.prototype.val;
+                        this.val = Selectpicker.prototype.val;
             this.render = Selectpicker.prototype.render;
             this.refresh = Selectpicker.prototype.refresh;
             this.setStyle = Selectpicker.prototype.setStyle;
@@ -290,7 +281,7 @@
             this.init();
         };
         Selectpicker.VERSION = '1.12.2';
-        Selectpicker.DEFAULTS = {
+                Selectpicker.DEFAULTS = {
             noneSelectedText: 'Nothing selected',
             noneResultsText: 'No results matched {0}',
             countSelectedText: function(numSelected, numTotal) {
@@ -343,7 +334,7 @@
                 var that = this,
                     id = this.$element.attr('id');
                 this.$element.addClass('bs-select-hidden');
-                this.liObj = {};
+                                                this.liObj = {};
                 this.multiple = this.$element.prop('multiple');
                 this.autofocus = this.$element.prop('autofocus');
                 this.$newElement = this.createView();
@@ -401,11 +392,10 @@
                             },
                             'shown.bs.select': function() {
                                 that.$element
-                                    .val(that.$element.val()) 
-                                    .off('shown.bs.select');
+                                    .val(that.$element.val())                                     .off('shown.bs.select');
                             },
                             'rendered.bs.select': function() {
-                                if (this.validity.valid) that.$button.removeClass('bs-invalid');
+                                                                if (this.validity.valid) that.$button.removeClass('bs-invalid');
                                 that.$element.off('rendered.bs.select');
                             }
                         });
@@ -416,10 +406,10 @@
                 });
             },
             createDropdown: function() {
-                var showTick = (this.multiple || this.options.showTick) ? ' show-tick' : '',
+                                                var showTick = (this.multiple || this.options.showTick) ? ' show-tick' : '',
                     inputGroup = this.$element.parent().hasClass('input-group') ? ' input-group-btn' : '',
                     autofocus = this.autofocus ? ' autofocus' : '';
-                var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
+                                var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
                 var searchbox = this.options.liveSearch ?
                     '<div class="bs-searchbox">' +
                     '<input type="text" class="form-control" autocomplete="off"' +
@@ -473,7 +463,7 @@
                 return $drop;
             },
             reloadLi: function() {
-                var li = this.createLi();
+                                var li = this.createLi();
                 this.$menuInner[0].innerHTML = li;
             },
             createLi: function() {
@@ -500,14 +490,14 @@
                         '</a>';
                 };
                 if (this.options.title && !this.multiple) {
-                    liIndex--;
+                                                            liIndex--;
                     if (!this.$element.find('.bs-title-option').length) {
-                        var element = this.$element[0];
+                                                var element = this.$element[0];
                         titleOption.className = 'bs-title-option';
                         titleOption.innerHTML = this.options.title;
                         titleOption.value = '';
                         element.insertBefore(titleOption, element.firstChild);
-                        var $opt = $(element.options[element.selectedIndex]);
+                                                                                                var $opt = $(element.options[element.selectedIndex]);
                         if ($opt.attr('selected') === undefined && this.$element.data('selected') === undefined) {
                             titleOption.selected = true;
                         }
@@ -517,7 +507,7 @@
                     var $this = $(this);
                     liIndex++;
                     if ($this.hasClass('bs-title-option')) return;
-                    var optionClass = this.className || '',
+                                        var optionClass = this.className || '',
                         inline = this.style.cssText,
                         text = $this.data('content') ? $this.data('content') : $this.html(),
                         tokens = $this.data('tokens') ? $this.data('tokens') : null,
@@ -535,7 +525,7 @@
                         return;
                     }
                     if (!$this.data('content')) {
-                        text = icon + '<span class="text">' + text + subtext + '</span>';
+                                                text = icon + '<span class="text">' + text + subtext + '</span>';
                     }
                     if (isOptgroup && $this.data('divider') !== true) {
                         if (that.options.hideDisabled && isDisabled) {
@@ -549,14 +539,12 @@
                             }
                         }
                         var optGroupClass = ' ' + $parent[0].className || '';
-                        if ($this.index() === 0) { 
-                            optID += 1;
-                            var label = $parent[0].label,
+                        if ($this.index() === 0) {                             optID += 1;
+                                                        var label = $parent[0].label,
                                 labelSubtext = typeof $parent.data('subtext') !== 'undefined' ? '<small class="text-muted">' + $parent.data('subtext') + '</small>' : '',
                                 labelIcon = $parent.data('icon') ? '<span class="' + that.options.iconBase + ' ' + $parent.data('icon') + '"></span> ' : '';
                             label = labelIcon + '<span class="text">' + htmlEscape(label) + labelSubtext + '</span>';
-                            if (index !== 0 && _li.length > 0) { 
-                                liIndex++;
+                            if (index !== 0 && _li.length > 0) {                                 liIndex++;
                                 _li.push(generateLI('', null, 'divider', optID + 'div'));
                             }
                             liIndex++;
@@ -573,16 +561,16 @@
                         _li.push(generateLI(generateA(text, optionClass, inline, tokens), index, 'hidden is-hidden'));
                     } else {
                         var showDivider = this.previousElementSibling && this.previousElementSibling.tagName === 'OPTGROUP';
-                        if (!showDivider && that.options.hideDisabled) {
-                            var $prev = $(this).prevAll();
+                                                if (!showDivider && that.options.hideDisabled) {
+                                                        var $prev = $(this).prevAll();
                             for (var i = 0; i < $prev.length; i++) {
-                                if ($prev[i].tagName === 'OPTGROUP') {
+                                                                if ($prev[i].tagName === 'OPTGROUP') {
                                     var optGroupDistance = 0;
-                                    for (var d = 0; d < i; d++) {
+                                                                                                            for (var d = 0; d < i; d++) {
                                         var prevOption = $prev[d];
                                         if (prevOption.disabled || $(prevOption).data('hidden') === true) optGroupDistance++;
                                     }
-                                    if (optGroupDistance === i) showDivider = true;
+                                                                        if (optGroupDistance === i) showDivider = true;
                                     break;
                                 }
                             }
@@ -595,7 +583,7 @@
                     }
                     that.liObj[index] = liIndex;
                 });
-                if (!this.multiple && this.$element.find('option:selected').length === 0 && !this.options.title) {
+                                if (!this.multiple && this.$element.find('option:selected').length === 0 && !this.options.title) {
                     this.$element.find('option').eq(0).prop('selected', true).attr('selected', 'selected');
                 }
                 return _li.join('');
@@ -607,7 +595,7 @@
             render: function(updateLi) {
                 var that = this,
                     notDisabled;
-                if (updateLi !== false) {
+                                if (updateLi !== false) {
                     this.$element.find('option').each(function(index) {
                         var $lis = that.findLis().eq(that.liObj[index]);
                         that.setDisabled(index, this.disabled || this.parentNode.tagName === 'OPTGROUP' && this.parentNode.disabled, $lis);
@@ -636,8 +624,8 @@
                         }
                     }
                 }).toArray();
-                var title = !this.multiple ? selectedItems[0] : selectedItems.join(this.options.multipleSeparator);
-                if (this.multiple && this.options.selectedTextFormat.indexOf('count') > -1) {
+                                                var title = !this.multiple ? selectedItems[0] : selectedItems.join(this.options.multipleSeparator);
+                                if (this.multiple && this.options.selectedTextFormat.indexOf('count') > -1) {
                     var max = this.options.selectedTextFormat.split('>');
                     if ((max.length > 1 && selectedItems.length > max[1]) || (max.length == 1 && selectedItems.length >= 2)) {
                         notDisabled = this.options.hideDisabled ? ', [disabled]' : '';
@@ -652,10 +640,10 @@
                 if (this.options.selectedTextFormat == 'static') {
                     title = this.options.title;
                 }
-                if (!title) {
+                                if (!title) {
                     title = typeof this.options.title !== 'undefined' ? this.options.title : this.options.noneSelectedText;
                 }
-                this.$button.attr('title', htmlUnescape($.trim(title.replace(/<[^>]*>?/g, ''))));
+                                this.$button.attr('title', htmlUnescape($.trim(title.replace(/<[^>]*>?/g, ''))));
                 this.$button.children('.filter-option').html(title);
                 this.$element.trigger('rendered.bs.select');
             },
@@ -715,7 +703,7 @@
                     actionsHeight = actions ? actions.offsetHeight : 0,
                     doneButtonHeight = doneButton ? doneButton.offsetHeight : 0,
                     dividerHeight = $(divider).outerHeight(true),
-                    menuStyle = typeof getComputedStyle === 'function' ? getComputedStyle(menu) : false,
+                                        menuStyle = typeof getComputedStyle === 'function' ? getComputedStyle(menu) : false,
                     $menu = menuStyle ? null : $(menu),
                     menuPadding = {
                         vert: parseInt(menuStyle ? menuStyle.paddingTop : $menu.css('paddingTop')) +
@@ -864,7 +852,7 @@
                         getHeight = $menu.height();
                     }
                     if (that.options.dropupAuto) {
-                        this.$newElement.toggleClass('dropup', selectOffsetTop > selectOffsetBot && (menuHeight - menuExtras.vert) < getHeight);
+                                                this.$newElement.toggleClass('dropup', selectOffsetTop > selectOffsetBot && (menuHeight - menuExtras.vert) < getHeight);
                     }
                     $menu.css({
                         'max-height': menuHeight + headerHeight + searchHeight + actionsHeight + doneButtonHeight + 'px',
@@ -881,24 +869,24 @@
             setWidth: function() {
                 if (this.options.width === 'auto') {
                     this.$menu.css('min-width', '0');
-                    var $selectClone = this.$menu.parent().clone().appendTo('body'),
+                                        var $selectClone = this.$menu.parent().clone().appendTo('body'),
                         $selectClone2 = this.options.container ? this.$newElement.clone().appendTo('body') : $selectClone,
                         ulWidth = $selectClone.children('.dropdown-menu').outerWidth(),
                         btnWidth = $selectClone2.css('width', 'auto').children('button').outerWidth();
                     $selectClone.remove();
                     $selectClone2.remove();
-                    this.$newElement.css('width', Math.max(ulWidth, btnWidth) + 'px');
+                                        this.$newElement.css('width', Math.max(ulWidth, btnWidth) + 'px');
                 } else if (this.options.width === 'fit') {
-                    this.$menu.css('min-width', '');
+                                        this.$menu.css('min-width', '');
                     this.$newElement.css('width', '').addClass('fit-width');
                 } else if (this.options.width) {
-                    this.$menu.css('min-width', '');
+                                        this.$menu.css('min-width', '');
                     this.$newElement.css('width', this.options.width);
                 } else {
-                    this.$menu.css('min-width', '');
+                                        this.$menu.css('min-width', '');
                     this.$newElement.css('width', '');
                 }
-                if (this.$newElement.hasClass('fit-width') && this.options.width !== 'fit') {
+                                if (this.$newElement.hasClass('fit-width') && this.options.width !== 'fit') {
                     this.$newElement.removeClass('fit-width');
                 }
             },
@@ -950,8 +938,7 @@
             },
             setSelected: function(index, selected, $lis) {
                 if (!$lis) {
-                    this.togglePlaceholder(); 
-                    $lis = this.findLis().eq(this.liObj[index]);
+                    this.togglePlaceholder();                     $lis = this.findLis().eq(this.liObj[index]);
                 }
                 $lis.toggleClass('selected', selected).find('a').attr('aria-selected', selected);
             },
@@ -1017,7 +1004,7 @@
                     } else if (!that.multiple) {
                         var selectedIndex = that.liObj[that.$element[0].selectedIndex];
                         if (typeof selectedIndex !== 'number' || that.options.size === false) return;
-                        var offset = that.$lis.eq(selectedIndex)[0].offsetTop - that.$menuInner[0].offsetTop;
+                                                var offset = that.$lis.eq(selectedIndex)[0].offsetTop - that.$menuInner[0].offsetTop;
                         offset = offset - that.$menuInner[0].offsetHeight / 2 + that.sizeInfo.liHeight / 2;
                         that.$menuInner[0].scrollTop = offset;
                     }
@@ -1028,24 +1015,22 @@
                         prevValue = that.$element.val(),
                         prevIndex = that.$element.prop('selectedIndex'),
                         triggerChange = true;
-                    if (that.multiple && that.options.maxOptions !== 1) {
+                                        if (that.multiple && that.options.maxOptions !== 1) {
                         e.stopPropagation();
                     }
                     e.preventDefault();
-                    if (!that.isDisabled() && !$this.parent().hasClass('disabled')) {
+                                        if (!that.isDisabled() && !$this.parent().hasClass('disabled')) {
                         var $options = that.$element.find('option'),
                             $option = $options.eq(clickedIndex),
                             state = $option.prop('selected'),
                             $optgroup = $option.parent('optgroup'),
                             maxOptions = that.options.maxOptions,
                             maxOptionsGrp = $optgroup.data('maxOptions') || false;
-                        if (!that.multiple) { 
-                            $options.prop('selected', false);
+                        if (!that.multiple) {                             $options.prop('selected', false);
                             $option.prop('selected', true);
                             that.$menuInner.find('.selected').removeClass('selected').find('a').attr('aria-selected', false);
                             that.setSelected(clickedIndex, true);
-                        } else { 
-                            $option.prop('selected', !state);
+                        } else {                             $option.prop('selected', !state);
                             that.setSelected(clickedIndex, !state);
                             $this.blur();
                             if (maxOptions !== false || maxOptionsGrp !== false) {
@@ -1100,9 +1085,9 @@
                         } else if (that.options.liveSearch) {
                             that.$searchbox.focus();
                         }
-                        if (triggerChange) {
+                                                if (triggerChange) {
                             if ((prevValue != that.$element.val() && that.multiple) || (prevIndex != that.$element.prop('selectedIndex') && !that.multiple)) {
-                                changed_arguments = [clickedIndex, $option.prop('selected'), state];
+                                                                changed_arguments = [clickedIndex, $option.prop('selected'), state];
                                 that.$element
                                     .triggerNative('change');
                             }
@@ -1193,7 +1178,7 @@
                             $hideItems.parent().addClass('hidden');
                             var $lisVisible = that.$lis.not('.hidden'),
                                 $foundDiv;
-                            $lisVisible.each(function(index) {
+                                                        $lisVisible.each(function(index) {
                                 var $this = $(this);
                                 if ($this.hasClass('divider')) {
                                     if ($foundDiv === undefined) {
@@ -1351,7 +1336,7 @@
                         that.$menuInner.click();
                         that.$button.focus();
                     }
-                    $items = $('[role="listbox"] li' + selector, $parent);
+                                        $items = $('[role="listbox"] li' + selector, $parent);
                     if (!$this.val() && !/(38|40)/.test(e.keyCode.toString(10))) {
                         if ($items.filter('.active').length === 0) {
                             $items = that.$menuInner.find('li');
@@ -1431,14 +1416,14 @@
                     }
                     $items.eq(keyIndex[count - 1]).children('a').focus();
                 }
-                if ((/(13|32)/.test(e.keyCode.toString(10)) || (/(^9$)/.test(e.keyCode.toString(10)) && that.options.selectOnTab)) && isActive) {
+                                if ((/(13|32)/.test(e.keyCode.toString(10)) || (/(^9$)/.test(e.keyCode.toString(10)) && that.options.selectOnTab)) && isActive) {
                     if (!/(32)/.test(e.keyCode.toString(10))) e.preventDefault();
                     if (!that.options.liveSearch) {
                         var elem = $(':focus');
                         elem.click();
-                        elem.focus();
-                        e.preventDefault();
-                        $(document).data('spaceSelect', true);
+                                                elem.focus();
+                                                e.preventDefault();
+                                                $(document).data('spaceSelect', true);
                     } else if (!/(32)/.test(e.keyCode.toString(10))) {
                         that.$menuInner.find('.active a').click();
                         $this.focus();
@@ -1489,9 +1474,9 @@
                     .removeClass('bs-select-hidden selectpicker');
             }
         };
-        function Plugin(option) {
-            var args = arguments;
-            var _option = option;
+                        function Plugin(option) {
+                        var args = arguments;
+                                    var _option = option;
             [].shift.apply(args);
             var value;
             var chain = this.each(function() {
@@ -1520,7 +1505,7 @@
                 }
             });
             if (typeof value !== 'undefined') {
-                return value;
+                                return value;
             } else {
                 return chain;
             }
@@ -1528,7 +1513,7 @@
         var old = $.fn.selectpicker;
         $.fn.selectpicker = Plugin;
         $.fn.selectpicker.Constructor = Selectpicker;
-        $.fn.selectpicker.noConflict = function() {
+                        $.fn.selectpicker.noConflict = function() {
             $.fn.selectpicker = old;
             return this;
         };
@@ -1538,7 +1523,7 @@
             .on('focusin.modal', '.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="listbox"], .bs-searchbox input', function(e) {
                 e.stopPropagation();
             });
-        $(window).on('load.bs.select.data-api', function() {
+                        $(window).on('load.bs.select.data-api', function() {
             $('.selectpicker').each(function() {
                 var $selectpicker = $(this);
                 Plugin.call($selectpicker, $selectpicker.data());

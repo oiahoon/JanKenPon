@@ -18,29 +18,11 @@
             title: '',
             url: document.location.href,
             text: document.title,
-            urlCurl: 'sharrre.php', 
-            count: {}, 
-            total: 0, 
-            shorterTotal: true, 
-            enableHover: true, 
-            enableCounter: true, 
-            enableTracking: false, 
-            hover: function() {}, 
-            hide: function() {}, 
-            click: function() {}, 
-            render: function() {}, 
-            buttons: { 
-                googlePlus: { 
-                    url: '', 
-                    urlCount: false, 
-                    size: 'medium',
+            urlCurl: 'sharrre.php',             count: {},             total: 0,             shorterTotal: true,             enableHover: true,             enableCounter: true,             enableTracking: false,             hover: function() {},             hide: function() {},             click: function() {},             render: function() {},             buttons: {                 googlePlus: {                     url: '',                     urlCount: false,                     size: 'medium',
                     lang: 'en-US',
                     annotation: ''
                 },
-                facebook: { 
-                    url: '', 
-                    urlCount: false, 
-                    action: 'like',
+                facebook: {                     url: '',                     urlCount: false,                     action: 'like',
                     layout: 'button_count',
                     width: '',
                     send: 'false',
@@ -49,38 +31,21 @@
                     font: '',
                     lang: 'en_US'
                 },
-                twitter: { 
-                    url: '', 
-                    urlCount: false, 
-                    count: 'horizontal',
+                twitter: {                     url: '',                     urlCount: false,                     count: 'horizontal',
                     hashtags: '',
                     via: '',
                     related: '',
                     lang: 'en'
                 },
-                digg: { 
-                    url: '', 
-                    urlCount: false, 
-                    type: 'DiggCompact'
+                digg: {                     url: '',                     urlCount: false,                     type: 'DiggCompact'
                 },
                 delicious: {
-                    url: '', 
-                    urlCount: false, 
-                    size: 'medium' 
+                    url: '',                     urlCount: false,                     size: 'medium'                 },
+                stumbleupon: {                     url: '',                     urlCount: false,                     layout: '1'
                 },
-                stumbleupon: { 
-                    url: '', 
-                    urlCount: false, 
-                    layout: '1'
+                linkedin: {                     url: '',                     urlCount: false,                     counter: ''
                 },
-                linkedin: { 
-                    url: '', 
-                    urlCount: false, 
-                    counter: ''
-                },
-                pinterest: { 
-                    url: '', 
-                    media: '',
+                pinterest: {                     url: '',                     media: '',
                     description: '',
                     layout: 'horizontal'
                 }
@@ -88,18 +53,18 @@
         },
         urlJson = {
             googlePlus: "",
-            facebook: "https://graph.facebook.com/fql?q=SELECT%20url,%20normalized_url,%20share_count,%20like_count,%20comment_count,%20total_count,commentsbox_count,%20comments_fbid,%20click_count%20FROM%20link_stat%20WHERE%20url=%27{url}%27&callback=?",
+                        facebook: "https://graph.facebook.com/fql?q=SELECT%20url,%20normalized_url,%20share_count,%20like_count,%20comment_count,%20total_count,commentsbox_count,%20comments_fbid,%20click_count%20FROM%20link_stat%20WHERE%20url=%27{url}%27&callback=?",
             twitter: "http://cdn.api.twitter.com/1/urls/count.json?url={url}&callback=?",
             digg: "http://services.digg.com/2.0/story.getInfo?links={url}&type=javascript&callback=?",
             delicious: 'http://feeds.delicious.com/v2/json/urlinfo/data?url={url}&callback=?',
-            stumbleupon: "",
+                        stumbleupon: "",
             linkedin: "http://www.linkedin.com/countserv/count/share?format=jsonp&url={url}&callback=?",
             pinterest: "http://api.pinterest.com/v1/urls/count.json?url={url}&callback=?"
         },
         loadButton = {
             googlePlus: function(self) {
                 var sett = self.options.buttons.googlePlus;
-                $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="' + sett.size + '" data-href="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-annotation="' + sett.annotation + '"></div></div>');
+                                $(self.element).find('.buttons').append('<div class="button googleplus"><div class="g-plusone" data-size="' + sett.size + '" data-href="' + (sett.url !== '' ? sett.url : self.options.url) + '" data-annotation="' + sett.annotation + '"></div></div>');
                 window.___gcfg = {
                     lang: self.options.buttons.googlePlus.lang
                 };
@@ -157,8 +122,7 @@
                         url: '//platform.twitter.com/widgets.js',
                         dataType: 'script',
                         cache: true
-                    }); 
-                }
+                    });                 }
             },
             digg: function(self) {
                 var sett = self.options.buttons.digg;
@@ -177,12 +141,10 @@
                 }
             },
             delicious: function(self) {
-                if (self.options.buttons.delicious.size == 'tall') { 
-                    var css = 'width:50px;',
+                if (self.options.buttons.delicious.size == 'tall') {                     var css = 'width:50px;',
                         cssCount = 'height:35px;width:50px;font-size:15px;line-height:35px;',
                         cssShare = 'height:18px;line-height:18px;margin-top:3px;';
-                } else { 
-                    var css = 'width:93px;',
+                } else {                     var css = 'width:93px;',
                         cssCount = 'float:right;padding:0 3px;height:20px;width:26px;line-height:20px;',
                         cssShare = 'float:left;height:20px;line-height:20px;';
                 }
@@ -257,7 +219,7 @@
         tracking = {
             googlePlus: function() {},
             facebook: function() {
-                fb = window.setInterval(function() {
+                                fb = window.setInterval(function() {
                     if (typeof FB !== 'undefined') {
                         FB.Event.subscribe('edge.create', function(targetUrl) {
                             _gaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
@@ -268,19 +230,19 @@
                         FB.Event.subscribe('message.send', function(targetUrl) {
                             _gaq.push(['_trackSocial', 'facebook', 'send', targetUrl]);
                         });
-                        clearInterval(fb);
+                                                clearInterval(fb);
                     }
                 }, 1000);
             },
             twitter: function() {
-                tw = window.setInterval(function() {
+                                tw = window.setInterval(function() {
                     if (typeof twttr !== 'undefined') {
                         twttr.events.bind('tweet', function(event) {
                             if (event) {
                                 _gaq.push(['_trackSocial', 'twitter', 'tweet']);
                             }
                         });
-                        clearInterval(tw);
+                                                clearInterval(tw);
                     }
                 }, 1000);
             },
@@ -294,7 +256,7 @@
                 }
             },
             pinterest: function() {
-            }
+                            }
         },
         popup = {
             googlePlus: function(opt) {
@@ -333,11 +295,9 @@
     Plugin.prototype.init = function() {
         var self = this;
         if (this.options.urlCurl !== '') {
-            urlJson.googlePlus = this.options.urlCurl + '?url={url}&type=googlePlus'; 
-            urlJson.stumbleupon = this.options.urlCurl + '?url={url}&type=stumbleupon'; 
-        }
+            urlJson.googlePlus = this.options.urlCurl + '?url={url}&type=googlePlus';             urlJson.stumbleupon = this.options.urlCurl + '?url={url}&type=stumbleupon';         }
         $(this.element).addClass(this.options.className); 
-        if (typeof $(this.element).data('title') !== 'undefined') {
+                if (typeof $(this.element).data('title') !== 'undefined') {
             this.options.title = $(this.element).attr('data-title');
         }
         if (typeof $(this.element).data('url') !== 'undefined') {
@@ -346,33 +306,30 @@
         if (typeof $(this.element).data('text') !== 'undefined') {
             this.options.text = $(this.element).data('text');
         }
-        $.each(this.options.share, function(name, val) {
+                $.each(this.options.share, function(name, val) {
             if (val === true) {
                 self.options.shareTotal++;
             }
         });
-        if (self.options.enableCounter === true) { 
-            $.each(this.options.share, function(name, val) {
+        if (self.options.enableCounter === true) {                         $.each(this.options.share, function(name, val) {
                 if (val === true) {
-                    try {
+                                        try {
                         self.getSocialJson(name);
                     } catch (e) {}
                 }
             });
-        } else if (self.options.template !== '') { 
-            this.options.render(this, this.options);
-        } else { 
-            this.loadButtons();
+        } else if (self.options.template !== '') {             this.options.render(this, this.options);
+        } else {             this.loadButtons();
         }
-        $(this.element).hover(function() {
-            if ($(this).find('.buttons').length === 0 && self.options.enableHover === true) {
+                $(this.element).hover(function() {
+                        if ($(this).find('.buttons').length === 0 && self.options.enableHover === true) {
                 self.loadButtons();
             }
             self.options.hover(self, self.options);
         }, function() {
             self.options.hide(self, self.options);
         });
-        $(this.element).click(function() {
+                $(this.element).click(function() {
             self.options.click(self, self.options);
             return false;
         });
@@ -383,8 +340,7 @@
         $.each(self.options.share, function(name, val) {
             if (val == true) {
                 loadButton[name](self);
-                if (self.options.enableTracking === true) { 
-                    tracking[name]();
+                if (self.options.enableTracking === true) {                     tracking[name]();
                 }
             }
         });
@@ -396,24 +352,18 @@
         if (this.options.buttons[name].urlCount === true && this.options.buttons[name].url !== '') {
             url = urlJson[name].replace('{url}', this.options.buttons[name].url);
         }
-        if (url != '' && self.options.urlCurl !== '') { 
-            $.getJSON(url, function(json) {
-                    if (typeof json.count !== "undefined") { 
-                        var temp = json.count + '';
-                        temp = temp.replace('\u00c2\u00a0', ''); 
-                        count += parseInt(temp, 10);
+                if (url != '' && self.options.urlCurl !== '') {             $.getJSON(url, function(json) {
+                    if (typeof json.count !== "undefined") {                         var temp = json.count + '';
+                        temp = temp.replace('\u00c2\u00a0', '');                         count += parseInt(temp, 10);
                     }
-                    else if (json.data && json.data.length > 0 && typeof json.data[0].total_count !== "undefined") { 
-                        count += parseInt(json.data[0].total_count, 10);
-                    } else if (typeof json[0] !== "undefined") { 
-                        count += parseInt(json[0].total_posts, 10);
-                    } else if (typeof json[0] !== "undefined") { 
-                    }
+                                        else if (json.data && json.data.length > 0 && typeof json.data[0].total_count !== "undefined") {                         count += parseInt(json.data[0].total_count, 10);
+                    } else if (typeof json[0] !== "undefined") {                         count += parseInt(json[0].total_posts, 10);
+                    } else if (typeof json[0] !== "undefined") {                     }
                     self.options.count[name] = count;
                     self.options.total += count;
                     self.renderer();
                     self.rendererPerso();
-                })
+                                    })
                 .error(function() {
                     self.options.count[name] = 0;
                     self.rendererPerso();
@@ -425,7 +375,7 @@
         }
     };
     Plugin.prototype.rendererPerso = function() {
-        var shareCount = 0;
+                var shareCount = 0;
         for (e in this.options.count) {
             shareCount++;
         }
@@ -436,14 +386,11 @@
     Plugin.prototype.renderer = function() {
         var total = this.options.total,
             template = this.options.template;
-        if (this.options.shorterTotal === true) { 
-            total = this.shorterTotal(total);
+        if (this.options.shorterTotal === true) {             total = this.shorterTotal(total);
         }
-        if (template !== '') { 
-            template = template.replace('{total}', total);
+        if (template !== '') {             template = template.replace('{total}', total);
             $(this.element).html(template);
-        } else { 
-            $(this.element).html(
+        } else {             $(this.element).html(
                 '<div class="box"><a class="count" href="#">' + total + '</a>' +
                 (this.options.title !== '' ? '<a class="share" href="#">' + this.options.title + '</a>' : '') +
                 '</div>'
@@ -459,9 +406,7 @@
         return num;
     };
     Plugin.prototype.openPopup = function(site) {
-        popup[site](this.options); 
-        if (this.options.enableTracking === true) { 
-            var tracking = {
+        popup[site](this.options);         if (this.options.enableTracking === true) {             var tracking = {
                 googlePlus: {
                     site: 'Google',
                     action: '+1'
