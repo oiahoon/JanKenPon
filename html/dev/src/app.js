@@ -24,9 +24,13 @@ export class app
         setInterval(bulletsShooting, 10000);
         function bulletsShooting() {
             api.bullets({}, function (data) {
-                data.forEach(function (item, index) {
-                    setTimeout(appendBullet(item), 1234);
-                })
+                var i = data.length;
+                var doAppend = function(){
+                    if(i > 0){
+                        setTimeout(appendBullet(data[i--]), 1234);
+                    }
+                }
+                doAppend();
             });
         }
 
@@ -40,7 +44,7 @@ export class app
                 currentBullets.eq(toDelNumber).fadeOut('slow',function(){ $(this).remove();});
             }
             var item_rand=getRandomInt(2,6);
-            var bullet = $('<div class="bullet hidden col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>').hide().fadeIn('slow');
+            var bullet = $('<div class="bullet col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>').hide().fadeIn('slow');
             $(".bullet-screen").append(bullet);
         }
 
