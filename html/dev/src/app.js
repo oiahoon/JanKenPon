@@ -25,21 +25,24 @@ export class app
         function bulletsShooting() {
             api.bullets({}, function (data) {
                 data.forEach(function (item, index) {
-                    var currentBullets = $(".bullet-screen > .bullet")
-                    var bulletsCount = currentBullets.length;
-                    if(bulletsCount >= 50){
-                        currentBullets.eq(50).nextAll().remove();
-                        var toDelNumber = getRandomInt(0,50);
-                        currentBullets.eq(toDelNumber).fadeOut('slow',function(){ $(this).remove();});
-                    }
-                    var item_rand=getRandomInt(2,6);
-                    var bullet = $('<div class="bullet hidden col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>').hide().fadeIn('slow');
-                    $(".bullet-screen").append(bullet);
+                    setTimeout(appendBullet(item), 1234);
                 })
             });
         }
 
         let cache = [ ];
+        function appendBullet(item) {
+            var currentBullets = $(".bullet-screen > .bullet")
+            var bulletsCount = currentBullets.length;
+            if(bulletsCount >= 50){
+                currentBullets.eq(50).nextAll().remove();
+                var toDelNumber = getRandomInt(0,50);
+                currentBullets.eq(toDelNumber).fadeOut('slow',function(){ $(this).remove();});
+            }
+            var item_rand=getRandomInt(2,6);
+            var bullet = $('<div class="bullet hidden col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>').hide().fadeIn('slow');
+            $(".bullet-screen").append(bullet);
+        }
 
         function getRandomInt(min, max) {
           min = Math.ceil(min);
