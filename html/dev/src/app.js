@@ -27,7 +27,8 @@ export class app
                 var i = data.length-1;
                 var doAppend = function(){
                     if(i > 0){
-                        setTimeout(appendBullet(data[i--]), 1234);
+                        appendBullet(data[i--]);
+                        setTimeout(doAppend, 834);
                     }
                 }
                 doAppend();
