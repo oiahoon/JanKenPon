@@ -24,7 +24,7 @@ export class app
         setInterval(bulletsShooting, 10000);
         function bulletsShooting() {
             api.bullets({}, function (data) {
-                var i = data.length;
+                var i = data.length-1;
                 var doAppend = function(){
                     if(i > 0){
                         setTimeout(appendBullet(data[i--]), 1234);
