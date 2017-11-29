@@ -46,7 +46,7 @@ export class app
             }
             var item_rand=getRandomInt(2,6);
             var bullet = $('<div class="bullet col-md-' + (item_rand) + ' ml-md-auto"><h' + (6 - item_rand) + '>' + item['text'] + '</h1></div>').hide().fadeIn('slow');
-            $(".bullet-screen").append(bullet);
+            $(".bullet-screen").prepend(bullet);
         }
 
         function getRandomInt(min, max) {
