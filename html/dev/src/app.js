@@ -27,7 +27,7 @@ export class app
                 data.forEach(function (item, index) {
                     var currentBullets = $(".bullet-screen > .bullet")
                     var bulletsCount = currentBullets.length;
-                    if(bulletsCount >= 50){
+                    while(bulletsCount >= 50){
                         var toDelNumber = getRandomInt(0,50);
                         currentBullets.eq(toDelNumber).fadeOut('slow',function(){ $(this).remove();});
                     }
