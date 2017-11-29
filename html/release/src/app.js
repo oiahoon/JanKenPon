@@ -1,18 +1,26 @@
+/**
+ * Created by Hodge.Yuan@hotmail.com on 2017/10/20 0020.
+ */
 import {JKP, common, api, user} from "./common/common.js"
 import {auth, main} from "./pages/page.js"
+
 export class app
 {
     constructor() {
         common.header(false);
         common.render(`<div class="section punch-box">    <div class="container text-center">        <div class="card card-login card-plain">            <h1><i class="fa fa-circle-o-notch fa-spin"></i></h1>        </div>    </div></div>`);
+
         api.userInfo({}, function (data) {
             user.set(data.user); JKP.Page(main);
         }, function () {
             JKP.Page(auth);
         }, this.barrageWall);
     }
-        barrageWall() {
-                bulletsShooting();
+
+    // 弹幕墙
+    barrageWall() {
+        // let bullets = '';
+        bulletsShooting();
         setInterval(bulletsShooting, 10000);
         function bulletsShooting() {
             api.bullets({}, function (data) {
@@ -29,6 +37,7 @@ export class app
                 })
             });
         }
+
         let cache = [
             {
                 "rand": 2,
@@ -39,9 +48,12 @@ export class app
                 "text": "我是第一刚刚使出[就如你轻轻地来一掌]但是败给了joey"
             }
         ];
+
         function getRandomInt(min, max) {
           min = Math.ceil(min);
           max = Math.floor(max);
-          return Math.floor(Math.random() * (max - min)) + min;         }
+          return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        }
     }
+
 }
