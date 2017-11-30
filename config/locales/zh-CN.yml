@@ -21,3 +21,27 @@ zh-CN:
     params:
       date:
         missing: "你不给我个日期（date）我没办法查询，比如 ?date=2017-11-11"
+
+  punch_record:
+    bullet_win: "%{user_a}刚刚使用[%{pattern}]战胜了%{user_b}"
+    bullet_lose: "%{user_a}刚刚使出[%{pattern}]但是败给了%{user_b}"
+    bullet_dogfall: "%{user_a}居然和%{user_b}互相给了对方[%{pattern}],难分高低"
+    patterns:
+      "1":
+        "1": "剪刀"
+        "2": "JAN"
+        "3": "夺命剪刀脚"
+        "4": "理不断剪还乱"
+      "2":
+        "1": "石头"
+        "2": "KEN"
+        "3": "砣子"
+        "4": "锤子"
+        "5": "茅司头的石头"
+        "6": "小拳拳捶你胸口"
+      "3":
+        "1": "布"
+        "2": "PON"
+        "3": "帕子"
+        "4": "一耳屎"
+        "5": "就如你轻轻地来一掌"

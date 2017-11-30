@@ -2,9 +2,11 @@ body {
     color: #565656;
     background-color: #333333;
 }
-.login-form,
-.punch-histories,
-.rank-list {
+
+.section.login-form,
+.section.punch-histories,
+.section.rank-list,
+.section.punch-box {
     background: rgba(51, 51, 51, 0);
 }
 
@@ -41,7 +43,7 @@ body {
     /* Standard syntax */
     min-height: 100vh;
     max-height: 999px;
-    padding: 0;
+    padding: 100px 0 0 0;
 }
 
 .punch-box:after,
@@ -52,10 +54,6 @@ body {
     left: 0;
     top: 0;
     content: "";
-}
-
-.punch-box .section {
-    background:unset;
 }
 
 .punch-box .score {
@@ -84,6 +82,7 @@ body {
 
 .punch-pattern .card p {
     color: #333333;
+    padding: 0 1em;
 }
 
 .bullet-screen {
@@ -120,6 +119,20 @@ body {
 .rank-list table,
 .punch-histories table {
     color: #9A9A9A;
+    background: rgba(0, 0, 0, 0.5803921568627451);
+    border-radius: 5px;
+}
+.rank-list table thead,
+.punch-histories table thead{
+    color: wheat;
+    font-size: 1.6em;
+}
+
+.rank-list table thead th,
+.punch-histories table thead th{
+    height: 3em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 
 .rank-list table a,
@@ -135,8 +148,15 @@ body {
 .punch-histories .bullet-screen{
     color: hsla(0, 0%, 43%, 0.26);
 }
+.bullet-screen h1, h2, h3, h4, h5, h6 {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+
 .page-header[filter-color="eggyellow"] {
-    background: rgb(254, 253, 217));
+    background: rgb(254, 253, 217);
     /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgb(254, 253, 217));
     /* For Safari 5.1 to 6.0 */
@@ -147,9 +167,15 @@ body {
     background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgb(254, 253, 217));
 }
 
-.link-black {
-    color: #2d2d2d;
+.link-cyan {
+    color: #5A9B93;
 }
+.footer {
+    /*position:absolute;*/
+    bottom:0;
+    left:0;
+}
+
 /* btn green */
 .btn-green {
     background-color: #76a541;

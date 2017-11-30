@@ -63,7 +63,7 @@
         </div>
     </nav>
     <!-- End Navbar -->
-    <div class="wrapper rank-list">
+    <div class="wrapper">
         <!--     *********    BULLET SCREEN      *********      -->
         <div class="row bullet-screen"> </div>
         <!--     *********    END BULLET SCREEN      *********      -->
@@ -355,7 +355,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>, Designed by
-                    <a href="https://auwoo.org" class="link-black" target="_blank">auWoo</a>.
+                    <a href="https://auwoo.org" class="link-cyan" target="_blank">auWoo</a>.
                 </div>
             </div>
         </footer>
@@ -427,7 +427,7 @@
     }]
     var bullets = '';
     records.map(function(item) {
-        bullets += '<div class="col-md-' + (2 + item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
+        bullets += '<div class="col-md-' + (item['rand']) + ' ml-md-auto"><h' + (6 - item['rand']) + '>' + item['text'] + '</h1></div>';
     })
     $(document).ready(function() {
         $(".bullet-screen").append(bullets);

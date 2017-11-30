@@ -1,8 +1,37 @@
 /**
  * Created by Hodge.Yuan@hotmail.com on 2017/11/3 0003.
  */
-import {awu} from "../../aoowu/awu.js"
 import {api} from "../service/api.js";
+
+/**
+ * JKP Core
+ * @type {{Page: (function(*=))}}
+ */
+let JKP = new class {
+    constructor() {
+        this.classMap = {};
+    }
+
+    /**
+     * @param cls
+     * @constructor
+     */
+    Page(cls) {
+        if (typeof cls === 'function') {
+            if (!this.classMap.hasOwnProperty(cls.name)) {
+                this.classMap[cls.name] = new cls;
+            }
+
+            this.classMap[cls.name].__constructor();
+        } else {
+            if (!this.classMap.hasOwnProperty(cls)) {
+                throw "JKP.Page: class " + cls + " undefined";
+            }
+
+            this.classMap[cls].__constructor();
+        }
+    }
+};
 
 /**
  * user info
@@ -44,9 +73,24 @@ let common = new class Common
      * @param call
      */
     render(html, call) {
-        $("body").html(html);
+        let wrapper =  document.getElementById('jkp_container');
 
-        typeof call === "function" && call();
+        if (wrapper) {
+            wrapper.innerHTML = html;
+            typeof call === "function" && call();
+        }
+    }
+
+    /**
+     * 设置导航
+     * @param bln
+     */
+    header(bln) {
+        if (bln) {
+            $("#navbar").html(`{nav.html}`);
+        } else {
+            $("#navbar").html('');
+        }
     }
 
     /**
@@ -111,4 +155,4 @@ let common = new class Common
 
 };
 
-export {awu, common, api, user}
+export {JKP, common, api, user}
