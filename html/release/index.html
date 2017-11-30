@@ -28,17 +28,6 @@
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/css/now-ui-kit.css?v=1.0.1" rel="stylesheet" />
     <link href="./assets/css/app.css" rel="stylesheet" />
-    <style>
-        .indexInit{display: block;overflow: hidden;height:1.15em}
-        .indexInit:before{content:""; animation:NotSupport 5s forwards}
-
-        @keyframes NotSupport {
-            100% {
-                content: "您的浏览器不支持\A";
-                white-space: pre;
-            }
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar navbar-toggleable-md bg-white fixed-top navbar-transparent" color-on-scroll="50">
@@ -63,7 +52,12 @@
             <div class="section punch-box">
                 <div class="container text-center">
                     <div class="card card-login card-plain">
-                        <h1 class="indexInit"><i class="fa fa-circle-o-notch fa-spin"></i></h1>
+                        <h3 class="indexInitttttttttttttt"><i class="fa fa-circle-o-notch fa-spin"></i></h3>
+                        <script>
+                            setTimeout(function () {
+                                $(".indexInitttttttttttttt").html("您的浏览器不支持")
+                            }, 2000)
+                        </script>
                     </div>
                 </div>
             </div>
