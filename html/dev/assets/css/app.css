@@ -148,7 +148,9 @@ body {
 .punch-histories .bullet-screen{
     color: hsla(0, 0%, 43%, 0.26);
 }
-.bullet-screen h1, h2, h3, h4, h5, h6 {
+.bullet-screen h1, h2, h3, h4, h5, h6,
+.punch-box .card-avatar,
+.badge.badge-score {
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
