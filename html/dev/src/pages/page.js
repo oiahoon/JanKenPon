@@ -42,15 +42,15 @@ class main
 
                     let top  = 0;
                     let left = 0;
+                    let navBtn = $(".navbar-toggler");
+                    let navTxt = $(".design_bullet-list-67");
 
-                    if ($(".navbar-collapse").css("display") === "block") {
-                        let nt = $(".navbar-toggler");
-                        top  = nt.offset().top;
-                        left = nt.offset().left;
+                    if (navBtn.css("display") === "block") {
+                        top  = navBtn.offset().top - document.documentElement.scrollTop;
+                        left = navBtn.offset().left;
                     } else {
-                        let db = $(".design_bullet-list-67");
-                        top  = db.offset().top;
-                        left = db.offset().left;
+                        top  = navTxt.offset().top;
+                        left = navTxt.offset().left;
                     }
 
                     top  = top + icon.offsetHeight * 0.1;
