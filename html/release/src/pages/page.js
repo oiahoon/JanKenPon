@@ -220,7 +220,7 @@ class main
             api.userInfo({}, function (data) {
                 user.set(data.user);
             });
-        }, 36000)
+        }, 60000)
     }
 
 }
