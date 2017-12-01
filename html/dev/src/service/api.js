@@ -38,12 +38,21 @@ class http
             if (XMLHttp.status < 400) {
                 success(JSON.parse(XMLHttp.responseText));
             } else {
-                let tip = "";
-                let err = (JSON.parse(XMLHttp.response)).error;
+                let tip = '';
+                let res = null;
+                let err = false;
+
+                try {
+                    res = JSON.parse(XMLHttp.response);
+                    err = res.error;
+                } catch (e) {
+                    console.log(e);
+                    err = false;
+                }
 
                 switch (typeof err) {
                     case "object":
-                        err.forEach(function (v, i) {
+                        err !== null && err.forEach(function (v, i) {
                             tip += "<p>" + v + "</p>";
                         });
 

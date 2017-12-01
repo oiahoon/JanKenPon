@@ -227,7 +227,7 @@ class auth
                 $('#login').click(this.signIn);
 
                 // register btn click
-                $('#targetR').click(() => { node.register.__constructor(); });
+                $('#targetR').click(() => { !sending && node.register.__constructor(); });
             };
 
             // check in
@@ -284,7 +284,7 @@ class auth
                 $('#register').click(this.signUp);
 
                 // register btn click
-                $('#targetL').click(() => { node.login.__constructor(); });
+                $('#targetL').click(() => { !sending && node.login.__constructor(); });
             };
 
             // sign up
