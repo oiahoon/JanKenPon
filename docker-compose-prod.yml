@@ -1,6 +1,7 @@
 version: '2'
 services:
   db:
+    container_name: jkp_db_production
     image: 'postgres:latest'
     restart: always
     environment:
@@ -10,6 +11,7 @@ services:
     volumes:
       - ./psql-data:/var/lib/postgresql/data
   app:
+    container_name: jkp_app_production
     environment:
       - "TZ=Asia/Chongqing"
     build: ./
@@ -24,8 +26,10 @@ services:
       - db
       - redis
   redis:
+    container_name: jkp_redis_production
     image: 'redis:4'
   nginx:
+    container_name: jkp_nginx_production
     image: nginx
     volumes_from:
       - app
