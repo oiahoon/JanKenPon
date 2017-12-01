@@ -218,7 +218,7 @@ class main
 
         this.refresh = setInterval(() => {
             api.userInfo({}, function (data) {
-                user.set(data.user);
+                user.set(data.user); $('#my_score').text(user.total_score);
             });
         }, 60000)
     }
