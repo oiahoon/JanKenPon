@@ -84,5 +84,3 @@ test:
 production:
   <<: *default
   database: jkp_production
-  username: jkp
-  password: <%= ENV['ZBQ_DATABASE_PASSWORD'] %>
