@@ -9,6 +9,12 @@ import {JKP, common, api, user} from "../common/common.js";
 class main
 {
     constructor() {
+        // this
+        let M = this;
+
+        // refresh id
+        this.refresh = 0;
+
         // 猜拳页
         this.jkp = new class {
             __constructor() {
@@ -78,7 +84,7 @@ class main
                             common.dialog({content: errText})
                         } else {
                             common.dialog({content: errText, cancel: function () {
-                                user.destroy() ; JKP.Page(auth);
+                                M.refresh = 0; user.destroy() ; JKP.Page(auth);
                             }})
                         }
                         icon.remove(); flag = false;
@@ -183,6 +189,7 @@ class main
     __constructor() {
         common.header(1);
         this.initAppPage();
+        this.refreshUserScore();
         this.jkp.__constructor();
     }
 
@@ -201,6 +208,19 @@ class main
             $("#bodyClick").click();
             self.run[$(this).attr("data-target")].__constructor();
         })
+    }
+
+    // 定时刷新用户金币
+    refreshUserScore() {
+        if (this.refresh !== 0) {
+            return ;
+        }
+
+        this.refresh = setInterval(() => {
+            api.userInfo({}, function (data) {
+                user.set(data.user);
+            });
+        }, 60000)
     }
 
 }
@@ -227,7 +247,7 @@ class auth
                 $('#login').click(this.signIn);
 
                 // register btn click
-                $('#targetR').click(() => { node.register.__constructor(); });
+                $('#targetR').click(() => { !sending && node.register.__constructor(); });
             };
 
             // check in
@@ -284,7 +304,7 @@ class auth
                 $('#register').click(this.signUp);
 
                 // register btn click
-                $('#targetL').click(() => { node.login.__constructor(); });
+                $('#targetL').click(() => { !sending && node.login.__constructor(); });
             };
 
             // sign up
