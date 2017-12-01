@@ -212,7 +212,6 @@ class main
 
     // 定时刷新用户金币
     refreshUserScore() {
-        console.log(1);
         if (this.refresh !== 0) {
             return ;
         }
