@@ -1,0 +1,41 @@
+version: '2'
+services:
+  db:
+    container_name: jkp_db_production
+    image: 'postgres:latest'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: jankenpon
+    ports:
+      - '5432'
+    volumes:
+      - ./psql-data:/var/lib/postgresql/data
+  app:
+    container_name: jkp_app_production
+    environment:
+      - "TZ=Asia/Chongqing"
+    build: ./
+    command: bundle exec rails s -p 3009 -b 0.0.0.0 -e production
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3009"
+    depends_on:
+      - db
+    links:
+      - db
+      - redis
+  redis:
+    container_name: jkp_redis_production
+    image: 'redis:4'
+  nginx:
+    container_name: jkp_nginx_production
+    image: nginx
+    volumes_from:
+      - app
+    depends_on:
+      - app
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
