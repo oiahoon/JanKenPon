@@ -3,6 +3,37 @@ body {
     background-color: #333333;
 }
 
+.jkp-rules {
+    margin-top: 4em;
+    position: absolute;
+    z-index: 1;
+    background-size: 140% 140%;
+    border: 0;
+    border-radius: 0;
+    color: #FFF;
+    padding: 8px 24px;
+    top: 0px;
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+}
+.jkp-rules .text-left {
+    padding: 8px 0;
+}
+.jkp-rules .learn-more {
+    padding: 0;
+    line-height: 0;
+    -webkit-appearance: none;
+}
+
+.jkp-rules .btn {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+}
+
 .section.login-form,
 .section.punch-histories,
 .section.rank-list,
