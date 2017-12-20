@@ -44,8 +44,8 @@ class Ranker
             :total_times => 0,
             :punch_date  => @punch_date,
           })
-          rank.total_times = rank.win_times + rank.lose_times + rank.dog_times
-          rank.score       = INITIAL_SCORE + rank.win_times - rank.lose_times
+          rank.total_times = rank.win_times.to_i + rank.lose_times + rank.dog_times.to_i
+          rank.score       = INITIAL_SCORE + rank.win_times.to_i - rank.lose_times.to_i
           logger.info rank
           rank.save
           logger.info "#{user_id}{win:#{rank.win_times},lose:#{rank.lose_times},dog:#{rank.dog_times}}"
