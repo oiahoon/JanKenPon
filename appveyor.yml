@@ -12,6 +12,7 @@ cache:
 
 install:
   - SET PATH=C:\%ruby_version%\bin;%PATH%
+  - SET SSL_CERT_FILE=C:/ruby24-x64/ssl/cert.pem
   - bundle env
   - bundle check || bundle install --path=vendor/bundle --retry=3 --jobs=3
   - bundle clean --force
