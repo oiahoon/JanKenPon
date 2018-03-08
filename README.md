@@ -11,3 +11,6 @@
 > 3. docker-compose build
 > 4. cocker-compose up
 > 5. [http://localhost/login](http://localhost/login)
+> 6. build the assets
+>   `docker-compose run app /bin/bash cd html/dev ../jkp build ../release`
+>   
