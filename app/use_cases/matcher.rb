@@ -43,8 +43,8 @@ class Matcher
     end
 
     punch_b = $redis.srandmember "punch-#{user_b}"
-    if punch_a.nil?
-      $redis.srem(USER_ID_LIST_KEY, user_a)
+    if punch_b.nil?
+      $redis.srem(USER_ID_LIST_KEY, user_b)
       fight_each_other
     end
 
