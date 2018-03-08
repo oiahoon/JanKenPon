@@ -48,5 +48,6 @@ module Jkp
       end
     end
 
+    ActiveRecord::Tasks::DatabaseTasks::LOCAL_HOSTS << "db"
   end
 end
