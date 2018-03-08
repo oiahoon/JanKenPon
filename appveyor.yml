@@ -1,4 +1,8 @@
-version: 1.0.{build}
+version: 1.0.{build}-{branch}
+
+environment:
+  matrix:
+    - RUBY_VERSION: 23
 
 branches:
   only:
@@ -23,3 +27,6 @@ before_test:
   - bundle -v
 
 build: off
+
+test_script:
+  - bundle exec rake
