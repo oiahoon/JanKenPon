@@ -8,7 +8,7 @@ class http
      * @returns {string}
      */
     static domain() {
-        return "http://jkp.aoowu.org/api";
+        return "http://jkp.miaowu.org/api";
     }
 
     /**

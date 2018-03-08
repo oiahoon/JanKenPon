@@ -137,9 +137,9 @@ class main
                 this.page  = 1;
                 this.table = $('#historiesTable');
                 this.icons = {
-                    'JAN': 'http://assets.aoowu.org/images/jan.png',
-                    'KEN': "http://assets.aoowu.org/images/ken.png",
-                    'PON': "http://assets.aoowu.org/images/pon.png"
+                    'JAN': 'http://assets.miaowu.org/images/jan.png',
+                    'KEN': "http://assets.miaowu.org/images/ken.png",
+                    'PON': "http://assets.miaowu.org/images/pon.png"
                 };
 
                 this.list();
