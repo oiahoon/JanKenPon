@@ -10,10 +10,16 @@ jobs:
   two:
     docker:
       - image: circleci/ruby:2.4.1
+      - image: postgres:9.4.1
     steps:
       - checkout
-      - run: echo "A more familiar hi"
-      - run: sleep 15
+      - run: apt-get update -qq && apt-get install -y build-essential nodejs
+      - run: bundle install
+      - run: bundle exec rake db:create db:schema:load --trace
+      - run: bundle exec rake db:migrate
+      - run: bundle exec rake test
+      - run: echo "Step 2 finished"
+      - run: sleep 25
 
 workflows:
   version: 2
