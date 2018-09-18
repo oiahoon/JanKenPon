@@ -1,4 +1,9 @@
-version: 1.0.{build}
+version: 1.0.{build}-{branch}
+
+environment:
+  matrix:
+    - RUBY_VERSION: 23
+    - RUBY_VERSION: 22
 
 branches:
   only:
@@ -11,7 +16,8 @@ cache:
   - vendor/bundle
 
 install:
-  - SET PATH=C:\%ruby_version%\bin;%PATH%
+  - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
+  - SET SSL_CERT_FILE=C:/ruby24-x64/ssl/cert.pem
   - bundle env
   - bundle check || bundle install --path=vendor/bundle --retry=3 --jobs=3
   - bundle clean --force
@@ -22,3 +28,6 @@ before_test:
   - bundle -v
 
 build: off
+
+test_script:
+  - bundle exec rake
